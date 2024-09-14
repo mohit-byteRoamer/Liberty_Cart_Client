@@ -25,20 +25,6 @@ const AppHeader = () => {
             ShopNow!
           </span>
         </h1>
-        {/* Language Option Menu */}
-        <Select
-          defaultValue="English"
-          style={{
-            width: 120,
-            marginLeft: "20px",
-            position: "absolute",
-            right: "5rem",
-          }}
-        >
-          <Option value="English">English</Option>
-          <Option value="Punjabi">Punjabi</Option>
-          <Option value="Hindi">Hindi</Option>
-        </Select>
       </div>
       {/* Heading End */}
       {/* Header Start */}
