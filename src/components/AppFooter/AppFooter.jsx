@@ -8,7 +8,7 @@ const { Footer } = Layout;
 
 const AppFooter = () => {
    return (
-      <Footer className="bg-black text-white py-10 mt-10">
+      <Footer className="bg-black text-white py-10">
          <div className="container mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
             {/* Exclusive Subscribe Section */}
             <div>
