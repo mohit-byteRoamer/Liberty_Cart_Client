@@ -3,13 +3,14 @@ import ProductCard from "../ProductCard/ProductCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 const ProductSlider = ({ flashSalesProduct, BestSellingProductsData, OurProducts }) => {
    // Combine both datasets
    const combinedProducts = [
       ...(flashSalesProduct || []),
       ...(BestSellingProductsData || []),
-      ...(OurProducts || [])
+      ...(OurProducts || []),
    ];
 
    const settings = {
@@ -30,7 +31,9 @@ const ProductSlider = ({ flashSalesProduct, BestSellingProductsData, OurProducts
             <Slider {...settings}>
                {combinedProducts.map((product, index) => (
                   <div key={index} className="p-2">
-                     <ProductCard product={product} />
+                     <Link to={`/product${index}`}>
+                        <ProductCard product={product} />
+                     </Link>
                   </div>
                ))}
             </Slider>

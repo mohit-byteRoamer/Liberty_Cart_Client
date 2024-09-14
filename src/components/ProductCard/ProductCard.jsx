@@ -2,6 +2,7 @@
 import { Card, Badge, Typography, Rate, Button } from "antd";
 import { HeartOutlined, EyeOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const { Text, Title } = Typography;
 
@@ -29,20 +30,22 @@ const ProductCard = ({ product }) => {
                   }}
                />
                {hovered && (
-                  <Button
-                     type="primary"
-                     style={{
-                        position: "absolute",
-                        bottom: 10,
-                        left: 0,
-                        right: 0,
-                        margin: "auto",
-                        width: "90%",
-                        backgroundColor: "rgba(0,0,0,0.8)",
-                        borderColor: "rgba(0,0,0,0.8)",
-                     }}>
-                     Add To Cart
-                  </Button>
+                  <Link to={"/shoppingCart"}>
+                     <Button
+                        type="primary"
+                        style={{
+                           position: "absolute",
+                           bottom: 10,
+                           left: 0,
+                           right: 0,
+                           margin: "auto",
+                           width: "90%",
+                           backgroundColor: "rgba(0,0,0,0.8)",
+                           borderColor: "rgba(0,0,0,0.8)",
+                        }}>
+                        Add To Cart
+                     </Button>
+                  </Link>
                )}
                {/* Positioning icons */}
                <div
@@ -98,15 +101,13 @@ const ProductCard = ({ product }) => {
                      display: "flex",
                      alignItems: "center",
                      justifyContent: "center",
-                  }}
-               >
+                  }}>
                   {product.discount || "%"}
                </div>
             </div>
          }
          onMouseEnter={() => setHovered(true)}
-         onMouseLeave={() => setHovered(false)}
-      >
+         onMouseLeave={() => setHovered(false)}>
          <Title level={5}>{product.name}</Title>
          <div style={{ display: "flex", columnGap: "10px", marginTop: 10 }}>
             <Text strong style={{ color: "red" }}>

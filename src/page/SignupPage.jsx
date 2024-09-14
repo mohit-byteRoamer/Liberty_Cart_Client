@@ -16,31 +16,31 @@ const Signup = () => {
    };
 
    return (
-      <div className="max-w-full min-h-[70vh] flex items-center justify-center">
-         <div className="bg-white rounded-lg shadow-lg flex">
-            <div className="w-1/2 left-side p-5">
-               <h2 className="text-3xl font-bold mb-6">Create an account</h2>
+      <div className="container max-w-full min-h-[79vh] flex items-center justify-center">
+         <div className="w-96 h-[90%] rounded-lg shadow-lg border-2">
+            <div className="p-5">
+               <h2 className="text-3xl font-bold pb-4">Create an account</h2>
                <p className="mb-6">Enter your details below</p>
 
                {/* Bind the form instance to the Form */}
                <Form form={form} name="signup" layout="vertical" onFinish={onFinish}>
                   <Form.Item
-                     label="Name"
+                     label="Full Name"
                      name="name"
-                     rules={[{ required: true, message: "Please enter your name!" }]}>
-                     <Input placeholder="Name" />
+                     rules={[{ required: true, message: "Please enter your full name!" }]}>
+                     <Input placeholder="Full name" />
                   </Form.Item>
 
                   <Form.Item
-                     label="Email or Phone Number"
+                     label="Email address"
                      name="email"
                      rules={[
                         {
                            required: true,
-                           message: "Please enter your email or phone number!",
+                           message: "Please enter your email address!",
                         },
                      ]}>
-                     <Input placeholder="Email or Phone Number" />
+                     <Input placeholder="Email address" />
                   </Form.Item>
 
                   <Form.Item
@@ -73,14 +73,6 @@ const Signup = () => {
                      Log in
                   </Link>
                </div>
-            </div>
-
-            <div className="right-side w-1/2 flex justify-center items-center">
-               <img
-                  src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7965.jpg?w=740&t=st=1726230704~exp=1726231304~hmac=3fefd53fdd620702d906cb6f879f525cb2734f9352c356912bdd8f2018471ddf"
-                  alt="Signup Illustration"
-                  className="w-full"
-               />
             </div>
          </div>
       </div>

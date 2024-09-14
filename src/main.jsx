@@ -5,8 +5,10 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <App />
-    <Toaster />
-  </BrowserRouter>
+   <BrowserRouter>
+      <div className="container mx-auto">
+         <App />
+         <Toaster />
+      </div>
+   </BrowserRouter>
 );
