@@ -1,10 +1,12 @@
 import { Button, Input } from "antd";
-import "tailwindcss/tailwind.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { signUpActionsLoad } from "../redux/action/auth-actions";
+import { useDispatch } from "react-redux";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const [clientReady, setClientReady] = useState(false);
 
   useEffect(() => {
@@ -13,14 +15,19 @@ const Signup = () => {
 
   // Initialize react-hook-form
   const {
-    register,
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Form data:", data);
+    dispatch(
+      signUpActionsLoad({
+        userName: data.fullName,
+        email: data.email,
+        password: data.password,
+      })
+    );
   };
 
   return (

@@ -9,6 +9,8 @@ export function* signUpSaga(action) {
   try {
     let response = yield call(signUpApi, action.payload);
     let { result, status } = response;
+    console.log(response, "SIGN_UP_RESULT");
+
     if (status === 1) {
       yield put(signUpActionsSuccess(result));
     } else {

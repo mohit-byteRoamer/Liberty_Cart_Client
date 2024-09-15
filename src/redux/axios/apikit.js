@@ -1,6 +1,6 @@
 import axios from "axios";
-import { DataManager } from "../../utils/dataManager";
-export const url = "https://liberty-cart-server.onrender.com/api/v1/"; // dell
+// import { DataManager } from "../../utils/dataManager";
+export const url = "https://liberty-cart-server.onrender.com/"; // dell
 
 export const finalURL = `${url}api/v1`;
 const APIKit = axios.create({
@@ -9,10 +9,10 @@ const APIKit = axios.create({
 });
 
 APIKit.interceptors.request.use(async (config) => {
-  let accessToken = await DataManager.getAccessToken();
-  if (accessToken) {
-    config.headers["x-access-token"] = `Bearer ${accessToken}`;
-  }
+  // let accessToken = await DataManager.getAccessToken();
+  // if (accessToken) {
+  //   config.headers["x-access-token"] = `Bearer ${accessToken}`;
+  // }
   return config;
 });
 

@@ -4,4 +4,5 @@ import { signUpSaga } from "./auth-sagas";
 
 export function* rootSaga() {
   yield takeLatest(reduxContacts.SIGNUP_LOAD, signUpSaga);
+  
 }
