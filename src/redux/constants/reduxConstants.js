@@ -2,6 +2,9 @@ const reduxConstants = {
   SIGNUP_LOAD: "SIGNUP_LOAD",
   SIGNUP_SUCCESS: "SIGNUP_SUCCESS",
   SIGNUP_FAIL: "SIGNUP_FAIL",
+  LOGIN_LOAD: "LOGIN_LOAD",
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  LOGIN_FAIL: "LOGIN_FAIL",
 };
 
 export default reduxConstants;

@@ -110,6 +110,10 @@ const Signup = () => {
                     value: 8,
                     message: "Password must be at least 8 characters long",
                   },
+                  maxLength: {
+                    value: 16,
+                    message: "Password cannot exceed 16 characters",
+                  },
                   pattern: {
                     value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/,
                     message:

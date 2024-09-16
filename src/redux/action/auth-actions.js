@@ -1,19 +1,33 @@
 import reduxConstants from "../constants/reduxConstants";
 
-const signUpActionsLoad = (payload) => ({
+// SignUP Action
+export const signUpActionsLoad = (payload) => ({
   type: reduxConstants.SIGNUP_LOAD,
   payload,
 });
 
-const signUpActionsSuccess = (payload) => ({
+export const signUpActionsSuccess = (payload) => ({
   type: reduxConstants.SIGNUP_SUCCESS,
   payload,
 });
 
-const signUpActionsFail = (payload) => ({
+export const signUpActionsFail = (payload) => ({
   type: reduxConstants.SIGNUP_FAIL,
   payload,
 });
 
+// Login Action
+export const logInActionsLoad = (payload) => ({
+  type: reduxConstants.LOGIN_LOAD,
+  payload,
+});
 
-export { signUpActionsLoad, signUpActionsSuccess, signUpActionsFail };
+export const logInActionsSuccess = (payload) => ({
+  type: reduxConstants.LOGIN_SUCCESS,
+  payload,
+});
+
+export const logInActionsFail = (payload) => ({
+  type: reduxConstants.LOGIN_FAIL,
+  payload,
+});

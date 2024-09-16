@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { logInActionsLoad } from "../redux/action/auth-actions";
 
 const Login = () => {
    const [clientReady, setClientReady] = useState(false);
-
+   const dispatch = useDispatch();
+   const selector = useSelector(state => state.AuthReducer.signUpLoad);
+   console.log("Selector State:", selector)
+   
+   
+   
    // useForm hook initialization
    const {
-      register,
+      control,
       handleSubmit,
       formState: { errors },
    } = useForm();
@@ -20,7 +26,7 @@ const Login = () => {
    }, []);
 
    const onFinish = (values) => {
-      console.log("Finish:", values);
+      dispatch(logInActionsLoad({ email: values.email, password: values.password }));
    };
 
    return (
@@ -32,23 +38,22 @@ const Login = () => {
 
                {/* Form with handleSubmit */}
                <form onSubmit={handleSubmit(onFinish)}>
-                  
-                  {/* Email or Phone Number */}
+                  {/* Email*/}
                   <div className="mb-4">
                      <label>Email or Phone Number</label>
-                     <Input
-                        {...register("email", {
-                           required: "Please input your Email or Phone Number!",
+                     <Controller
+                        name="email"
+                        control={control}
+                        rules={{
+                           required: "Email address is required",
                            pattern: {
-                              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                              message: "Please enter a valid email address",
+                              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                              message: "Enter a valid email address",
                            },
-                        })}
-                        maxLength={40}
-                        size="large"
-                        allowClear
-                        prefix={<UserOutlined />}
-                        placeholder="Username"
+                        }}
+                        render={({ field }) => {
+                           return <Input {...field} allowClear placeholder="Email address" />;
+                        }}
                      />
                      {errors.email && <p className="text-red-500">{errors.email.message}</p>}
                   </div>
@@ -56,16 +61,27 @@ const Login = () => {
                   {/* Password */}
                   <div className="mb-4">
                      <label>Password</label>
-                     <Input.Password
-                        {...register("password", {
-                           required: "Please input your password!",
-                           minLength: { value: 6, message: "Password must be at least 6 characters long" },
-                        })}
-                        maxLength={16}
-                        size="large"
-                        autoComplete="off"
-                        prefix={<LockOutlined />}
-                        placeholder="Password"
+                     <Controller
+                        name="password"
+                        control={control}
+                        rules={{
+                           required: "Password is required",
+                           minLength: {
+                              value: 8,
+                              message: "Password must be at least 8 characters long",
+                           },
+                           maxLength: {
+                              value: 16,
+                              message: "Password must be at most 16 characters long",
+                           },
+                           pattern: {
+                              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/,
+                              message: "Password must contain at least one letter and one number",
+                           },
+                        }}
+                        render={({ field }) => {
+                           return <Input.Password {...field} allowClear placeholder="Password" />;
+                        }}
                      />
                      {errors.password && <p className="text-red-500">{errors.password.message}</p>}
                   </div>
