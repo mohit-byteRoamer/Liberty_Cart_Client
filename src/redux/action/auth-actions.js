@@ -1,17 +1,17 @@
-import reduxContacts from "../redux-contants";
+import reduxConstants from "../constants/reduxConstants";
 
 const signUpActionsLoad = (payload) => ({
-  type: reduxContacts.SIGNUP_LOAD,
+  type: reduxConstants.SIGNUP_LOAD,
   payload,
 });
 
 const signUpActionsSuccess = (payload) => ({
-  type: reduxContacts.SIGNUP_SUCCESS,
+  type: reduxConstants.SIGNUP_SUCCESS,
   payload,
 });
 
 const signUpActionsFail = (payload) => ({
-  type: reduxContacts.SIGNUP_FAIL,
+  type: reduxConstants.SIGNUP_FAIL,
   payload,
 });
 

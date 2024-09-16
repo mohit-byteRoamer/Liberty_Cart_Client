@@ -5,32 +5,33 @@ import { MdOutlineLocalGroceryStore, MdHealthAndSafety } from "react-icons/md";
 import { AiOutlineMedicineBox } from "react-icons/ai";
 import Sider from "antd/es/layout/Sider";
 import Banner from "./Banner";
+import { Link } from "react-router-dom";
 
-const { Content} = Layout; // Missing 'Header' added
+const { Content } = Layout; // Missing 'Header' added
 
-function getItem(label, key, icon, children) {
-   return { key, icon, children, label };
+function getItem(label, key, icon, children, to) {
+   return { key, icon, children, label: to ? <Link to={to}>{label}</Link> : label };
 }
 
 const items = [
    getItem("Woman's Fashion", "Menu1", <FcBusinesswoman />, [
-      getItem("Woman's Dress", "Menu1-Sub1"),
-      getItem("Tops & Blouses", "Menu1-Sub2"),
-      getItem("Woman's Bottoms", "Menu1-Sub3"),
-      getItem("Woman's Footwear", "Menu1-Sub4"),
+      getItem("Woman's Dress", "Menu1-Sub1", null, null, "/womans-dress"),
+      getItem("Tops & Blouses", "Menu1-Sub2", null, null, "/top-blouses"),
+      getItem("Woman's Bottoms", "Menu1-Sub3", null, null, "/womans-bottoms"),
+      getItem("Woman's Footwear", "Menu1-Sub4", null, null, "/womans-footwear"),
    ]),
    getItem("Men's Fashion", "Menu2", <FcManager />, [
-      getItem("Men's Shirts", "Menu2-Sub1"),
-      getItem("Trousers & Pants", "Menu2-Sub2"),
-      getItem("Men's T-shirts", "Menu2-Sub3"),
-      getItem("Men's Footwear", "Menu2-Sub4"),
+      getItem("Men's Shirts", "Menu2-Sub1", null, null, "/mens-shirts"),
+      getItem("Trousers & Pants", "Menu2-Sub2", null, null, "/trousers-pants"),
+      getItem("Men's T-shirts", "Menu2-Sub3", null, null, "/mens-tshirts"),
+      getItem("Men's Footwear", "Menu2-Sub4", null, null, "/mens-footwear"),
    ]),
    getItem("Electronic", "Menu3", <FcElectroDevices />, [
-      getItem("Smartphones", "Menu3-Sub1"),
-      getItem("Laptops", "Menu3-Sub2"),
-      getItem("Tablets", "Menu3-Sub3"),
-      getItem("Cameras", "Menu3-Sub4"),
-      getItem("Headphones", "Menu3-Sub5"),
+      getItem("Smartphones", "Menu3-Sub1", null, null, "/smartphones"),
+      getItem("Laptops", "Menu3-Sub2", null, null, "/laptops"),
+      getItem("Tablets", "Menu3-Sub3", null, null, "/tablets"),
+      getItem("Cameras", "Menu3-Sub4", null, null, "/cameras"),
+      getItem("Headphones", "Menu3-Sub5", null, null, "/headphones"),
    ]),
    getItem("Home & Lifestyle", "Menu4", <FcHome />, [
       getItem("Furniture", "Menu4-Sub1"),
@@ -91,7 +92,7 @@ const Sidebar = () => {
                   // padding: 24,
                   borderRadius: borderRadiusLG,
                }}>
-              <Banner/> 
+               <Banner />
             </div>
          </Content>
       </Layout>

@@ -8,33 +8,12 @@ import { ArrowUpOutlined } from "@ant-design/icons";
 
 function NewArrival() {
    const { Meta } = Card;
-
-   // const cards = [
-   //    {
-   //       id: 1,
-   //       title: "Card 1",
-   //       description: "This is the first card.",
-   //       image: "https://via.placeholder.com/150",
-   //    },
-   //    {
-   //       id: 2,
-   //       title: "Card 2",
-   //       description: "This is the second card.",
-   //       image: "https://via.placeholder.com/150",
-   //    },
-   //    {
-   //       id: 3,
-   //       title: "Card 3",
-   //       description: "This is the third card.",
-   //       image: "https://via.placeholder.com/150",
-   //    },
-   //    {
-   //       id: 4,
-   //       title: "Card 4",
-   //       description: "This is the fourth card.",
-   //       image: "https://via.placeholder.com/150",
-   //    },
-   // ];
+   const scrollToTop = () => {
+      window.scrollTo({
+         top: 0,
+         behavior: "smooth",
+      });
+   };
 
    return (
       <section className="px-5 py-16 relative">
@@ -185,7 +164,7 @@ function NewArrival() {
             </div>
          </div>
          {/* 5th section */}
-         <button className="absolute bottom-[-30px] right-0 w-12 h-12 bg-gray-200 text-black rounded-full transform transition-transform duration-300 ease-out hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:text-white animate-pulse">
+         <button title="Click to go to top of the screen" onClick={scrollToTop} className="arrow-top-btn absolute bottom-[5px] right-0 w-12 h-12 bg-gray-200 text-black rounded-full transform transition-transform duration-300 ease-out hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:text-white animate-pulse">
             <ArrowUpOutlined />
          </button>
       </section>

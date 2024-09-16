@@ -1,8 +1,8 @@
 import { takeLatest } from "redux-saga/effects";
-import reduxContacts from "../redux-contants";
+import reduxConstants from "../constants/reduxConstants";
 import { signUpSaga } from "./auth-sagas";
 
 export function* rootSaga() {
-  yield takeLatest(reduxContacts.SIGNUP_LOAD, signUpSaga);
+  yield takeLatest(reduxConstants.SIGNUP_LOAD, signUpSaga);
   
 }

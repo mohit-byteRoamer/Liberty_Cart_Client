@@ -1,14 +1,7 @@
-import {
-   ContactsOutlined,
-   HeartOutlined,
-   HomeOutlined,
-   ShoppingCartOutlined,
-} from "@ant-design/icons";
+import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Input, Menu } from "antd";
 import Layout, { Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
-import { FcAbout } from "react-icons/fc";
-import { SiGnuprivacyguard } from "react-icons/si";
 import { Link } from "react-router-dom";
 
 // Import Option from the correct location
@@ -19,9 +12,11 @@ const AppHeader = () => {
          <div className="flex items-center justify-center bg-black text-white relative h-[30%]">
             <h1 className="text-center">
                Summer Sale For All Suits And Free Express Delivery - OFF 50%!{" "}
-               <span className="font-bold underline cursor-pointer hover:text-blue-400">
-                  ShopNow!
-               </span>
+               <Link to={"/shop_now"}>
+                  <span className="font-bold underline cursor-pointer hover:text-blue-400">
+                     ShopNow!
+                  </span>
+               </Link>
             </h1>
          </div>
          {/* Heading End */}
@@ -35,7 +30,7 @@ const AppHeader = () => {
                </Title>
             </div>
             <Menu
-            className="font-semibold"
+               className="font-semibold"
                style={{ width: "50%", border: "none" }}
                mode="horizontal"
                // defaultSelectedKeys={['1']}

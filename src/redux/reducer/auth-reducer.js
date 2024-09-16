@@ -1,4 +1,4 @@
-import reduxContacts from "../redux-contants";
+import reduxConstants from "../constants/reduxConstants";
 
 const initialState = {
   signUpLoad: false,
@@ -7,11 +7,11 @@ const initialState = {
 
 function AuthReducer(state = initialState, action) {
   switch (action.type) {
-    case reduxContacts.SIGNUP_LOAD:
+    case reduxConstants.SIGNUP_LOAD:
       return { ...state, signUpLoad: true };
-    case reduxContacts.SIGNUP_SUCCESS:
+    case reduxConstants.SIGNUP_SUCCESS:
       return { ...state, signUpLoad: false, user: action.payload };
-    case reduxContacts.SIGNUP_FAIL:
+    case reduxConstants.SIGNUP_FAIL:
       return { ...state, signUpLoad: false, user: null };
     default:
       return state;
