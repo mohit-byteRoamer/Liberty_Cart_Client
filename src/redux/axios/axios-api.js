@@ -1,5 +1,3 @@
-import axios from "axios";
-import { url } from "./apikit";
 import { Method } from "./apiMethods";
 
 let header = {
@@ -9,8 +7,10 @@ let header = {
 
 //// Auth  API
 export const signUpApi = (data) => Method.POST(`users/register`, data, header);
+export const logInApi = (data) => Method.POST(`users/login`, data, header);
 
-export const logInApi = async (data) => {
-   const response = await axios.post(`${url}api/v1/users/login`, data, header);
-   console.log("LOGIN response:", response)
-};
+// Second Way for create a LogInAPI
+// export const logInApi = async (data) => {
+//    const response = await axios.post(`${url}api/v1/users/login`, data, header);
+//    console.log("LOGIN response:", response)
+// };

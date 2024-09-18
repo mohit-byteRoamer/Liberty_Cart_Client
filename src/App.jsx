@@ -7,6 +7,7 @@ import Login from "./page/LogInPage";
 import AppHeader from "./components/AppHeader/AppHeader";
 import AppFooter from "./components/AppFooter/AppFooter";
 import { useLocation } from "react-router-dom";
+import { Heading } from "./components/AppHeader/Heading";
 
 function App() {
    const location = useLocation();
@@ -14,6 +15,7 @@ function App() {
    const hideFooterPaths = ["/login", "/signup"];
    return (
       <>
+         {hideFooterPaths.includes(location.pathname) ? null : <Heading />}
          <AppHeader />
          <Routes>
             <Route path="/signup" element={<Signup />} />

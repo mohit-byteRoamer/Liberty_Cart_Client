@@ -8,11 +8,8 @@ import { logInActionsLoad } from "../redux/action/auth-actions";
 const Login = () => {
    const [clientReady, setClientReady] = useState(false);
    const dispatch = useDispatch();
-   const selector = useSelector(state => state.AuthReducer.signUpLoad);
-   console.log("Selector State:", selector)
-   
-   
-   
+   const selector = useSelector(state => state.AuthReducer.loginLoad);
+      
    // useForm hook initialization
    const {
       control,
@@ -26,12 +23,12 @@ const Login = () => {
    }, []);
 
    const onFinish = (values) => {
-      dispatch(logInActionsLoad({ email: values.email, password: values.password }));
+      dispatch(logInActionsLoad({ email: values.email, password: values.password, isLoggedIn: selector }));
    };
 
    return (
       <div className="container flex items-center justify-center max-w-full h-[79vh]">
-         <div className="w-96 h-[78%] rounded-xl shadow-lg flex items-center justify-center border-2">
+         <div className="w-96 h-[84%] rounded-xl shadow-lg flex items-center justify-center border-2">
             <div className="w-80">
                <h1 className="text-3xl font-semibold pb-4">Log in</h1>
                <p className="text-gray-500 mb-6">Enter your details below</p>
