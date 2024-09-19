@@ -8,7 +8,7 @@ import { logInActionsLoad } from "../redux/action/auth-actions";
 const Login = () => {
    const [clientReady, setClientReady] = useState(false);
    const dispatch = useDispatch();
-   const selector = useSelector(state => state.AuthReducer.loginLoad);
+   const logInLoader = useSelector(state => state.AuthReducer.loginLoader);   
       
    // useForm hook initialization
    const {
@@ -23,7 +23,7 @@ const Login = () => {
    }, []);
 
    const onFinish = (values) => {
-      dispatch(logInActionsLoad({ email: values.email, password: values.password, isLoggedIn: selector }));
+      dispatch(logInActionsLoad({ email: values.email, password: values.password }));
    };
 
    return (
@@ -86,6 +86,7 @@ const Login = () => {
                   <div className="flex gap-x-3 items-start">
                      {/* Submit Button */}
                      <Button
+                        loading={logInLoader}
                         type="primary"
                         htmlType="submit"
                         disabled={!clientReady || Object.keys(errors).length > 0}>

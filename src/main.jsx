@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <div className="container mx-auto">
         <App />
-        <Toaster />
+        <Toaster position="top-right" reverseOrder={false} />
       </div>
     </BrowserRouter>
   </Provider>

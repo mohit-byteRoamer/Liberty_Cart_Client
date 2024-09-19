@@ -12,18 +12,18 @@ export function* signUpSaga(action) {
    try {
       const response = yield call(signUpApi, action.payload);
       const { result, status } = response;
-      console.log(response, "SIGN_UP_RESULT");
-
       if (status === 1) {
+         console.log("SignUp Success:", result);
          yield put(signUpActionsSuccess(result));
-         toast.success(result.msg);
+         toast.success(result.message);
       } else {
          yield put(signUpActionsFail(result));
-         toast.error(result.msg)
+         toast.error(result.message);
       }
    } catch (error) {
       console.log("SignUp Error:", error);
       yield put(signUpActionsFail(error));
+      toast.error("Internal Server Error");
    }
 }
 
@@ -31,8 +31,6 @@ export function* logInSaga(action) {
    try {
       let response = yield call(logInApi, action.payload);
       let { result, status } = response;
-      console.log("LOG_IN_RESULT:", result.msg, "LOG_IN_Status:", status);
-
       if (status === 1) {
          yield put(logInActionsSuccess(result));
          toast.success(result.msg);
@@ -43,5 +41,6 @@ export function* logInSaga(action) {
    } catch (error) {
       console.log("LogIn Error:", error);
       yield put(logInActionsFail(error));
+      toast.error("Internal Server Error");
    }
 }
