@@ -73,18 +73,17 @@ const Sidebar = () => {
    } = theme.useToken();
 
    return (
-      <Layout className="flex pt-5 bg-white">
-         <Sider>
+      <Layout className="flex bg-white">
+         <Sider className="pt-5 !bg-white border-r-[1px]">
             <Menu
-               // theme="dark"
+               theme="light"
                mode="vertical"
                defaultSelectedKeys={["2"]}
                items={items}
                style={{ flex: 1 }}
-               className="border border-r-2"
             />
          </Sider>
-         <Content>
+         <Content className="pt-5">
             <div
                style={{
                   background: colorBgContainer,
