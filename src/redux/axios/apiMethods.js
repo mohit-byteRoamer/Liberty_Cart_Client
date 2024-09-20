@@ -12,6 +12,8 @@ export const Method = {
       headers: header,
     })
       .then(async (data) => {
+        console.log("Method data", data);
+        
         if (data) {
           if (data.status >= 200 && data.status < 400) {
             return {
@@ -20,13 +22,13 @@ export const Method = {
             };
           } else {
             return {
-              result: { msg: data.data.message },
+              result: { message: data.data.message },
               status: StatusCodes.Failure,
             };
           }
         } else {
           return {
-            result: { msg: "Something went wrong." },
+            result: { message: "Something went wrong." },
             status: StatusCodes.Failure,
           };
         }
@@ -40,12 +42,12 @@ export const Method = {
           error?.status === 401
         ) {
           return {
-            result: { msg: error.response.data.message },
+            result: { message: error.response.data.message },
             status: StatusCodes.Unauthenticate,
           };
         } else if (!error.response) {
           return {
-            result: { msg: "Timeout : server issue" },
+            result: { message: "Timeout : server issue" },
             status: StatusCodes.Failure,
           };
         } else if (
@@ -54,12 +56,12 @@ export const Method = {
           error.response.data.error.message
         ) {
           return {
-            result: { msg: error.response.data.error.message },
+            result: { message: error.response.data.error.message },
             status: StatusCodes.Failure,
           };
         } else {
           return {
-            result: { msg: error.response.data.message },
+            result: { message: error.response.data.message },
             status: StatusCodes.Failure,
           };
         }
@@ -81,13 +83,13 @@ export const Method = {
             };
           } else {
             return {
-              result: { msg: data.data.message },
+              result: { message: data.data.message },
               status: StatusCodes.Failure,
             };
           }
         } else {
           return {
-            result: { msg: "Something went wrong." },
+            result: { message: "Something went wrong." },
             status: StatusCodes.Failure,
           };
         }
@@ -95,12 +97,12 @@ export const Method = {
       .catch(async (error) => {
         if (error.response.status == 403 || error.response.status == 401) {
           return {
-            result: { msg: error.response.data.message },
+            result: { message: error.response.data.message },
             status: StatusCodes.Unauthenticate,
           };
         } else if (!error.response) {
           return {
-            result: { msg: "Timeout : server issue" },
+            result: { message: "Timeout : server issue" },
             status: StatusCodes.Failure,
           };
         } else if (
@@ -109,12 +111,12 @@ export const Method = {
           error.response.data.error.message
         ) {
           return {
-            result: { msg: error.response.data.error.message }, // error.response.data.message
+            result: { message: error.response.data.error.message }, // error.response.data.message
             status: StatusCodes.Failure,
           };
         } else {
           return {
-            result: { msg: error.response.data.message }, // error.response.data.message
+            result: { message: error.response.data.message }, // error.response.data.message
             status: StatusCodes.Failure,
           };
         }
@@ -131,13 +133,13 @@ export const Method = {
             };
           } else {
             return {
-              result: { msg: data.data.message },
+              result: { message: data.data.message },
               status: StatusCodes.Failure,
             };
           }
         } else {
           return {
-            result: { msg: "Something went wrong." },
+            result: { message: "Something went wrong." },
             status: StatusCodes.Failure,
           };
         }
@@ -145,12 +147,12 @@ export const Method = {
       .catch(async (error) => {
         if (error.response.status == 403 || error.response.status == 401) {
           return {
-            result: { msg: error.response.data.message },
+            result: { message: error.response.data.message },
             status: StatusCodes.Unauthenticate,
           };
         } else if (!error.response) {
           return {
-            result: { msg: "Timeout : server issue" },
+            result: { message: "Timeout : server issue" },
             status: StatusCodes.Failure,
           };
         } else if (
@@ -159,12 +161,12 @@ export const Method = {
           error.response.data.error.message
         ) {
           return {
-            result: { msg: error.response.data.error.message }, // error.response.data.message
+            result: { message: error.response.data.error.message }, // error.response.data.message
             status: StatusCodes.Failure,
           };
         } else {
           return {
-            result: { msg: error.response.data.message }, // error.response.data.message
+            result: { message: error.response.data.message }, // error.response.data.message
             status: StatusCodes.Failure,
           };
         }
@@ -186,13 +188,13 @@ export const Method = {
             };
           } else {
             return {
-              result: { msg: data.data.message },
+              result: { message: data.data.message },
               status: StatusCodes.Failure,
             };
           }
         } else {
           return {
-            result: { msg: "Something went wrong." },
+            result: { message: "Something went wrong." },
             status: StatusCodes.Failure,
           };
         }
@@ -200,17 +202,17 @@ export const Method = {
       .catch(async (error) => {
         if (error.response.status == 403 || error.response.status == 401) {
           return {
-            result: { msg: error.response.data.message },
+            result: { message: error.response.data.message },
             status: StatusCodes.Unauthenticate,
           };
         } else if (!error.response) {
           return {
-            result: { msg: "Timeout : server issue" },
+            result: { message: "Timeout : server issue" },
             status: StatusCodes.Failure,
           };
         } else {
           return {
-            result: { msg: error.response.data.message },
+            result: { message: error.response.data.message },
             status: StatusCodes.Failure,
           };
         }

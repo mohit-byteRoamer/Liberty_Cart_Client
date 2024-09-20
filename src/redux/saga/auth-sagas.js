@@ -30,13 +30,15 @@ export function* signUpSaga(action) {
 export function* logInSaga(action) {
    try {
       let response = yield call(logInApi, action.payload);
+      console.log("Login response :", response);
+      
       let { result, status } = response;
       if (status === 1) {
          yield put(logInActionsSuccess(result));
-         toast.success(result.msg);
+         toast.success(result.message);
       } else {
          yield put(logInActionsFail(result));
-         toast.error(result.msg);
+         toast.error(result.message);
       }
    } catch (error) {
       console.log("LogIn Error:", error);
