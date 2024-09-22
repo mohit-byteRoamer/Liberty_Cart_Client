@@ -4,7 +4,6 @@ const initialState = {
    signUpLoader: false,
    loginLoader: false,
    user: null,
-   
 };
 
 function AuthReducer(state = initialState, action) {

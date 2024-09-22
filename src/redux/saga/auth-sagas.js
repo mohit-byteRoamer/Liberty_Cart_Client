@@ -34,11 +34,12 @@ export function* logInSaga(action) {
       
       let { result, status } = response;
       if (status === 1) {
+         localStorage.setItem("token", result.data.accessToken);
          yield put(logInActionsSuccess(result));
          toast.success(result.message);
       } else {
          yield put(logInActionsFail(result));
-         toast.error(result.message);
+         toast.error(result.message || "Internal Server Error");
       }
    } catch (error) {
       console.log("LogIn Error:", error);

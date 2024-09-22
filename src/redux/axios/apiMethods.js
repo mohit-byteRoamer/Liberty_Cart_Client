@@ -12,7 +12,7 @@ export const Method = {
       headers: header,
     })
       .then(async (data) => {
-        console.log("Method data", data);
+        console.log("METHODPOSTDATA", data);
         
         if (data) {
           if (data.status >= 200 && data.status < 400) {
@@ -34,7 +34,7 @@ export const Method = {
         }
       })
       .catch(async (error) => {
-        console.log("API---ERROR");
+        console.log("APIERROR", error);
         console.log(JSON.stringify(error));
         if (
           error.response.status == 403 ||

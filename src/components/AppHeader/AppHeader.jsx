@@ -3,12 +3,13 @@ import { Input, Menu } from "antd";
 import Layout, { Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import { Link } from "react-router-dom";
+import { MdAddBox } from "react-icons/md";
 // import { Heading } from "./Heading";
 
 // Import Option from the correct location
 const AppHeader = () => {
    return (
-      <Layout className="border-b bg-white">
+      <Layout id="appHeight" className="border-b bg-white leading-none">
          {/* Header Start */}
          <Header className="header flex justify-between items-center bg-white h-[70%] pt-6">
             <div className="logo w-2/12">
@@ -46,12 +47,15 @@ const AppHeader = () => {
                <Input.Search placeholder="What are you looking for?" />
             </div>
             {/* Icons */}
-            <div className="flex space-x-4">
+            <div className="flex gap-5">
                <Link to="/wishlist">
                   <HeartOutlined style={{ fontSize: "25px" }} />
                </Link>
                <Link to="/shoppingCart">
                   <ShoppingCartOutlined style={{ fontSize: "25px" }} />
+               </Link>
+               <Link to="/addProduct" className="">
+                  <MdAddBox style={{ fontSize: "25px" }} />
                </Link>
             </div>
          </Header>

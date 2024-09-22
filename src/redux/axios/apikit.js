@@ -9,10 +9,10 @@ const APIKit = axios.create({
 });
 
 APIKit.interceptors.request.use(async (config) => {
-  // let accessToken = await DataManager.getAccessToken();
-  // if (accessToken) {
-  //   config.headers["x-access-token"] = `Bearer ${accessToken}`;
-  // }
+  let accessToken = localStorage.getItem("token");
+  if (accessToken) {
+    config.headers["Authorization"] = `Bearer ${accessToken}`;
+  }
   return config;
 });
 

@@ -5,9 +5,12 @@ let header = {
    "Content-Type": "application/json",
 };
 
-//// Auth  API
+// AUTH API'S
 export const signUpApi = (data) => Method.POST(`users/register`, data, header);
 export const logInApi = (data) => Method.POST(`users/login`, data, header);
+
+// PRODUCT API'S
+export const createProductApi = (data) => Method.POST("product/new", data, header);
 
 // Second Way for create a LogInAPI
 // export const logInApi = async (data) => {

@@ -6,16 +6,16 @@ import FlashSales from "../components/FlashSales/FlashSales";
 import NewArrival from "../components/NewArrival/NewArrival";
 
 function Home() {
-  return (
-    <div className="home-page">
-      <Sidebar />
-      <FlashSales />
-      <BrowseByCategory />
-      <BestSellingProducts />
-      <ExploreOurProduct />
-      <NewArrival />
-    </div>
-  );
+   return (
+      <div className="home-page">
+         <Sidebar />
+         <FlashSales />
+         <BrowseByCategory />
+         <BestSellingProducts />
+         <ExploreOurProduct />
+         <NewArrival />
+      </div>
+   );
 }
 
 export default Home;
