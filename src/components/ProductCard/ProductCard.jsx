@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
             <div style={{ position: "relative", overflow: "hidden" }}>
                <img
                   alt={product.name}
-                  src={product.image}
+                  src="https://www.freshone.com.pk/content/images/default-image.png"
                   style={{
                      height: 200,
                      width: "100%",

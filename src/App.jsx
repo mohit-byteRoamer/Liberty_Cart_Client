@@ -9,6 +9,7 @@ import AppFooter from "./components/AppFooter/AppFooter";
 import { useLocation } from "react-router-dom";
 import { Heading } from "./components/AppHeader/Heading";
 import AddProduct from "./page/AddProductForm";
+import Protected from "./components/ProtectedRoute/ProtectedRoute";
 function App() {
    const location = useLocation();
    // Define paths where the footer should not appear
@@ -18,11 +19,16 @@ function App() {
          {hideFooterPaths.includes(location.pathname) ? null : <Heading />}
          <AppHeader />
          <Routes>
+            {/* Public Routes */}
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Home />} />
+
+            {/* Protected Routes */}
+            <Route path="/" element={<Protected Component={Home} />} />
+            <Route path="/addProduct" element={<Protected Component={AddProduct} />} />
+
+            {/* Error Route */}
             <Route path="*" element={<Error />} />
-            <Route path="/addProduct" element={<AddProduct />} />            
          </Routes>
          {/* Conditionally render footer */}
          {hideFooterPaths.includes(location.pathname) ? null : <AppFooter />}
