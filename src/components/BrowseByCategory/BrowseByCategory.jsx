@@ -1,14 +1,80 @@
 import SectionTopBar from "../SectionTopBar";
-import { ArrowBtn } from "../Buttons/ArrowBtn";
 import CategoryCard from "./CategoryCard";
-import { CameraOutlined, MobileOutlined } from "@ant-design/icons";
-import { RiComputerLine } from "react-icons/ri";
-import { BsSmartwatch } from "react-icons/bs";
-import { ImHeadphones } from "react-icons/im";
-import { TbDeviceGamepad } from "react-icons/tb";
+import { LeftArrowBtn, RightArrowBtn } from "../Buttons/ArrowBtn";
+import { AccountBookOutlined, AudioOutlined } from "@ant-design/icons";
+import { SiStmicroelectronics, SiFacebookgaming } from "react-icons/si";
+import { IoIosFitness } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getProductCategoryLoad } from "../../redux/action/product_action";
+import { HomeOutlined } from "@ant-design/icons";
+import { TbToolsKitchen3 } from "react-icons/tb";
+import { PiBuildingOfficeLight } from "react-icons/pi";
+import { GiClothes } from "react-icons/gi";
+import { MdCameraOutdoor } from "react-icons/md";
+import { HiHomeModern } from "react-icons/hi2";
 
 function BrowseByCategory() {
+   const dispatch = useDispatch();
+   const categoryProduct = useSelector((state) => state?.ProductReducer?.productCategory);
+
+   useEffect(() => {
+      dispatch(getProductCategoryLoad());
+   }, [dispatch]);
+
+   // Dynamic function to return icon based on category
+   const getCategoryIcon = (category) => {
+      switch (category.toLowerCase()) {
+         case "accessories":
+            return <AccountBookOutlined />;
+         case "electronics":
+            return <SiStmicroelectronics />;
+         case "audio":
+            return <AudioOutlined />;
+         case "fitness":
+            return <IoIosFitness />;
+         case "gaming":
+            return <SiFacebookgaming />;
+         case "home decor":
+            return <HomeOutlined />;
+         case "kitchen":
+            return <TbToolsKitchen3 />;
+         case "office supplies":
+            return <PiBuildingOfficeLight />;
+         case "outdoor":
+            return <MdCameraOutdoor />;
+         case "smart home":
+            return <HiHomeModern />;
+         case "wearables":
+            return <GiClothes />;
+         default:
+            return; // Default icon if no match is found
+      }
+   };
+
+   // Set state to track the current index of the categories
+   const [startIndex, setStartIndex] = useState(0)
+   const itemsPerPage = 6
+
+   // Calculate the end index for slicing
+   const endIndex = startIndex + itemsPerPage
+   
+   const isPrevDisabled = startIndex === 0;
+   const isNextDisabled = endIndex >= categoryProduct.length;
+
+   const handleNext = () => {
+      if(!isNextDisabled){
+         setStartIndex(startIndex + itemsPerPage)
+      }
+   }
+
+   const handlePrev = () => {
+      if(!isPrevDisabled){
+         setStartIndex(startIndex - itemsPerPage)
+      }
+   }
+
    return (
       <section className="px-5 py-16">
          {/* 1st section */}
@@ -21,30 +87,22 @@ function BrowseByCategory() {
                   <h1 className="text-3xl font-bold">Browse By Category</h1>
                </div>
                {/* Arrow Button */}
-               <div>
-                  <ArrowBtn />
+               <div className="flex gap-5">
+                  <LeftArrowBtn onClick={handlePrev} disabled={isPrevDisabled} />
+                  <RightArrowBtn onClick={handleNext} disabled={isNextDisabled} />
                </div>
             </div>
             {/* 3rd section */}
-            <div className="flex justify-between px-5">
-               <Link to={"/phones"}>
-                  <CategoryCard icon={<MobileOutlined />} title={"Phones"} />
-               </Link>
-               <Link to={"/computers"}>
-                  <CategoryCard icon={<RiComputerLine />} title={"Computers"} />
-               </Link>
-               <Link to={"/smartwatch"}>
-                  <CategoryCard icon={<BsSmartwatch />} title={"SmartWatch"} />
-               </Link>
-               <Link to={"/cameras"}>
-                  <CategoryCard icon={<CameraOutlined />} title={"Cameras"} />
-               </Link>
-               <Link to={"/headphones"}>
-                  <CategoryCard icon={<ImHeadphones />} title={"Headphones"} />
-               </Link>
-               <Link to={"/gaming"}>
-                  <CategoryCard icon={<TbDeviceGamepad />} title={"Gaming"} />
-               </Link>
+            <div className="flex justify-center gap-9 w-full max-w-8xl">
+               {categoryProduct?.slice(startIndex+1, endIndex).map((item, index) => (
+                  <Link key={index} to={`/products/${item}`}>
+                     <CategoryCard
+                        key={index}
+                        icon={getCategoryIcon(item)} // Dynamically set icon based on category
+                        title={item}
+                     />
+                  </Link>
+               ))}
             </div>
          </div>
       </section>

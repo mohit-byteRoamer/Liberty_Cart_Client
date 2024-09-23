@@ -25,3 +25,16 @@ export const getProductSuccess = (payload) => {
 export const getProductFail = () => {
    return { type: reduxConstants.GET_PRODUCT_FAIL };
 };
+
+// Get Product Category
+export const getProductCategoryLoad = () => {
+   return { type: reduxConstants.GET_PRODUCT_CATEGORY_LOAD };
+};
+
+export const getProductCategorySuccess = (payload) => {
+   return { type: reduxConstants.GET_PRODUCT_CATEGORY_SUCCESS, payload: payload };
+};
+
+export const getProductCategoryFail = () => {
+   return { type: reduxConstants.GET_PRODUCT_CATEGORY_FAIL };
+};

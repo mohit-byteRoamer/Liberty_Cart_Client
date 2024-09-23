@@ -1,6 +1,6 @@
 import SectionTopBar from "../SectionTopBar";
 import Timer from "../Timer";
-import { ArrowBtn } from "../Buttons/ArrowBtn";
+import { LeftArrowBtn, RightArrowBtn } from "../Buttons/ArrowBtn";
 import ProductSlider from "../ProductSlider/ProductSlider";
 import ViewBtn from "../Buttons/ViewBtn";
 import flashSalesProduct from "./flashSalesProduct";
@@ -20,8 +20,9 @@ function FlashSales() {
                </div>
             </div>
             {/* Arrow Button */}
-            <div>
-               <ArrowBtn />
+            <div className="flex gap-5">
+               <LeftArrowBtn />
+               <RightArrowBtn />
             </div>
          </div>
          {/* 3rd section */}

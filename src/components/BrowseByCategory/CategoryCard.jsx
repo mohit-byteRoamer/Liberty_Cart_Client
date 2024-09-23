@@ -10,7 +10,7 @@ const CategoryCard = ({ icon, title }) => {
          <Card
             bordered={true}
             hoverable
-            className="flex justify-center items-center w-44 h-44 border-gray-400 hover:bg-red-400 transform hover:scale-110 transition-all duration-500 ease-out">
+            className="flex justify-center items-center w-52 h-52 border-gray-400 hover:bg-red-400 transform hover:scale-110 transition-all duration-500 ease-out">
             <div className="flex gap-3 flex-col items-center justify-center">
                {/* Centering the Mobile icon and text properly */}
                <span className="text-5xl">{icon}</span>

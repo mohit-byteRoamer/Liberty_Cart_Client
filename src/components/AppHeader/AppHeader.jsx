@@ -31,11 +31,11 @@ const AppHeader = () => {
                   },
                   {
                      key: "2",
-                     label: <Link to="/contact">Contact</Link>,
+                     label: <Link to="/about">About</Link>,
                   },
                   {
                      key: "3",
-                     label: <Link to="/about">About</Link>,
+                     label: <Link to="/contact">Contact</Link>,
                   },
                   {
                      key: "4",

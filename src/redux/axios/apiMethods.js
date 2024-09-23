@@ -177,9 +177,7 @@ export const Method = {
       headers: header,
     })
       .then(async (data) => {
-        console.log(data.data);
-        if (data.data == null) {
-        }
+        if (data.data == null) {}
         if (data) {
           if (data.status >= 200 && data.status < 400) {
             return {

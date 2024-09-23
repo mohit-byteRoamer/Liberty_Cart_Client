@@ -1,8 +1,10 @@
 import { call, put } from "redux-saga/effects";
-import { createProductApi, getProductApi } from "../axios/axios-api";
+import { createProductApi, getProductApi, getProductCategoryApi } from "../axios/axios-api";
 import {
    createProductFail,
    createProductSuccess,
+   getProductCategoryFail,
+   getProductCategorySuccess,
    getProductFail,
    getProductSuccess,
 } from "../action/product_action";
@@ -13,7 +15,6 @@ export function* createProductSaga(action) {
       const response = yield call(createProductApi, action.payload);
       const { result, status } = response;
       if (status === 1) {
-         console.log("Create Product Success:", result);
          yield put(createProductSuccess(result));
          toast.success(result.message);
       } else {
@@ -21,7 +22,6 @@ export function* createProductSaga(action) {
          toast.error(result.message);
       }
    } catch (error) {
-      console.log("Get Product Error:", error);
       yield put(createProductFail(error));
       toast.error("Internal Server Error");
    }
@@ -30,7 +30,6 @@ export function* createProductSaga(action) {
 export function* getProductSaga() {
    try {
       const response = yield call(getProductApi);
-      console.log("RESPONSE", response);
       const { result, status } = response;
       if (status === 1) {
          // const {products, totalPage} = result.data;
@@ -39,7 +38,23 @@ export function* getProductSaga() {
          yield put(getProductFail(result.data.message));
       }
    } catch (error) {
-      console.log("Get Product Error:", error);
       yield put(getProductFail(error));
+   }
+}
+
+export function* getProductCategorySaga() {
+   try {
+      const response = yield call(getProductCategoryApi);
+      const { result, status } = response || {};
+      // console.log("CATEGORY-RESPONSE", response);
+      if (status === 1) {
+         // console.log("CATEGORY-RESPONSE-SUCCESS", result);
+         yield put(getProductCategorySuccess(result.data));
+      } else {
+         console.log("CATEGORY-RESPONSE-ERROR", result);
+         yield put(getProductCategoryFail(result?.message));
+      }
+   } catch (error) {
+      yield put(getProductCategoryFail(error));
    }
 }

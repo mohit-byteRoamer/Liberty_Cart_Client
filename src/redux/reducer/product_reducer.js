@@ -5,6 +5,8 @@ const initialState = {
    category: [],
    getProductLoader: false,
    products: [],
+   getProductCategoryLoader: false,
+   productCategory: [],
 };
 
 function ProductReducer(state = initialState, action) {
@@ -24,6 +26,16 @@ function ProductReducer(state = initialState, action) {
          return { ...state, getProductLoader: false, products: action.payload };
       case reduxConstants.GET_PRODUCT_FAIL:
          return { ...state, getProductLoader: false };
+
+      // Get Products Category
+      case reduxConstants.GET_PRODUCT_CATEGORY_LOAD:
+         return { ...state, getProductCategoryLoader: true };
+
+      case reduxConstants.GET_PRODUCT_CATEGORY_SUCCESS:
+         return { ...state, getProductCategoryLoader: false, productCategory: action.payload };
+
+      case reduxConstants.GET_PRODUCT_CATEGORY_FAIL:
+         return { ...state, getProductCategoryLoader: false };
       default:
          return state;
    }

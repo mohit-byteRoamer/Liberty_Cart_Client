@@ -2,7 +2,7 @@ import SectionTopBar from "../SectionTopBar";
 import ProductSlider from "../ProductSlider/ProductSlider";
 import ViewBtn from "../Buttons/ViewBtn";
 // import OurProducts from "./OurProducts";
-import { ArrowBtn } from "../Buttons/ArrowBtn";
+import { LeftArrowBtn, RightArrowBtn } from "../Buttons/ArrowBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProductLoad } from "../../redux/action/product_action";
@@ -10,7 +10,6 @@ import { getProductLoad } from "../../redux/action/product_action";
 function ExploreOurProduct() {
    const productReducerState = useSelector((state) => state.ProductReducer);
    const { products, getProductLoader } = productReducerState;
-   console.log("PRODUCTS", productReducerState);
 
    const dispatch = useDispatch();
 
@@ -36,8 +35,9 @@ function ExploreOurProduct() {
                <h1 className="text-3xl font-bold">Explore Our Product</h1>
             </div>
             {/* View Button */}
-            <div className="view-btn w-[10%]">
-               <ArrowBtn />
+            <div className="flex gap-5 view-btn w-[10%]">
+               <LeftArrowBtn />
+               <RightArrowBtn />
             </div>
          </div>
          {/* 3rd section */}
