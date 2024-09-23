@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 import { Heading } from "./components/AppHeader/Heading";
 import AddProduct from "./page/AddProductForm";
 import Protected from "./components/ProtectedRoute/ProtectedRoute";
+import About from "./page/About";
 function App() {
    const location = useLocation();
    // Define paths where the footer should not appear
@@ -20,6 +21,7 @@ function App() {
          <AppHeader />
          <Routes>
             {/* Public Routes */}
+            <Route path="/about" element={<About/>}/>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
 
