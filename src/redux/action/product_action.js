@@ -38,3 +38,14 @@ export const getProductCategorySuccess = (payload) => {
 export const getProductCategoryFail = () => {
    return { type: reduxConstants.GET_PRODUCT_CATEGORY_FAIL };
 };
+
+// Latest Product
+export const getLatestProductLoad = () => {
+   return { type: reduxConstants.GET_LATEST_PRODUCT_LOAD };
+};
+export const getLatestProductSuccess = (payload) => {
+   return { type: reduxConstants.GET_LATEST_PRODUCT_SUCCESS, payload: payload };
+};
+export const getLatestProductFail = () => {
+   return { type: reduxConstants.GET_LATEST_PRODUCT_FAIL };
+};

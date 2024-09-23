@@ -20,14 +20,8 @@ const ProductCard = ({ product }) => {
          }}
          cover={
             <div style={{ position: "relative", overflow: "hidden" }}>
-               <img
-                  alt={product.name}
-                  src="https://www.freshone.com.pk/content/images/default-image.png"
-                  style={{
-                     height: 200,
-                     width: "100%",
-                     objectFit: "contain",
-                  }}
+               <img alt={product.name} src={ product.image ? product.image : "https://rakanonline.com/wp-content/uploads/2022/08/default-product-image.png"}
+                  style={{ height: 200, width: "100%", objectFit: "contain"}}
                />
                {hovered && (
                   <Link to={"/shoppingCart"}>

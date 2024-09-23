@@ -1,8 +1,8 @@
 import Sidebar from "../components/Banner/Sidebar";
-import BestSellingProducts from "../components/BestSellingProducts/BestSellingProducts";
 import BrowseByCategory from "../components/BrowseByCategory/BrowseByCategory";
 import ExploreOurProduct from "../components/ExploreOurProduct/ExploreOurProduct";
 import FlashSales from "../components/FlashSales/FlashSales";
+import LatestProducts from "../components/LatestProducts/LatestProducts";
 import NewArrival from "../components/NewArrival/NewArrival";
 
 function Home() {
@@ -11,7 +11,7 @@ function Home() {
          <Sidebar />
          <FlashSales />
          <BrowseByCategory />
-         <BestSellingProducts />
+         <LatestProducts />
          <ExploreOurProduct />
          <NewArrival />
       </div>

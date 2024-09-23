@@ -1,8 +1,15 @@
 import { call, put } from "redux-saga/effects";
-import { createProductApi, getProductApi, getProductCategoryApi } from "../axios/axios-api";
+import {
+   createProductApi,
+   getLatestProductApi,
+   getProductApi,
+   getProductCategoryApi,
+} from "../axios/axios-api";
 import {
    createProductFail,
    createProductSuccess,
+   getLatestProductFail,
+   getLatestProductSuccess,
    getProductCategoryFail,
    getProductCategorySuccess,
    getProductFail,
@@ -10,6 +17,7 @@ import {
 } from "../action/product_action";
 import toast from "react-hot-toast";
 
+// CALL CREATE PRODUCT SAGA FUNCTION BY ROOT_SAGA
 export function* createProductSaga(action) {
    try {
       const response = yield call(createProductApi, action.payload);
@@ -26,35 +34,54 @@ export function* createProductSaga(action) {
       toast.error("Internal Server Error");
    }
 }
-
+// CALL GET PRODUCT SAGA FUNCTION BY ROOT_SAGA
 export function* getProductSaga() {
    try {
       const response = yield call(getProductApi);
-      const { result, status } = response;
+      const { result, status } = response || {};
       if (status === 1) {
-         // const {products, totalPage} = result.data;
          yield put(getProductSuccess(result));
       } else {
-         yield put(getProductFail(result.data.message));
+         yield put(getProductFail(result));
+         toast.error(result.message);
       }
    } catch (error) {
       yield put(getProductFail(error));
+      toast.error("Internal Server Error");
    }
 }
-
+// CALL GET PRODUCT CATEGORY SAGA FUNCTION BY ROOT_SAGA
 export function* getProductCategorySaga() {
    try {
       const response = yield call(getProductCategoryApi);
       const { result, status } = response || {};
-      // console.log("CATEGORY-RESPONSE", response);
       if (status === 1) {
-         // console.log("CATEGORY-RESPONSE-SUCCESS", result);
-         yield put(getProductCategorySuccess(result.data));
+         yield put(getProductCategorySuccess(result?.data));
       } else {
-         console.log("CATEGORY-RESPONSE-ERROR", result);
-         yield put(getProductCategoryFail(result?.message));
+         yield put(getProductCategoryFail(result?.data));
+         toast.error(result?.message);
       }
    } catch (error) {
       yield put(getProductCategoryFail(error));
+      toast.error("Internal Server Error");
+   }
+}
+// CALL GET LATEST PRODUCT SAGA FUNCTION BY ROOT_SAGA
+export function* getLatestProductSaga() {
+   try {
+      const response = yield call(getLatestProductApi);
+      const { result, status } = response || {};
+      console.log("RESPONSE", response);
+      // console.log("RESULT", result?.data);
+      if (status === 1) {
+         console.log("LATEST-RESPONSE_RESULT", result?.data);
+         yield put(getLatestProductSuccess(result?.data));
+      } else {
+         yield put(getLatestProductFail(result));
+         toast.error(result?.message || 'Something went wrong');
+      }
+   } catch (error) {
+      yield put(getLatestProductFail(error));
+      toast.error("Internal Server Error");
    }
 }

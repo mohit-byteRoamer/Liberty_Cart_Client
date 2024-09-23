@@ -5,11 +5,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 
-const ProductSlider = ({ flashSalesProduct, BestSellingProductsData, OurProducts }) => {
+const ProductSlider = ({ flashSalesProduct, latestProduct, OurProducts }) => {
    // Combine both datasets
    const combinedProducts = [
       ...(flashSalesProduct || []),
-      ...(BestSellingProductsData || []),
+      ...(latestProduct || []),
       ...(OurProducts || []),
    ];
 
