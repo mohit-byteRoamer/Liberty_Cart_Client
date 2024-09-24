@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 
 function LatestProducts() {
    const latestProductState = useSelector((state) => state.ProductReducer);
-   console.log("LatestProduct :", latestProductState);
 
    const { latestProduct, getLatestProductLoader } = latestProductState;
    const dispatch = useDispatch();

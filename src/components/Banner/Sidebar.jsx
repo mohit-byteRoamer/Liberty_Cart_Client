@@ -73,7 +73,7 @@ const Sidebar = () => {
    } = theme.useToken();
 
    return (
-      <Layout className="flex bg-white">
+      <Layout className="flex bg-white dark:bg-gray-800 dark:text-white">
          <Sider className="pt-5 !bg-white border-r-[1px]">
             <Menu
                theme="light"

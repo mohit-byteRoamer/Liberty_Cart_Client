@@ -3,7 +3,6 @@ import ProductCard from "../ProductCard/ProductCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from "react-router-dom";
 
 const ProductSlider = ({ flashSalesProduct, latestProduct, OurProducts }) => {
    // Combine both datasets
@@ -26,14 +25,12 @@ const ProductSlider = ({ flashSalesProduct, latestProduct, OurProducts }) => {
    };
 
    return (
-      <div className="p-4">
+      <div className="p-4 ">
          {combinedProducts.length > 0 ? (
             <Slider {...settings}>
                {combinedProducts.map((product, index) => (
                   <div key={index} className="p-2">
-                     <Link to={`/product${index}`}>
-                        <ProductCard product={product} />
-                     </Link>
+                     <ProductCard product={product} />
                   </div>
                ))}
             </Slider>

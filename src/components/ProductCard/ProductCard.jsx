@@ -3,14 +3,22 @@ import { Card, Badge, Typography, Rate, Button } from "antd";
 import { HeartOutlined, EyeOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const { Text, Title } = Typography;
 
 const ProductCard = ({ product }) => {
    const [hovered, setHovered] = useState(false);
+   const navigate = useNavigate();
+
+   function handleNavigate() {
+      navigate(`/product/${product._id}`);
+   }
 
    return (
       <Card
+         onClick={handleNavigate}
+         className="dark:bg-gray-900 dark:text-white"
          style={{
             width: 300,
             position: "relative",
@@ -20,8 +28,14 @@ const ProductCard = ({ product }) => {
          }}
          cover={
             <div style={{ position: "relative", overflow: "hidden" }}>
-               <img alt={product.name} src={ product.image ? product.image : "https://rakanonline.com/wp-content/uploads/2022/08/default-product-image.png"}
-                  style={{ height: 200, width: "100%", objectFit: "contain"}}
+               <img
+                  alt={product.name}
+                  src={
+                     product.image
+                        ? product.image
+                        : "https://rakanonline.com/wp-content/uploads/2022/08/default-product-image.png"
+                  }
+                  style={{ height: 200, width: "100%", objectFit: "contain" }}
                />
                {hovered && (
                   <Link to={"/shoppingCart"}>

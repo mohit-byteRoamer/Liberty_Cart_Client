@@ -11,6 +11,8 @@ import { Heading } from "./components/AppHeader/Heading";
 import AddProduct from "./page/AddProductForm";
 import Protected from "./components/ProtectedRoute/ProtectedRoute";
 import About from "./page/About";
+import ProductDetail from "./components/ExploreOurProduct/ProductDetail";
+
 function App() {
    const location = useLocation();
    // Define paths where the footer should not appear
@@ -19,19 +21,21 @@ function App() {
       <>
          {hideFooterPaths.includes(location.pathname) ? null : <Heading />}
          <AppHeader />
-         <Routes>
-            {/* Public Routes */}
-            <Route path="/about" element={<About/>}/>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
+         <div className="container mx-auto">
+            <Routes>
+               {/* Public Routes */}
+               <Route path="/about" element={<About />} />
+               <Route path="/signup" element={<Signup />} />
+               <Route path="/login" element={<Login />} />
 
-            {/* Protected Routes */}
-            <Route path="/" element={<Protected Component={Home} />} />
-            <Route path="/addProduct" element={<Protected Component={AddProduct} />} />
-
-            {/* Error Route */}
-            <Route path="*" element={<Error />} />
-         </Routes>
+               {/* Protected Routes */}
+               <Route path="/" element={<Protected Component={Home} />} />
+               <Route path="/addProduct" element={<Protected Component={AddProduct} />} />
+               <Route path="/product/:id" element={<Protected Component={ProductDetail} />} />
+               {/* Error Route */}
+               <Route path="*" element={<Error />} />
+            </Routes>
+         </div>
          {/* Conditionally render footer */}
          {hideFooterPaths.includes(location.pathname) ? null : <AppFooter />}
       </>

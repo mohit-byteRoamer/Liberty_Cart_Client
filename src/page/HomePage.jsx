@@ -4,6 +4,8 @@ import ExploreOurProduct from "../components/ExploreOurProduct/ExploreOurProduct
 import FlashSales from "../components/FlashSales/FlashSales";
 import LatestProducts from "../components/LatestProducts/LatestProducts";
 import NewArrival from "../components/NewArrival/NewArrival";
+// import ProductDetails from "../components/ProductDetails/ProductDetails";
+
 
 function Home() {
    return (
@@ -14,6 +16,7 @@ function Home() {
          <LatestProducts />
          <ExploreOurProduct />
          <NewArrival />
+         {/* <ProductDetails /> */}
       </div>
    );
 }

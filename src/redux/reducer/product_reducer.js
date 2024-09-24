@@ -9,6 +9,8 @@ const initialState = {
    productCategory: [],
    getLatestProductLoader: false,
    latestProduct: [],
+   getProductDetailLoader: false,
+   productsDetail:{}
 };
 
 function ProductReducer(state = initialState, action) {
@@ -44,6 +46,14 @@ function ProductReducer(state = initialState, action) {
          return { ...state, getLatestProductLoader: false, latestProduct: action.payload };
       case reduxConstants.GET_LATEST_PRODUCT_FAIL:
          return { ...state, getLatestProductLoader: false };
+
+      // Get Product Id
+      case reduxConstants.GET_PRODUCT_DETAIL_LOAD:
+         return { ...state, getProductDetailLoader: true };
+      case reduxConstants.GET_PRODUCT_DETAIL_SUCCESS:
+         return { ...state, getProductDetailLoader: false, productsDetail: action.payload };
+      case reduxConstants.GET_PRODUCT_DETAIL_FAIL:
+         return { ...state, getProductDetailLoader: false };
 
       // Default Case
       default:

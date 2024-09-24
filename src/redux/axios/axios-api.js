@@ -14,6 +14,7 @@ export const createProductApi = (data) => Method.POST("product/new", data, heade
 export const getProductApi = () => Method.GET("product/all", header);
 export const getProductCategoryApi = () => Method.GET("product/category", header);
 export const getLatestProductApi = () => Method.GET("product/latest", header);
+export const getProductDetailApi = (id) => Method.GET(`product/${id}`, header);
 
 // Second Way for create a LogInAPI
 // export const logInApi = async (data) => {

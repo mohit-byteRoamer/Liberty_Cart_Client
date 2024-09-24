@@ -4,6 +4,7 @@ import {
    getLatestProductApi,
    getProductApi,
    getProductCategoryApi,
+   getProductDetailApi,
 } from "../axios/axios-api";
 import {
    createProductFail,
@@ -12,6 +13,8 @@ import {
    getLatestProductSuccess,
    getProductCategoryFail,
    getProductCategorySuccess,
+   getProductDetailFail,
+   getProductDetailSuccess,
    getProductFail,
    getProductSuccess,
 } from "../action/product_action";
@@ -34,6 +37,7 @@ export function* createProductSaga(action) {
       toast.error("Internal Server Error");
    }
 }
+
 // CALL GET PRODUCT SAGA FUNCTION BY ROOT_SAGA
 export function* getProductSaga() {
    try {
@@ -50,6 +54,7 @@ export function* getProductSaga() {
       toast.error("Internal Server Error");
    }
 }
+
 // CALL GET PRODUCT CATEGORY SAGA FUNCTION BY ROOT_SAGA
 export function* getProductCategorySaga() {
    try {
@@ -66,22 +71,37 @@ export function* getProductCategorySaga() {
       toast.error("Internal Server Error");
    }
 }
+
 // CALL GET LATEST PRODUCT SAGA FUNCTION BY ROOT_SAGA
 export function* getLatestProductSaga() {
    try {
       const response = yield call(getLatestProductApi);
       const { result, status } = response || {};
-      console.log("RESPONSE", response);
-      // console.log("RESULT", result?.data);
       if (status === 1) {
-         console.log("LATEST-RESPONSE_RESULT", result?.data);
          yield put(getLatestProductSuccess(result?.data));
       } else {
          yield put(getLatestProductFail(result));
-         toast.error(result?.message || 'Something went wrong');
+         toast.error(result?.message || "Something went wrong");
       }
    } catch (error) {
       yield put(getLatestProductFail(error));
+      toast.error("Internal Server Error");
+   }
+}
+
+// CALL GET PRODUCT DETAIL SAGA FUNCTION BY ROOT_SAGA
+export function* getProductDetailSaga(action) {
+   try {
+      const response = yield call(getProductDetailApi, action.Id);
+      const { result, status } = response;
+      if (status === 1) {
+         yield put(getProductDetailSuccess(result?.data));
+      } else {
+         yield put(getProductDetailFail(result));
+         toast.error(result?.message);
+      }
+   } catch (error) {
+      yield put(getProductFail(error));
       toast.error("Internal Server Error");
    }
 }

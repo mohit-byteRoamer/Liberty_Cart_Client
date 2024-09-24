@@ -49,3 +49,15 @@ export const getLatestProductSuccess = (payload) => {
 export const getLatestProductFail = () => {
    return { type: reduxConstants.GET_LATEST_PRODUCT_FAIL };
 };
+
+// Product Id
+export const getProductDetailLoad = (id) => {
+   console.log("ACTION PAYLOAD", id);
+   return { type: reduxConstants.GET_PRODUCT_DETAIL_LOAD, Id: id };
+};
+export const getProductDetailSuccess = (payload) => {
+   return { type: reduxConstants.GET_PRODUCT_DETAIL_SUCCESS, payload };
+};
+export const getProductDetailFail = () => {
+   return { type: reduxConstants.GET_PRODUCT_DETAIL_FAIL };
+};

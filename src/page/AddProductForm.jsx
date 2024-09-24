@@ -31,7 +31,7 @@ const AddProductForm = () => {
    };
 
    return (
-      <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-md my-5">
+      <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-md my-5 dark:bg-gray-900 dark:text-white">
          <h1 className="text-2xl font-bold mb-6">Product Information</h1>
 
          <form onSubmit={handleSubmit(onSubmit)}>
