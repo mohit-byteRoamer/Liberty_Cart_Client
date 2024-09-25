@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { Button, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { logInActionsLoad } from "../redux/action/auth-actions";
+import { motion } from "framer-motion";
 
 const Login = () => {
    const [clientReady, setClientReady] = useState(false);
    const dispatch = useDispatch();
-   const logInLoader = useSelector(state => state.AuthReducer.loginLoader);   
-      
+   const logInLoader = useSelector((state) => state.AuthReducer.loginLoader);
+   const navigate = useNavigate()
+
    // useForm hook initialization
    const {
       control,
@@ -17,27 +19,30 @@ const Login = () => {
       formState: { errors },
    } = useForm();
 
-   // To disable submit button at the beginning.
    useEffect(() => {
       setClientReady(true);
    }, []);
 
    const onFinish = (values) => {
-      dispatch(logInActionsLoad({ email: values.email, password: values.password }));
+      dispatch(logInActionsLoad({ email: values.email, password: values.password, navigate }));
    };
 
    return (
-      <div className="container flex items-center justify-center max-w-full h-[79vh]">
-         <div className="w-96 h-[84%] rounded-xl shadow-lg flex items-center justify-center border-2">
-            <div className="w-80">
-               <h1 className="text-3xl font-semibold pb-4">Log in</h1>
-               <p className="text-gray-500 mb-6">Enter your details below</p>
+      <motion.div
+         initial={{ opacity: 0, y: -50 }}
+         animate={{ opacity: 1, y: 0 }}
+         exit={{ opacity: 0, y: 50 }}
+         transition={{ duration: 1 }}
+         className="container flex items-center justify-center max-w-full min-h-[79vh]"
+      >
+         <div className="w-96 py-8 rounded-xl shadow-lg flex items-center justify-center border-2">
+            <div className="w-[90%]">
+               <h1 className="text-3xl font-bold pb-4">Log in</h1>
+               <p className="mb-6">Enter your details below</p>
 
-               {/* Form with handleSubmit */}
                <form onSubmit={handleSubmit(onFinish)}>
-                  {/* Email*/}
                   <div className="mb-4">
-                     <label>Email or Phone Number</label>
+                     <label className="block text-sm font-medium">Email address</label>
                      <Controller
                         name="email"
                         control={control}
@@ -48,16 +53,15 @@ const Login = () => {
                               message: "Enter a valid email address",
                            },
                         }}
-                        render={({ field }) => {
-                           return <Input {...field} allowClear placeholder="Email address" />;
-                        }}
+                        render={({ field }) => (
+                           <Input {...field} allowClear placeholder="Email address" />
+                        )}
                      />
                      {errors.email && <p className="text-red-500">{errors.email.message}</p>}
                   </div>
 
-                  {/* Password */}
                   <div className="mb-4">
-                     <label>Password</label>
+                     <label className="block text-sm font-medium">Password</label>
                      <Controller
                         name="password"
                         control={control}
@@ -76,34 +80,39 @@ const Login = () => {
                               message: "Password must contain at least one letter and one number",
                            },
                         }}
-                        render={({ field }) => {
-                           return <Input.Password {...field} allowClear placeholder="Password" />;
-                        }}
+                        render={({ field }) => (
+                           <Input.Password {...field} allowClear placeholder="Password" />
+                        )}
                      />
                      {errors.password && <p className="text-red-500">{errors.password.message}</p>}
                   </div>
 
-                  <div className="flex gap-x-3 items-start">
-                     {/* Submit Button */}
-                     <Button
-                        loading={logInLoader}
-                        type="primary"
-                        htmlType="submit"
-                        disabled={!clientReady || Object.keys(errors).length > 0}>
-                        Log in
-                     </Button>
+                  <Button
+                     className="w-full"
+                     loading={logInLoader}
+                     type="primary"
+                     htmlType="submit"
+                     disabled={!clientReady || Object.keys(errors).length > 0}
+                  >
+                     Log in
+                  </Button>
 
-                     {/* Forgot Password Link */}
-                     <Button className="border-none">
-                        <Link to="/forgot-password" className="text-blue-500 hover:underline">
-                           Forgot password?
-                        </Link>
+                  <Link to="/forgot-password" className="text-blue-500 hover:underline">
+                     <Button className="border-none w-full" type="dashed">
+                        Forgot password?
                      </Button>
+                  </Link>
+
+                  <div className="mt-4 text-center gap-4">
+                     Don’t have an account?{" "}
+                     <Link to="/signup" className="text-blue-600">
+                        Sign Up
+                     </Link>
                   </div>
                </form>
             </div>
          </div>
-      </div>
+      </motion.div>
    );
 };
 

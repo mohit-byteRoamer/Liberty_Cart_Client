@@ -25,7 +25,7 @@ const team = [
 
 function About() {
    return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white ">
          {/* Hero Section */}
          <section className="bg-gray-50 py-12">
             <Row className="container gap-7 mx-auto px-4" align="middle">

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { signUpActionsLoad } from "../redux/action/auth-actions";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 const Signup = () => {
    const dispatch = useDispatch();
@@ -14,7 +15,6 @@ const Signup = () => {
       setClientReady(true);
    }, []);
 
-   // Initialize react-hook-form
    const {
       control,
       handleSubmit,
@@ -32,15 +32,19 @@ const Signup = () => {
    };
 
    return (
-      <div className="container max-w-full min-h-[79vh] flex items-center justify-center">
+      <motion.div
+         initial={{ opacity: 0, y: -50 }}
+         animate={{ opacity: 1, y: 0 }}
+         exit={{ opacity: 0, y: 50 }}
+         transition={{ duration: 0.5 }}
+         className="container flex items-center justify-center max-w-full min-h-[79vh]"
+      >
          <div className="w-96 h-[90%] rounded-lg shadow-lg border-2">
             <div className="p-5">
-               <h2 className="text-3xl font-bold pb-4">Create an account</h2>
+               <h1 className="text-3xl font-bold pb-4">Create an account</h1>
                <p className="mb-6">Enter your details below</p>
 
-               {/* Use handleSubmit from react-hook-form */}
                <form onSubmit={handleSubmit(onSubmit)}>
-                  {/* Full Name */}
                   <div className="mb-4">
                      <label className="block text-sm font-medium">Full Name</label>
                      <Controller
@@ -62,18 +66,14 @@ const Signup = () => {
                            },
                         }}
                         render={({ field }) => (
-                           <>
-                              <Input {...field} allowClear placeholder="Full name" />
-                           </>
+                           <Input {...field} allowClear placeholder="Full name" />
                         )}
                      />
-
                      {errors.fullName && (
                         <p className="text-red-600 text-sm">{errors.fullName.message}</p>
                      )}
                   </div>
 
-                  {/* Email */}
                   <div className="mb-4">
                      <label className="block text-sm font-medium">Email address</label>
                      <Controller
@@ -86,16 +86,15 @@ const Signup = () => {
                               message: "Enter a valid email address",
                            },
                         }}
-                        render={({ field }) => {
-                           return <Input {...field} allowClear placeholder="Email address" />;
-                        }}
+                        render={({ field }) => (
+                           <Input {...field} allowClear placeholder="Email address" />
+                        )}
                      />
                      {errors.email && (
                         <p className="text-red-600 text-sm">{errors.email.message}</p>
                      )}
                   </div>
 
-                  {/* Password */}
                   <div className="mb-4">
                      <label className="block text-sm font-medium">Password</label>
                      <Controller
@@ -116,27 +115,24 @@ const Signup = () => {
                               message: "Password must contain at least one letter and one number",
                            },
                         }}
-                        render={({ field }) => {
-                           return <Input.Password {...field} allowClear placeholder="Password" />;
-                        }}
+                        render={({ field }) => (
+                           <Input.Password {...field} allowClear placeholder="Password" />
+                        )}
                      />
-
                      {errors.password && (
                         <p className="text-red-600 text-sm">{errors.password.message}</p>
                      )}
                   </div>
 
-                  {/* Button */}
-                  <div className="mb-4">
-                     <Button
-                        loading={signUpLoader}
-                        className="w-full"
-                        type="primary"
-                        htmlType="submit"
-                        disabled={!clientReady}>
-                        Create Account
-                     </Button>
-                  </div>
+                  <Button
+                     loading={signUpLoader}
+                     className="w-full"
+                     type="primary"
+                     htmlType="submit"
+                     disabled={!clientReady}
+                  >
+                     Create Account
+                  </Button>
                </form>
 
                <div className="mt-4 text-center">
@@ -147,7 +143,7 @@ const Signup = () => {
                </div>
             </div>
          </div>
-      </div>
+      </motion.div>
    );
 };
 
