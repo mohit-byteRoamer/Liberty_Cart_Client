@@ -9,15 +9,19 @@ import { signUpApi, logInApi } from "../axios/axios-api";
 import toast from "react-hot-toast";
 
 export function* signUpSaga(action) {
+   console.log("AUTH_SAGA", action);
+
    try {
       const response = yield call(signUpApi, action.payload);
       const { result, status } = response;
+      console.log("AUTH RESPONSE", response);
+      
       if (status === 1) {
          yield put(signUpActionsSuccess(result));
-         toast.success(result.message);
+         toast.success(result?.message);
       } else {
          yield put(signUpActionsFail(result));
-         toast.error(result.message);
+         toast.error(result?.message);
       }
    } catch (error) {
       yield put(signUpActionsFail(error));
@@ -29,12 +33,12 @@ export function* logInSaga(action) {
    try {
       const navigate = action.payload.navigate;
       let response = yield call(logInApi, action.payload);
-      
+
       let { result, status } = response;
       if (status === 1) {
          localStorage.setItem("token", result.data.accessToken);
          yield put(logInActionsSuccess(result));
-         navigate("/")
+         navigate("/");
          toast.success(result.message);
       } else {
          yield put(logInActionsFail(result));

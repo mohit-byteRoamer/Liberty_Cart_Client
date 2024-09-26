@@ -5,6 +5,10 @@ let header = {
    "Content-Type": "application/json",
 };
 
+let header1 = {
+   "Content-Type": "multipart/form-data",
+ };
+
 // AUTH API'S
 export const signUpApi = (data) => Method.POST(`users/register`, data, header);
 export const logInApi = (data) => Method.POST(`users/login`, data, header);
@@ -15,6 +19,9 @@ export const getProductApi = () => Method.GET("product/all", header);
 export const getProductCategoryApi = () => Method.GET("product/category", header);
 export const getLatestProductApi = () => Method.GET("product/latest", header);
 export const getProductDetailApi = (id) => Method.GET(`product/${id}`, header);
+
+// UPLOAD FILE API
+export const uploadFileApi = (data) => Method.POST("common/uploadFile", data, header1);
 
 // Second Way for create a LogInAPI
 // export const logInApi = async (data) => {
