@@ -4,7 +4,11 @@ import LogOutBtn from "../Buttons/LogOutBtn";
 import { Popover } from "antd";
 import { useSelector } from "react-redux";
 import { FaAngleDown } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
+import { IoIosHelpCircleOutline } from "react-icons/io";
+import { RxCodesandboxLogo } from "react-icons/rx";
+import { HiOutlineUserGroup } from "react-icons/hi";
 
 export function Heading() {
    const navigate = useNavigate();
@@ -17,7 +21,10 @@ export function Heading() {
    const email = logInUser?.email;
    const userName = logInUser?.userName;
 
-   console.log("LOGIN_ACTION :", useSelector((state) => state));
+   console.log(
+      "LOGIN_ACTION :",
+      useSelector((state) => state)
+   );
    console.log("AVATAR :", avatar);
    console.log("fullName :", fullName);
    console.log("email :", email);
@@ -56,37 +63,41 @@ export function Heading() {
    );
 
    const content = (
-      <div className="flex flex-col p-1">
-         <Link
-            className="border-b-2 text-xl font-semibold hover:bg-slate-100 cursor-pointer p-1 rounded-md"
-            to={"/profile"}>
-            {title}
-         </Link>
-         <div className="flex flex-col border-b-2">
-            <Link
-               className="p-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md"
-               to={"/profile"}>
-               Profile
-            </Link>
-            <Link
-               className="p-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md"
-               to={"/order"}>
-               Order
-            </Link>
+      <div className="space-y-3">
+         <div>
+            <ul className="w-56 space-y-2">
+               <li className="border-b-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
+                  <Link className="block w-full h-full p-2 hover:shadow-md" to={"/profile"}>
+                     {title}
+                  </Link>
+               </li>
+               <li className="text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
+                  <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={"/profile"}>
+                     <CgProfile />
+                     Profile
+                  </Link>
+               </li>
+               <li className="border-b-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
+                  <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={"/order"}>
+                     <RxCodesandboxLogo />
+                     Order
+                  </Link>
+               </li>
+               <li className="text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
+                  <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={"/suggestion"}>
+                     <HiOutlineUserGroup />
+                     Suggestion
+                  </Link>
+               </li>
+               <li className="border-b-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
+                  <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={"/help"}>
+                     <IoIosHelpCircleOutline />
+                     Help
+                  </Link>
+               </li>
+            </ul>
          </div>
-         <div className="flex flex-col border-b-2">
-            <Link
-               to={"/suggestion"}
-               className="p-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
-               Suggestion
-            </Link>
-            <Link
-               to={"/help"}
-               className="p-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
-               help
-            </Link>
-         </div>
-         <div className="pt-3">
+         <div>
             <LogOutBtn />
          </div>
       </div>
@@ -116,11 +127,15 @@ export function Heading() {
                {logInUser ? (
                   <Popover
                      trigger="click"
-                     className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer"
+                     className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer p-1"
                      content={content}>
                      <div>
                         {avatar ? (
-                           <img className="w-10 h-10 rounded-full object-cover" src={avatar} alt="Avatar" />
+                           <img
+                              className="w-10 h-10 rounded-full object-cover"
+                              src={avatar}
+                              alt="Avatar"
+                           />
                         ) : (
                            <img
                               className="w-10 h-10 rounded-full object-cover"

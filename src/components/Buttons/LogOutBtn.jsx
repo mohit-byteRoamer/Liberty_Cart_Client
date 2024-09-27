@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { MdOutlineLogout } from "react-icons/md";
 
 function LogOutBtn() {
    const navigate = useNavigate();
@@ -16,7 +17,10 @@ function LogOutBtn() {
    };
    return (
       <Button className="w-full p-4" type="primary" onClick={handleLogout}>
-         Log Out
+         <div className="flex items-center gap-1">
+            <MdOutlineLogout />
+            Logout
+         </div>
       </Button>
    );
 }

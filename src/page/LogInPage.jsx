@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { logInActionsLoad } from "../redux/action/auth-actions";
 import { motion } from "framer-motion";
+import { MdOutlineLogin} from "react-icons/md";
 
 const Login = () => {
    const [clientReady, setClientReady] = useState(false);
@@ -98,6 +99,7 @@ const Login = () => {
                      type="primary"
                      htmlType="submit"
                      disabled={!clientReady || Object.keys(errors).length > 0}>
+                     <MdOutlineLogin />
                      Log in
                   </Button>
 

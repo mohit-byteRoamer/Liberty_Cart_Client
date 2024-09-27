@@ -20,7 +20,7 @@ function App() {
    return (
       <>
          {hideFooterPaths.includes(location.pathname) ? null : <Heading />}
-         <AppHeader />
+         <AppHeader className="" />
          <div className="container mx-auto">
             <Routes>
                {/* Public Routes */}

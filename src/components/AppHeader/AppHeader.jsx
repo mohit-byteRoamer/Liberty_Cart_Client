@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import { MdAddBox } from "react-icons/md";
 const AppHeader = () => {
    return (
-      <Layout id="appHeight" className="border-b leading-none ">
+      <Layout id="appHeight" className="border-b leading-none">
          {/* Header Start */}
-         <Header className="header flex justify-between dark:bg-gray-800 dark:text-white items-center bg-white h-[70%] pt-6">
+         <Header className="header flex justify-between dark:bg-gray-800 dark:text-white items-center bg-white h-[70%] pt-6 ">
             <div className="logo w-2/12">
                <Title level={2}>
                   <Link to="/">
