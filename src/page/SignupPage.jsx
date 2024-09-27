@@ -35,7 +35,8 @@ const Signup = () => {
       }
       dispatch(
          signUpActionsLoad({
-            userName: data.fullName,
+            fullName: data.fullName,
+            userName: data.userName,
             email: data.email,
             password: data.password,
             avatar: imageURL,
@@ -85,6 +86,36 @@ const Signup = () => {
                         />
                         {errors.fullName && (
                            <p className="text-red-600 text-sm">{errors.fullName.message}</p>
+                        )}
+                     </div>
+
+                     {/* USER NAME */}
+                     <div className="mb-4">
+                        <label className="block text-sm font-medium">User Name</label>
+                        <Controller
+                           name="userName"
+                           control={control}
+                           rules={{
+                              required: "User name is required",
+                              minLength: {
+                                 value: 3,
+                                 message: "User name must be at least 3 characters long",
+                              },
+                              maxLength: {
+                                 value: 50,
+                                 message: "User name cannot exceed 50 characters",
+                              },
+                              pattern: {
+                                 value: /^[A-Za-z\s]+$/,
+                                 message: "User name can only contain letters and spaces",
+                              },
+                           }}
+                           render={({ field }) => (
+                              <Input {...field} allowClear placeholder="Full name" />
+                           )}
+                        />
+                        {errors.userName && (
+                           <p className="text-red-600 text-sm">{errors.userName.message}</p>
                         )}
                      </div>
 

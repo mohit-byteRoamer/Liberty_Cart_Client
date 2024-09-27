@@ -52,7 +52,7 @@ export function Heading() {
                </div>
                {/* IMAGE SECTION */}
                <Popover
-                  className="popover w-[3%] rounded-full overflow-hidden"
+                  className="popover w-[2.5%] rounded-full overflow-hidden"
                   content={content}>
                   <img
                      className="w-full h-full"
