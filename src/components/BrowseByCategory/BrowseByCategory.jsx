@@ -94,7 +94,7 @@ function BrowseByCategory() {
             </div>
             {/* 3rd section */}
             <div className="flex justify-center gap-9 w-full max-w-8xl">
-               {categoryProduct?.slice(startIndex+1, endIndex).map((item, index) => (
+               {categoryProduct?.slice(startIndex, endIndex).map((item, index) => (
                   <Link key={index} to={`/products/${item}`}>
                      <CategoryCard
                         key={index}

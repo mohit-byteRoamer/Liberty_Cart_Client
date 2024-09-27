@@ -12,19 +12,22 @@ import AddProduct from "./page/AddProductForm";
 import Protected from "./components/ProtectedRoute/ProtectedRoute";
 import About from "./page/About";
 import ProductDetail from "./components/ExploreOurProduct/ProductDetail";
+import Contact from "./page/Contact";
 
 function App() {
    const location = useLocation();
    // Define paths where the footer should not appear
    const hideFooterPaths = ["/login", "/signup"];
+   const currentPath = location.pathname.replace(/\/$/, "");
    return (
       <>
-         {hideFooterPaths.includes(location.pathname) ? null : <Heading />}
+         {hideFooterPaths.includes(currentPath) ? null : <Heading />}
          <AppHeader className="" />
          <div className="container mx-auto">
             <Routes>
                {/* Public Routes */}
                <Route path="/about" element={<About />} />
+               <Route path="/contact" element={<Contact />} />
                <Route path="/signup" element={<Signup />} />
                <Route path="/login" element={<Login />} />
 
@@ -37,7 +40,7 @@ function App() {
             </Routes>
          </div>
          {/* Conditionally render footer */}
-         {hideFooterPaths.includes(location.pathname) ? null : <AppFooter />}
+         {hideFooterPaths.includes(currentPath) ? null : <AppFooter />}
       </>
    );
 }

@@ -1,15 +1,17 @@
 import { useForm, Controller } from "react-hook-form";
 import { Select, Input, Button } from "antd";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createProductLoad } from "../redux/action/product_action";
+import Image from "./Image";
 
 const AddProductForm = () => {
+   const photo = useSelector((state) => state?.UploadFileReducer?.uploadFile)
+   
    const { TextArea } = Input;
    const [clientReady, setClientReady] = useState(false);
    const dispatch = useDispatch();
    const {
-      register,
       handleSubmit,
       control,
       formState: { errors },
@@ -26,6 +28,7 @@ const AddProductForm = () => {
             price: data.price,
             stock: data.Stock,
             category: data.Category,
+            photo: photo,
          })
       );
    };
@@ -36,15 +39,7 @@ const AddProductForm = () => {
 
          <form onSubmit={handleSubmit(onSubmit)}>
             {/* Image Upload */}
-            <div className="mb-6">
-               <label className="block text-lg font-medium mb-2">Image</label>
-               <input
-                  type="file"
-                  className="w-full border border-gray-300 rounded-md p-2"
-                  {...register("image")}
-               />
-               {errors.image && <p className="text-red-500">{errors.image.message}</p>}
-            </div>
+            <Image />
 
             {/* Name Field */}
             <div className="mb-6">
@@ -189,8 +184,8 @@ const AddProductForm = () => {
                            }
                            options={[
                               {
-                                 value: "Kitchen",
-                                 label: "KitchenProduct",
+                                 value: "Cloth",
+                                 label: "Cloths",
                               },
                               {
                                  value: "Mobile",

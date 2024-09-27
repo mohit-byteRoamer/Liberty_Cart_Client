@@ -5,6 +5,8 @@ import Title from "antd/es/typography/Title";
 import { Link } from "react-router-dom";
 import { MdAddBox } from "react-icons/md";
 const AppHeader = () => {
+   const isAuthenticated = localStorage.getItem("token");
+
    return (
       <Layout id="appHeight" className="border-b leading-none">
          {/* Header Start */}
@@ -25,7 +27,6 @@ const AppHeader = () => {
                   border: "none",
                }}
                mode="horizontal"
-               // defaultSelectedKeys={['1']}
                items={[
                   {
                      key: "1",
@@ -39,27 +40,31 @@ const AppHeader = () => {
                      key: "3",
                      label: <Link to="/contact">Contact</Link>,
                   },
-                  {
+                  !isAuthenticated && {
                      key: "4",
                      label: <Link to="/signup">Signup</Link>,
                   },
                ]}
             />
-            <div className="flex">
-               <Input.Search placeholder="What are you looking for?" />
-            </div>
+            {isAuthenticated && (
+               <div className="flex">
+                  <Input.Search placeholder="What are you looking for?" />
+               </div>
+            )}
             {/* Icons */}
-            <div className="flex gap-5">
-               <Link to="/wishlist">
-                  <HeartOutlined style={{ fontSize: "25px" }} />
-               </Link>
-               <Link to="/shoppingCart">
-                  <ShoppingCartOutlined style={{ fontSize: "25px" }} />
-               </Link>
-               <Link to="/addProduct" className="">
-                  <MdAddBox style={{ fontSize: "25px" }} />
-               </Link>
-            </div>
+            {isAuthenticated && (
+               <div className="flex gap-5">
+                  <Link to="/wishlist">
+                     <HeartOutlined style={{ fontSize: "25px" }} />
+                  </Link>
+                  <Link to="/shoppingCart">
+                     <ShoppingCartOutlined style={{ fontSize: "25px" }} />
+                  </Link>
+                  <Link to="/addProduct" className="">
+                     <MdAddBox style={{ fontSize: "25px" }} />
+                  </Link>
+               </div>
+            )}
          </Header>
          {/* Header End */}
       </Layout>

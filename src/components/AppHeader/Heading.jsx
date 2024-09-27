@@ -9,6 +9,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { RxCodesandboxLogo } from "react-icons/rx";
 import { HiOutlineUserGroup } from "react-icons/hi";
+import { TbShoppingCartHeart } from "react-icons/tb";
 
 export function Heading() {
    const navigate = useNavigate();
@@ -73,14 +74,15 @@ export function Heading() {
                </li>
                <li className="text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
                   <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={"/profile"}>
-                     <CgProfile />
-                     Profile
+                  <RxCodesandboxLogo />
+                  Order
                   </Link>
                </li>
                <li className="border-b-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
                   <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={"/order"}>
-                     <RxCodesandboxLogo />
-                     Order
+                     <TbShoppingCartHeart />
+                     WishList
+                     
                   </Link>
                </li>
                <li className="text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">

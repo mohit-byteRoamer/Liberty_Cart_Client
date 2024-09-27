@@ -40,7 +40,7 @@ const Signup = () => {
             email: data.email,
             password: data.password,
             avatar: imageURL,
-            role: "user",
+            role: "admin",
          })
       );
    };
