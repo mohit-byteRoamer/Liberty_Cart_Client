@@ -12,7 +12,7 @@ const Signup = () => {
    const dispatch = useDispatch();
    const [clientReady, setClientReady] = useState(false);
    const signUpLoader = useSelector((state) => state.AuthReducer?.signUpLoader);
-
+   
    // GET UPLOAD IMAGE_URL
    const imageURL = useSelector((state) => state.UploadFileReducer?.uploadFile);
    console.log("IMAGE_URL", imageURL);

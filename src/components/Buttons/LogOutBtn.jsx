@@ -15,7 +15,7 @@ function LogOutBtn() {
       }
    };
    return (
-      <Button type="primary" onClick={handleLogout}>
+      <Button className="w-full p-4" type="primary" onClick={handleLogout}>
          Log Out
       </Button>
    );

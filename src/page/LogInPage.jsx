@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Input } from "antd";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { logInActionsLoad } from "../redux/action/auth-actions";
@@ -10,7 +10,8 @@ const Login = () => {
    const [clientReady, setClientReady] = useState(false);
    const dispatch = useDispatch();
    const logInLoader = useSelector((state) => state.AuthReducer.loginLoader);
-   const navigate = useNavigate()
+
+   const navigate = useNavigate();
 
    // useForm hook initialization
    const {
@@ -33,16 +34,17 @@ const Login = () => {
          animate={{ opacity: 1, y: 0 }}
          exit={{ opacity: 0, y: 50 }}
          transition={{ duration: 1 }}
-         className="container flex items-center justify-center max-w-full min-h-[79vh]"
-      >
+         className="container flex items-center justify-center max-w-full min-h-[79vh]">
          <div className="w-96 py-8 rounded-xl shadow-lg flex items-center justify-center border-2">
             <div className="w-[90%]">
                <h1 className="text-3xl font-bold pb-4">Log in</h1>
                <p className="mb-6">Enter your details below</p>
 
                <form onSubmit={handleSubmit(onFinish)}>
+                  {/* EMAIL ADDRESS */}
                   <div className="mb-4">
                      <label className="block text-sm font-medium">Email address</label>
+
                      <Controller
                         name="email"
                         control={control}
@@ -57,9 +59,11 @@ const Login = () => {
                            <Input {...field} allowClear placeholder="Email address" />
                         )}
                      />
+
                      {errors.email && <p className="text-red-500">{errors.email.message}</p>}
                   </div>
 
+                  {/* PASSWORD */}
                   <div className="mb-4">
                      <label className="block text-sm font-medium">Password</label>
                      <Controller
@@ -87,13 +91,13 @@ const Login = () => {
                      {errors.password && <p className="text-red-500">{errors.password.message}</p>}
                   </div>
 
+                  {/* Button */}
                   <Button
                      className="w-full"
                      loading={logInLoader}
                      type="primary"
                      htmlType="submit"
-                     disabled={!clientReady || Object.keys(errors).length > 0}
-                  >
+                     disabled={!clientReady || Object.keys(errors).length > 0}>
                      Log in
                   </Button>
 
