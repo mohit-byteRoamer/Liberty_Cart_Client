@@ -12,7 +12,6 @@ export function* signUpSaga(action) {
    try {
       const response = yield call(signUpApi, action.payload);
       const { result, status } = response;
-      console.log("AUTH RESPONSE", response);
       
       if (status === 1) {
          yield put(signUpActionsSuccess(result));
@@ -29,14 +28,17 @@ export function* signUpSaga(action) {
 
 export function* logInSaga(action) {
    try {
-      const navigate = action.payload.navigate;
+      const { navigate } = action.payload;
       let response = yield call(logInApi, action.payload);
 
       let { result, status } = response;
+      console.log("LOGIN_RESULT", result.data.user); 
+
       if (status === 1) {
-         localStorage.setItem("token", result.data.accessToken);
+         localStorage.setItem("token", result?.data?.accessToken);
+         localStorage.setItem("user", JSON.stringify(result?.data?.user)); 
          yield put(logInActionsSuccess(result));
-         navigate("/");
+         navigate("/"); // Redirect to home
          toast.success(result.message);
       } else {
          yield put(logInActionsFail(result));

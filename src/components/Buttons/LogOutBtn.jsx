@@ -10,6 +10,7 @@ function LogOutBtn() {
    const handleLogout = () => {
       if (loginToken) {
          localStorage.removeItem("token");
+         localStorage.removeItem("user");
          navigate("/login");
       } else {
          toast.error("User is not logged in");

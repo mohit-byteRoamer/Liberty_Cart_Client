@@ -7,8 +7,6 @@ const initialState = {
 };
 
 function AuthReducer(state = initialState, action) {
-   console.log("ACTION :", action);
-   
    switch (action.type) {
       case reduxConstants.SIGNUP_LOAD:
          return { ...state, signUpLoader: true };

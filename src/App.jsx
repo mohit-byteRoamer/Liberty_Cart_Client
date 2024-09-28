@@ -16,52 +16,36 @@ import Contact from "./page/Contact";
 import UnProtectedRoute from "./components/ProtectedRoute/UnProtectedRoute";
 
 function App() {
-  const location = useLocation();
-  // Define paths where the footer should not appear
-  const hideFooterPaths = ["/login", "/signup"];
-  const currentPath = location.pathname.replace(/\/$/, "");
-  return (
-    <>
-      {hideFooterPaths.includes(currentPath) ? null : <Heading />}
-      <AppHeader className="" />
-      <div className="container mx-auto">
-        <Routes>
-          {/* Public Routes */}
-          <Route
-            path="/login"
-            element={<UnProtectedRoute Component={Login} />}
-          />
-          <Route
-            path="/signup"
-            element={<UnProtectedRoute Component={Signup} />}
-          />
-          <Route
-            path="/about"
-            element={<UnProtectedRoute Component={About} />}
-          />
-          <Route
-            path="/contact"
-            element={<UnProtectedRoute Component={Contact} />}
-          />
+   const location = useLocation();
+   const token = localStorage.getItem("token");
+   // Define paths where the footer should not appear
+   const hideFooterPaths = ["/login", "/signup"];
+   const currentPath = location.pathname.replace(/\/$/, "");
+   return (
+      <>
+         {/* Conditionally render heading */}
+         {token && !hideFooterPaths.includes(currentPath) ? <Heading /> : null}
+         <AppHeader className="" />
+         <div className="container mx-auto">
+            <Routes>
+               {/* Public Routes */}
+               <Route path="/login" element={<UnProtectedRoute Component={Login} />} />
+               <Route path="/signup" element={<UnProtectedRoute Component={Signup} />} />
+               <Route path="/about" element={<UnProtectedRoute Component={About} />} />
+               <Route path="/contact" element={<UnProtectedRoute Component={Contact} />} />
 
-          {/* Protected Routes */}
-          <Route path="/" element={<Protected Component={Home} />} />
-          <Route
-            path="/addProduct"
-            element={<Protected Component={AddProduct} />}
-          />
-          <Route
-            path="/product/:id"
-            element={<Protected Component={ProductDetail} />}
-          />
-          {/* Error Route */}
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </div>
-      {/* Conditionally render footer */}
-      {hideFooterPaths.includes(currentPath) ? null : <AppFooter />}
-    </>
-  );
+               {/* Protected Routes */}
+               <Route path="/" element={<Protected Component={Home} />} />
+               <Route path="/addProduct" element={<Protected Component={AddProduct} />} />
+               <Route path="/product/:id" element={<Protected Component={ProductDetail} />} />
+               {/* Error Route */}
+               <Route path="*" element={<Error />} />
+            </Routes>
+         </div>
+         {/* Conditionally render footer */}
+         {hideFooterPaths.includes(currentPath) ? null : <AppFooter />}
+      </>
+   );
 }
 
 export default App;

@@ -2,25 +2,23 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LogOutBtn from "../Buttons/LogOutBtn";
 import { Popover } from "antd";
-import { useSelector } from "react-redux";
 import { FaAngleDown } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { CgProfile } from "react-icons/cg";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { RxCodesandboxLogo } from "react-icons/rx";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { TbShoppingCartHeart } from "react-icons/tb";
 
 export function Heading() {
-   const navigate = useNavigate();
    const [isDarkMode, setIsDarkMode] = useState(false);
-   const logInUser = useSelector((state) => state?.AuthReducer?.user?.data?.user);
+   const user = JSON.parse(localStorage.getItem("user"))
+   console.log("GET_USER", user);
+   
 
    // Add a check if logInUser is undefined or null
-   const avatar = logInUser?.avatar;
-   const fullName = logInUser?.fullName;
-   const email = logInUser?.email;
-   const userName = logInUser?.userName;
+   const avatar = user?.avatar;
+   const fullName = user?.fullName;
+   const email = user?.email;
+   const userName = user?.userName;
 
    useEffect(() => {
       if (isDarkMode) {
@@ -65,15 +63,14 @@ export function Heading() {
                </li>
                <li className="text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
                   <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={"/profile"}>
-                  <RxCodesandboxLogo />
-                  Order
+                     <RxCodesandboxLogo />
+                     Order
                   </Link>
                </li>
                <li className="border-b-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
                   <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={"/order"}>
                      <TbShoppingCartHeart />
                      WishList
-                     
                   </Link>
                </li>
                <li className="text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
@@ -117,36 +114,32 @@ export function Heading() {
                      </Link>
                   </h1>
                </div>
-               {/* {logInUser ? (
-                  <Popover
-                     trigger="click"
-                     className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer p-1"
-                     content={content}>
-                     <div>
-                        {avatar ? (
-                           <img
-                              className="w-10 h-10 rounded-full object-cover"
-                              src={avatar}
-                              alt="Avatar"
-                           />
-                        ) : (
-                           <img
-                              className="w-10 h-10 rounded-full object-cover"
-                              src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?w=740&t=st=1727265106~exp=1727265706~hmac=2b48b806a6a6340dc45204ff038df0765e3e1cdc1a49613b2f694be2d2a70add"
-                              alt="Avatar"
-                           />
-                        )}
-                     </div>
-                     <div>
-                        <h1 className="text-base font-semibold">{fullName}</h1>
-                     </div>
-                     <div>
-                        <FaAngleDown />
-                     </div>
-                  </Popover>
-               ) : (
-                  navigate("/login")
-               )} */}
+               <Popover
+                  trigger="click"
+                  className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer p-1"
+                  content={content}>
+                  <div>
+                     {avatar ? (
+                        <img
+                           className="w-10 h-10 rounded-full object-cover"
+                           src={avatar}
+                           alt="Avatar"
+                        />
+                     ) : (
+                        <img
+                           className="w-10 h-10 rounded-full object-cover"
+                           src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?w=740&t=st=1727265106~exp=1727265706~hmac=2b48b806a6a6340dc45204ff038df0765e3e1cdc1a49613b2f694be2d2a70add"
+                           alt="Avatar"
+                        />
+                     )}
+                  </div>
+                  <div>
+                     <h1 className="text-base font-semibold">{fullName}</h1>
+                  </div>
+                  <div>
+                     <FaAngleDown />
+                  </div>
+               </Popover>
             </div>
          </div>
       </>
