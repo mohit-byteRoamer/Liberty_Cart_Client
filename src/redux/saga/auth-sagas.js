@@ -9,8 +9,6 @@ import { signUpApi, logInApi } from "../axios/axios-api";
 import toast from "react-hot-toast";
 
 export function* signUpSaga(action) {
-   console.log("AUTH_SAGA", action);
-
    try {
       const response = yield call(signUpApi, action.payload);
       const { result, status } = response;
