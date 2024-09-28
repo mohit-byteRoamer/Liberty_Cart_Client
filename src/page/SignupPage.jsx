@@ -1,6 +1,5 @@
 import { Button, Input } from "antd";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { signUpActionsLoad } from "../redux/action/auth-actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,16 +9,11 @@ import toast from "react-hot-toast";
 
 const Signup = () => {
    const dispatch = useDispatch();
-   const [clientReady, setClientReady] = useState(false);
    const signUpLoader = useSelector((state) => state.AuthReducer?.signUpLoader);
    
    // GET UPLOAD IMAGE_URL
    const imageURL = useSelector((state) => state.UploadFileReducer?.uploadFile);
-   console.log("IMAGE_URL", imageURL);
 
-   useEffect(() => {
-      setClientReady(true);
-   }, []);
 
    const {
       control,
@@ -183,7 +177,7 @@ const Signup = () => {
                         className="w-full"
                         type="primary"
                         htmlType="submit"
-                        disabled={!clientReady}>
+                        >
                         Create Account
                      </Button>
                   </form>

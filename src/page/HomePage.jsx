@@ -5,7 +5,7 @@ import FlashSales from "../components/FlashSales/FlashSales";
 import LatestProducts from "../components/LatestProducts/LatestProducts";
 import NewArrival from "../components/NewArrival/NewArrival";
 
-function Home() {
+function   Home() {
    return (
       <div className="home-page">
          <Sidebar />

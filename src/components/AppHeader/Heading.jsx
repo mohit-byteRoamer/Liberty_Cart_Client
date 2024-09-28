@@ -22,15 +22,6 @@ export function Heading() {
    const email = logInUser?.email;
    const userName = logInUser?.userName;
 
-   console.log(
-      "LOGIN_ACTION :",
-      useSelector((state) => state)
-   );
-   console.log("AVATAR :", avatar);
-   console.log("fullName :", fullName);
-   console.log("email :", email);
-   console.log("userName :", userName);
-
    useEffect(() => {
       if (isDarkMode) {
          document.documentElement.classList.add("dark");
@@ -126,7 +117,7 @@ export function Heading() {
                      </Link>
                   </h1>
                </div>
-               {logInUser ? (
+               {/* {logInUser ? (
                   <Popover
                      trigger="click"
                      className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer p-1"
@@ -155,7 +146,7 @@ export function Heading() {
                   </Popover>
                ) : (
                   navigate("/login")
-               )}
+               )} */}
             </div>
          </div>
       </>

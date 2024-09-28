@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Button, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
@@ -8,7 +7,6 @@ import { motion } from "framer-motion";
 import { MdOutlineLogin} from "react-icons/md";
 
 const Login = () => {
-   const [clientReady, setClientReady] = useState(false);
    const dispatch = useDispatch();
    const logInLoader = useSelector((state) => state.AuthReducer.loginLoader);
 
@@ -21,9 +19,6 @@ const Login = () => {
       formState: { errors },
    } = useForm();
 
-   useEffect(() => {
-      setClientReady(true);
-   }, []);
 
    const onFinish = (values) => {
       dispatch(logInActionsLoad({ email: values.email, password: values.password, navigate }));
@@ -98,7 +93,7 @@ const Login = () => {
                      loading={logInLoader}
                      type="primary"
                      htmlType="submit"
-                     disabled={!clientReady || Object.keys(errors).length > 0}>
+                     disabled={ Object.keys(errors).length > 0}>
                      <MdOutlineLogin />
                      Log in
                   </Button>

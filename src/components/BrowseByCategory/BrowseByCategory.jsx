@@ -21,7 +21,7 @@ function BrowseByCategory() {
 
    useEffect(() => {
       dispatch(getProductCategoryLoad());
-   }, [dispatch]);
+   }, []);
 
    // Dynamic function to return icon based on category
    const getCategoryIcon = (category) => {
