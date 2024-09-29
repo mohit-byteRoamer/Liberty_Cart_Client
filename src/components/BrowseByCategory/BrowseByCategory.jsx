@@ -1,5 +1,5 @@
 import SectionTopBar from "../SectionTopBar";
-import CategoryCard from "./CategoryCard";
+import CategoryCard from "../Cards/CategoryCard";
 import { LeftArrowBtn, RightArrowBtn } from "../Buttons/ArrowBtn";
 import { AccountBookOutlined, AudioOutlined } from "@ant-design/icons";
 import { SiStmicroelectronics, SiFacebookgaming } from "react-icons/si";
@@ -54,26 +54,26 @@ function BrowseByCategory() {
    };
 
    // Set state to track the current index of the categories
-   const [startIndex, setStartIndex] = useState(0)
-   const itemsPerPage = 6
+   const [startIndex, setStartIndex] = useState(0);
+   const itemsPerPage = 6;
 
    // Calculate the end index for slicing
-   const endIndex = startIndex + itemsPerPage
-   
+   const endIndex = startIndex + itemsPerPage;
+
    const isPrevDisabled = startIndex === 0;
    const isNextDisabled = endIndex >= categoryProduct.length;
 
    const handleNext = () => {
-      if(!isNextDisabled){
-         setStartIndex(startIndex + itemsPerPage)
+      if (!isNextDisabled) {
+         setStartIndex(startIndex + itemsPerPage);
       }
-   }
+   };
 
    const handlePrev = () => {
-      if(!isPrevDisabled){
-         setStartIndex(startIndex - itemsPerPage)
+      if (!isPrevDisabled) {
+         setStartIndex(startIndex - itemsPerPage);
       }
-   }
+   };
 
    return (
       <section className="px-5 py-16">

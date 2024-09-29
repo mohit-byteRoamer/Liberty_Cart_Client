@@ -5,7 +5,7 @@ import Title from "antd/es/typography/Title";
 import { Link } from "react-router-dom";
 import { MdAddBox } from "react-icons/md";
 const AppHeader = () => {
-   const isAuthenticated = localStorage.getItem("token");
+   const isAuthenticated = !!localStorage.getItem("token");
 
    return (
       <Layout id="appHeight" className="border-b leading-none">

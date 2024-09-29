@@ -36,6 +36,7 @@ const ProductDetail = () => {
       !productsDetail.stock ||
       !productsDetail._id ||
       !productsDetail.createdAt ||
+      !productsDetail.photo ||
       !productsDetail.updatedAt
    ) {
       return (
@@ -57,7 +58,7 @@ const ProductDetail = () => {
             <div className="lg:col-span-3 text-center">
                <div className="px-4 py-10 rounded-lg shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative">
                   <img
-                     src={productsDetail.image || "https://community.ebay.com/t5/image/serverpage/image-id/852125i802CE825350658CB?v=v2"} // Default image if none exists
+                     src={productsDetail.photo || "https://community.ebay.com/t5/image/serverpage/image-id/852125i802CE825350658CB?v=v2"} // Default image if none exists
                      alt={productsDetail.name}
                      className="w-3/4 rounded object-cover mx-auto"
                   />

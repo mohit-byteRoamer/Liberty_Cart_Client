@@ -9,11 +9,11 @@ import AppFooter from "./components/AppFooter/AppFooter";
 import { useLocation } from "react-router-dom";
 import { Heading } from "./components/AppHeader/Heading";
 import AddProduct from "./page/AddProductForm";
-import Protected from "./components/ProtectedRoute/ProtectedRoute";
 import About from "./page/About";
 import ProductDetail from "./components/ExploreOurProduct/ProductDetail";
 import Contact from "./page/Contact";
-import UnProtectedRoute from "./components/ProtectedRoute/UnProtectedRoute";
+import UnProtectedRoute from "./components/Routes/UnProtectedRoute";
+import ProtectedRoute from "./components/Routes/ProtectedRoute";
 
 function App() {
    const location = useLocation();
@@ -35,9 +35,9 @@ function App() {
                <Route path="/contact" element={<UnProtectedRoute Component={Contact} />} />
 
                {/* Protected Routes */}
-               <Route path="/" element={<Protected Component={Home} />} />
-               <Route path="/addProduct" element={<Protected Component={AddProduct} />} />
-               <Route path="/product/:id" element={<Protected Component={ProductDetail} />} />
+               <Route path="/" element={<ProtectedRoute Component={Home} />} />
+               <Route path="/addProduct" element={<ProtectedRoute Component={AddProduct} />} />
+               <Route path="/product/:id" element={<ProtectedRoute Component={ProductDetail} />} />
                {/* Error Route */}
                <Route path="*" element={<Error />} />
             </Routes>

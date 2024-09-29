@@ -14,6 +14,7 @@ const AddProductForm = () => {
    const {
       handleSubmit,
       control,
+      reset,
       formState: { errors },
    } = useForm({ defaultValues: { price: 0 } });
 
@@ -31,6 +32,7 @@ const AddProductForm = () => {
             photo: photo,
          })
       );
+      reset()
    };
 
    return (
@@ -85,8 +87,8 @@ const AddProductForm = () => {
                         message: "Description must be at least 10 characters long",
                      },
                      maxLength: {
-                        value: 50,
-                        message: "Description cannot exceed 50 characters",
+                        value: 200,
+                        message: "Description cannot exceed 100 characters",
                      },
                   }}
                   render={({ field }) => (
@@ -184,16 +186,20 @@ const AddProductForm = () => {
                            }
                            options={[
                               {
-                                 value: "Cloth",
-                                 label: "Cloths",
+                                 value: "Electronics",
+                                 label: "Electronics",
                               },
                               {
-                                 value: "Mobile",
-                                 label: "Category-1",
+                                 value: "Men's clothing",
+                                 label: "Men's clothing",
                               },
                               {
-                                 value: "Products",
-                                 label: "Category-1",
+                                 value: "Women's clothing",
+                                 label: "Women's clothing",
+                              },
+                              {
+                                 value: "Jewellery",
+                                 label: "Jewellery",
                               },
                            ]}
                         />

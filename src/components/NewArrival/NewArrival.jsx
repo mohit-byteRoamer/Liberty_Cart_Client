@@ -1,6 +1,6 @@
 import SectionTopBar from "../SectionTopBar";
 import { Card, Row, Col } from "antd";
-import ServiceCard from "./ServiceCard";
+import ServiceCard from "../Cards/ServiceCard";
 import { TruckOutlined } from "@ant-design/icons";
 import { CustomerServiceFilled } from "@ant-design/icons";
 import { ArrowUpOutlined } from "@ant-design/icons";

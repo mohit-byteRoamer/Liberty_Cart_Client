@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
    return (
      <Card
        onClick={handleNavigate}
-       className="dark:bg-gray-900 dark:text-white"
+       className="dark:bg-gray-900 dark:text-white max-h-[40vh] "
        style={{
          width: 300,
          position: "relative",
@@ -44,7 +44,7 @@ const ProductCard = ({ product }) => {
                  type="primary"
                  style={{
                    position: "absolute",
-                   bottom: 10,
+                   bottom: 0,
                    left: 0,
                    right: 0,
                    margin: "auto",
@@ -121,7 +121,7 @@ const ProductCard = ({ product }) => {
        onMouseEnter={() => setHovered(true)}
        onMouseLeave={() => setHovered(false)}
      >
-       <Title level={5}>{product.name}</Title>
+       <Title className="truncate" level={5}>{product.name}</Title>
        <div style={{ display: "flex", columnGap: "10px", marginTop: 10 }}>
          <Text strong style={{ color: "red" }}>
            ${product.price}

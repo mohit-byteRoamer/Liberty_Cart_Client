@@ -2,8 +2,8 @@
 import { Row, Col, Card } from "antd";
 import "antd/dist/reset.css"; // Import Ant Design styles
 import "tailwindcss/tailwind.css"; // Import Tailwind CSS
-import ServiceCard from "../components/NewArrival/ServiceCard";
 import { CustomerServiceFilled, TruckOutlined } from "@ant-design/icons";
+import ServiceCard from "../components/Cards/ServiceCard";
 
 const team = [
    {

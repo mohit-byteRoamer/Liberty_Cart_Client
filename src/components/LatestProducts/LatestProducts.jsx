@@ -8,49 +8,46 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 function LatestProducts() {
-  const latestProductState = useSelector((state) => state.ProductReducer);
+   const latestProductState = useSelector((state) => state.ProductReducer);
 
-  const { latestProduct, getLatestProductLoader } = latestProductState;
+   const { latestProduct, getLatestProductLoader } = latestProductState;
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getLatestProductLoad());
-  }, []);
+   const dispatch = useDispatch();
+   useEffect(() => {
+      dispatch(getLatestProductLoad());
+   }, []);
 
-  if (getLatestProductLoader)
-    return (
-      <div className="h-screen w-full flex items-center justify-center">
-        <div className="spinner border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
-      </div>
-    );
+   if (getLatestProductLoader)
+      return (
+         <div className="h-screen w-full flex items-center justify-center">
+            <div className="spinner border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
+         </div>
+      );
 
-  return (
-    <section className="px-5 py-16">
-      {/* 1st section */}
-      <SectionTopBar text="This Month" />
-      {/* 2nd section */}
-      <div className="flex items-center justify-between py-5 w-full">
-        {/* Title and Timer */}
-        <div className="flex items-end">
-          <h1 className="text-3xl font-bold">Latest Products</h1>
-        </div>
-        {/* View Button */}
-        <div className="view-btn w-[10%]">
-          <ViewBtn
-            text="View All"
-            className="flex items-center justify-center w-full h-12"
-          />
-        </div>
-      </div>
-      {/* 3rd section */}
-      <div>
-        <ProductSlider latestProduct={latestProduct} />
-      </div>
-      <div className="w-full py-10">
-        <img className="w-full" src={JBL} alt="JBL Bomber" />
-      </div>
-    </section>
-  );
+   return (
+      <section className="px-5 py-16">
+         {/* 1st section */}
+         <div>
+            <SectionTopBar text="This Month" />
+         </div>
+         {/* 2nd section */}
+         <div className="flex flex-col gap-y-10 w-full">
+            {/* Title & Slider */}
+            <div className="Slider">
+               <ProductSlider title={"Latest Products"} latestProduct={latestProduct} />
+            </div>
+            {/* View Button */}
+            <div className="flex justify-center">
+               <ViewBtn text="View All Products" />
+            </div>
+         </div>
+         {/* 3rd section */}
+         <div></div>
+         <div className="w-full py-10">
+            <img className="w-full" src={JBL} alt="JBL Bomber" />
+         </div>
+      </section>
+   );
 }
 
 export default LatestProducts;
