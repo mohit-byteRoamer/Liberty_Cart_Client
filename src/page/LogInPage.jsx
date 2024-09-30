@@ -31,7 +31,7 @@ const Login = () => {
          exit={{ opacity: 0, y: 50 }}
          transition={{ duration: 1 }}
          className="container flex items-center justify-center max-w-full min-h-[79vh]">
-         <div className="w-96 py-8 rounded-xl shadow-lg flex items-center justify-center border-2">
+         <div className="w-96 py-8 rounded-2xl shadow-xl flex items-center justify-center border-2">
             <div className="w-[90%]">
                <h1 className="text-3xl font-bold pb-4">Log in</h1>
                <p className="mb-6">Enter your details below</p>

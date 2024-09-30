@@ -45,8 +45,8 @@ const Signup = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
             transition={{ duration: 0.5 }}
-            className="container flex items-center justify-center max-w-full min-h-[79vh]">
-            <div className="w-96 h-[90%] rounded-lg shadow-lg border-2">
+            className="flex items-center justify-center max-w-full min-h-[89vh]">
+            <div className="w-96 rounded-2xl shadow-xl border-2">
                <div className="p-5">
                   <h1 className="text-3xl font-bold pb-4">Create an account</h1>
                   <p className="mb-6">Enter your details below</p>
