@@ -1,4 +1,4 @@
-import { Button, Input } from "antd";
+import { Button, Input, Radio } from "antd";
 import { Link } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import { signUpActionsLoad } from "../redux/action/auth-actions";
@@ -10,10 +10,9 @@ import toast from "react-hot-toast";
 const Signup = () => {
    const dispatch = useDispatch();
    const signUpLoader = useSelector((state) => state.AuthReducer?.signUpLoader);
-   
+
    // GET UPLOAD IMAGE_URL
    const imageURL = useSelector((state) => state.UploadFileReducer?.uploadFile);
-
 
    const {
       control,
@@ -34,7 +33,7 @@ const Signup = () => {
             email: data.email,
             password: data.password,
             avatar: imageURL,
-            role: "admin",
+            role: data.role,
          })
       );
    };
@@ -171,13 +170,31 @@ const Signup = () => {
                         <Image />
                      </div>
 
+                     {/* ROLE SELECTION (Admin or User) */}
+                     <div className="mb-4">
+                        <label className="block text-sm font-medium">Select Role</label>
+                        <Controller
+                           name="role"
+                           control={control}
+                           rules={{ required: "Please select a role" }}
+                           render={({ field }) => (
+                              <Radio.Group {...field}>
+                                 <Radio value="admin">Admin</Radio>
+                                 <Radio value="user">User</Radio>
+                              </Radio.Group>
+                           )}
+                        />
+                        {errors.role && (
+                           <p className="text-red-600 text-sm">{errors.role.message}</p>
+                        )}
+                     </div>
+
                      {/* CREATE BUTTON */}
                      <Button
                         loading={signUpLoader}
                         className="w-full"
                         type="primary"
-                        htmlType="submit"
-                        >
+                        htmlType="submit">
                         Create Account
                      </Button>
                   </form>
