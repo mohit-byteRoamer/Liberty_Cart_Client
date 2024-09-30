@@ -4,13 +4,38 @@ import Layout, { Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import { Link } from "react-router-dom";
 import { MdAddBox } from "react-icons/md";
+
 const AppHeader = () => {
    const isAuthenticated = !!localStorage.getItem("token");
+
+   // Menu items based on authentication status
+   const menuItems = [
+      {
+         key: "1",
+         label: <Link to="/">Home</Link>,
+      },
+      {
+         key: "2",
+         label: <Link to="/about">About</Link>,
+      },
+      {
+         key: "3",
+         label: <Link to="/contact">Contact</Link>,
+      },
+      !isAuthenticated && {
+         key: "4",
+         label: <Link to="/signup">Signup</Link>,
+      },
+      isAuthenticated && {
+         key: "5",
+         label: <Link to="/myProduct">My Product</Link>,
+      },
+   ];
 
    return (
       <Layout id="appHeight" className="border-b leading-none">
          {/* Header Start */}
-         <Header className="header flex justify-between dark:bg-gray-800 dark:text-white items-center bg-white h-[70%] pt-6 ">
+         <Header className="header flex justify-between dark:bg-gray-800 dark:text-white items-center bg-white h-[70%] pt-6">
             <div className="logo w-2/12">
                <Title level={2}>
                   <Link to="/">
@@ -20,37 +45,24 @@ const AppHeader = () => {
                   </Link>
                </Title>
             </div>
+
+            {/* Menu */}
             <Menu
-               className={`font-semibold`}
+               className="font-semibold"
                style={{
                   width: "50%",
                   border: "none",
                }}
                mode="horizontal"
-               items={[
-                  {
-                     key: "1",
-                     label: <Link to="/">Home</Link>,
-                  },
-                  {
-                     key: "2",
-                     label: <Link to="/about">About</Link>,
-                  },
-                  {
-                     key: "3",
-                     label: <Link to="/contact">Contact</Link>,
-                  },
-                  !isAuthenticated && {
-                     key: "4",
-                     label: <Link to="/signup">Signup</Link>,
-                  },
-               ]}
+               items={menuItems}
             />
+
             {isAuthenticated && (
                <div className="flex">
                   <Input.Search placeholder="What are you looking for?" />
                </div>
             )}
+
             {/* Icons */}
             {isAuthenticated && (
                <div className="flex gap-5">
@@ -60,7 +72,7 @@ const AppHeader = () => {
                   <Link to="/shoppingCart">
                      <ShoppingCartOutlined style={{ fontSize: "25px" }} />
                   </Link>
-                  <Link to="/addProduct" className="">
+                  <Link to="/addProduct">
                      <MdAddBox style={{ fontSize: "25px" }} />
                   </Link>
                </div>

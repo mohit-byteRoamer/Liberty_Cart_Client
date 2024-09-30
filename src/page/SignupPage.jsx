@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import Image from "./Image";
 import toast from "react-hot-toast";
+import { IoCreateOutline } from "react-icons/io5";
 
 const Signup = () => {
    const dispatch = useDispatch();
@@ -195,6 +196,7 @@ const Signup = () => {
                         className="w-full"
                         type="primary"
                         htmlType="submit">
+                        <IoCreateOutline className="text-white" />
                         Create Account
                      </Button>
                   </form>
