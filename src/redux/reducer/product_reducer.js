@@ -10,7 +10,9 @@ const initialState = {
    getLatestProductLoader: false,
    latestProduct: [],
    getProductDetailLoader: false,
-   productsDetail:{}
+   productsDetail: {},
+   getProductAdminLoader: false,
+   adminProducts: [],
 };
 
 function ProductReducer(state = initialState, action) {
@@ -54,6 +56,14 @@ function ProductReducer(state = initialState, action) {
          return { ...state, getProductDetailLoader: false, productsDetail: action.payload };
       case reduxConstants.GET_PRODUCT_DETAIL_FAIL:
          return { ...state, getProductDetailLoader: false };
+
+      // Get Admin Products
+      case reduxConstants.GET_PRODUCT_ADMIN_LOAD:
+         return { ...state, getProductAdminLoader: true };
+      case reduxConstants.GET_PRODUCT_ADMIN_SUCCESS:
+         return { ...state, getProductAdminLoader: false, adminProducts: action.payload };
+      case reduxConstants.GET_PRODUCT_ADMIN_FAIL:
+         return { ...state, getProductAdminLoader: false };
 
       // Default Case
       default:

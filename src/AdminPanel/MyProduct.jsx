@@ -1,48 +1,31 @@
 // src/ProductTable.jsx
 import { Table, Checkbox } from "antd";
 import { useForm, Controller } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { getAdminProductLoad } from "../redux/action/product_action";
+import { useEffect } from "react";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 const MyProduct = () => {
+   const dispatch = useDispatch();
+   const loader = useSelector((state) => state?.ProductReducer?.getProductAdminLoader);
+   const products = useSelector((state) => state?.ProductReducer?.adminProducts?.data?.Products);
+   console.log("ADMIN_PRODUCT", products);
+   console.log("LOADER", loader);
+
    const {
       control,
       handleSubmit,
       formState: { errors },
    } = useForm();
 
-   const data = [
-      {
-         key: "1",
-         id: "A1777EFD",
-         name: "Nikon Monarch FIELD 82ED-A W/MEP-20-60, Black",
-         image: "https://m.media-amazon.com/images/I/41naMAL0tEL._SL1000_.jpg",
-         price: "$1,259.00",
-         stock: 35,
-      },
-      {
-         key: "2",
-         id: "A285TFN",
-         name: "Zeiss Ikon Distagon T ZM 2.8/15 Super Wide-Angle Camera Lens",
-         image: "https://www.tanotis.com/cdn/shop/products/Zeiss_1457_856_15mm_f_2_8_ZM_Lens_1484002249000_361526_600x.jpg?v=1575982596",
-         price: "$4,750.00",
-         stock: 55,
-      },
-      {
-         key: "3",
-         id: "VH531GH",
-         name: "Nikon Z 5 Camera Body, Black",
-         image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQBe8RUzI7YQcb73k7VqZP0e5czYgtk78r9g7urjawo73aFC_MrITHQp3XB9hn_cieLPHlVTu-yfRFLBQn1ggk4MSLxI7KeHmnD8k2WGtf_i1kY9R0qD48Kng",
-         price: "$1,543.00",
-         stock: 40,
-      },
-   ];
-
    const columns = [
       {
-         title: "",
+         title: "Checkbox",
          dataIndex: "checkbox",
          render: (_, record) => (
             <Controller
-               name={`select.${record.key}`} // Create a unique name for each checkbox
+               name={`select.${record._id}`} // Create a unique name for each checkbox
                control={control}
                defaultValue={false}
                rules={{ required: { value: true, message: "At least one item must be selected" } }}
@@ -53,8 +36,14 @@ const MyProduct = () => {
          ),
       },
       {
+         title: "S.No.",
+         dataIndex: "serial",
+         key: "key",
+         render: (_, __, index) => index + 1,
+      },
+      {
          title: "Image",
-         dataIndex: "image",
+         dataIndex: "photo",
          key: "image",
          render: (image) => (
             <img src={image} alt="Product" style={{ width: "50px", height: "50px" }} />
@@ -62,8 +51,13 @@ const MyProduct = () => {
       },
       {
          title: "ID Number",
-         dataIndex: "id",
+         dataIndex: "_id",
          key: "id",
+      },
+      {
+         title: "Category",
+         dataIndex: "category",
+         key: "category",
       },
       {
          title: "Name",
@@ -80,21 +74,55 @@ const MyProduct = () => {
          dataIndex: "stock",
          key: "stock",
       },
+      {
+         title: "Actions",
+         key: "actions",
+         render: (_, record) => (
+            <div className="flex space-x-2">
+               <AiFillEdit
+                  className="text-blue-500 cursor-pointer"
+                  onClick={() => handleEdit(record._id)} // Handle edit action
+               />
+               <AiFillDelete
+                  className="text-red-500 cursor-pointer"
+                  onClick={() => handleDelete(record._id)} // Handle delete action
+               />
+            </div>
+         ),
+      },
    ];
 
-   const onSubmit = () => {};
+   const handleEdit = (id) => {
+      console.log(`Edit Product: ${id}`);
+   };
+
+   const handleDelete = (id) => {
+      console.log(`Delete Product: ${id}`);
+   };
+
+   useEffect(() => {
+      dispatch(getAdminProductLoad());
+   }, []);
+
+   const onSubmit = (data) => {
+      // Handle form submission
+      console.log("Selected Products:", data);
+   };
 
    return (
       <div className="p-4">
          <form onSubmit={handleSubmit(onSubmit)}>
-            <Table
-               dataSource={data}
-               columns={columns}
-               pagination={false}
-               rowSelection={{
-                  type: "checkbox",
-               }}
-            />
+            {products && (
+               <Table
+                  dataSource={products.map((product) => ({
+                     ...product,
+                     key: product._id, // Ensure each product has a unique key for Table
+                  }))}
+                  columns={columns}
+                  pagination={false}
+                  loading={loader}
+               />
+            )}
             {errors.select && <span className="text-red-500">{errors.select.message}</span>}
             <button type="submit" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                Submit

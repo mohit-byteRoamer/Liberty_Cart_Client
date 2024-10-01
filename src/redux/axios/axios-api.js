@@ -20,6 +20,9 @@ export const getProductCategoryApi = () => Method.GET("product/category", header
 export const getLatestProductApi = () => Method.GET("product/latest", header);
 export const getProductDetailApi = (id) => Method.GET(`product/${id}`, header);
 
+// PRODUCT ADMIN API'S
+export const getAdminProductApi = () => Method.GET("product/admin-products", header);
+
 // UPLOAD FILE API
 export const uploadFileApi = (data) => Method.POST("common/uploadFile", data, header1);
 

@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Upload, Button, message, Spin } from "antd"; // Importing List to display uploaded images
 import { UploadOutlined } from "@ant-design/icons"; // Icon for better UI
 import { useSelector } from "react-redux";
-// import { useState } from "react";
 
 function Image() {
    const dispatch = useDispatch();
@@ -12,8 +11,6 @@ function Image() {
    const { uploadFile, uploadFileLoader } = imageSelector;
    console.log("uploadFile", uploadFile);
    console.log("uploadFileLoader", uploadFileLoader);
-
-   // const [uploadedImage, setUploadedImage] = useState(null); // State to manage uploaded images
 
    // IMAGE UPLOAD DISPATCHER
    const fileUploadHandler = (file) => {

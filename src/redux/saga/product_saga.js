@@ -9,6 +9,8 @@ import {
 import {
    createProductFail,
    createProductSuccess,
+   getAdminProductFail,
+   getAdminProductSuccess,
    getLatestProductFail,
    getLatestProductSuccess,
    getProductCategoryFail,
@@ -102,6 +104,23 @@ export function* getProductDetailSaga(action) {
       }
    } catch (error) {
       yield put(getProductFail(error));
+      toast.error("Internal Server Error");
+   }
+}
+
+// CALL GET PRODUCT ADMIN SAGA FUNCTION BY ROOT_SAGA
+export function* getProductAdminSaga() {
+   try {
+      const response = yield call(getProductApi);
+      const { result, status } = response || {};
+      if (status === 1) {
+         yield put(getAdminProductSuccess(result));
+      } else {
+         yield put(getAdminProductFail(result));
+         toast.error(result.message);
+      }
+   } catch (error) {
+      yield put(getAdminProductFail(error));
       toast.error("Internal Server Error");
    }
 }

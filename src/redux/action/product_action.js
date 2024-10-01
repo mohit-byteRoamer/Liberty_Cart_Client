@@ -61,3 +61,14 @@ export const getProductDetailSuccess = (payload) => {
 export const getProductDetailFail = () => {
    return { type: reduxConstants.GET_PRODUCT_DETAIL_FAIL };
 };
+
+// Get Admin Products
+export const getAdminProductLoad = () => {
+   return { type: reduxConstants.GET_PRODUCT_ADMIN_LOAD };
+};
+export const getAdminProductSuccess = (payload) => {
+   return { type: reduxConstants.GET_PRODUCT_ADMIN_SUCCESS, payload };
+};
+export const getAdminProductFail = () => {
+   return { type: reduxConstants.GET_PRODUCT_ADMIN_FAIL };
+};
