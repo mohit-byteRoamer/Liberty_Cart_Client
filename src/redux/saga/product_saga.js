@@ -26,11 +26,15 @@ import toast from "react-hot-toast";
 // CALL CREATE PRODUCTS SAGA FUNCTION BY ROOT_SAGA
 export function* createProductSaga(action) {
    try {
-      const response = yield call(createProductApi, action.payload);
+      const { navigate } = action.payload;
+      console.log("NAVIGATE", navigate);
+      
+      const response = yield call(createProductApi, action.payload.apiPayload);
       const { result, status } = response;
       if (status === 1) {
          yield put(createProductSuccess(result));
          toast.success(result.message);
+         navigate("/");
       } else {
          yield put(createProductFail(result));
          toast.error(result.message);

@@ -1,19 +1,21 @@
 import SectionTopBar from "../SectionTopBar";
 import CategoryCard from "../Cards/CategoryCard";
 import { LeftArrowBtn, RightArrowBtn } from "../Buttons/ArrowBtn";
-import { AccountBookOutlined, AudioOutlined } from "@ant-design/icons";
+import { AccountBookOutlined, AudioOutlined, HomeOutlined } from "@ant-design/icons";
 import { SiStmicroelectronics, SiFacebookgaming } from "react-icons/si";
 import { IoIosFitness } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProductCategoryLoad } from "../../redux/action/product_action";
-import { HomeOutlined } from "@ant-design/icons";
 import { TbToolsKitchen3 } from "react-icons/tb";
 import { PiBuildingOfficeLight } from "react-icons/pi";
 import { GiClothes } from "react-icons/gi";
 import { MdCameraOutdoor } from "react-icons/md";
 import { HiHomeModern } from "react-icons/hi2";
+import { AiFillGolden } from "react-icons/ai";
+import { IoIosMan } from "react-icons/io";
+import { IoWoman } from "react-icons/io5";
 
 function BrowseByCategory() {
    const dispatch = useDispatch();
@@ -48,6 +50,12 @@ function BrowseByCategory() {
             return <HiHomeModern />;
          case "wearables":
             return <GiClothes />;
+         case "jewellery":
+            return <AiFillGolden />;
+         case "men's clothing":
+            return <IoIosMan />;
+         case "women's clothing":
+            return <IoWoman />;
          default:
             return; // Default icon if no match is found
       }
@@ -55,7 +63,7 @@ function BrowseByCategory() {
 
    // Set state to track the current index of the categories
    const [startIndex, setStartIndex] = useState(0);
-   const itemsPerPage = 6;
+   const itemsPerPage = 5;
 
    // Calculate the end index for slicing
    const endIndex = startIndex + itemsPerPage;

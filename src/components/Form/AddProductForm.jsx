@@ -1,15 +1,15 @@
+/* eslint-disable react/prop-types */
 import { useForm, Controller } from "react-hook-form";
 import { Select, Input, Button } from "antd";
 import Image from "../../page/Image";
 
-const AddProductForm = ({ AddProduct }) => {
+const AddProductForm = ({ data }) => {
    // Destructure the AddProduct prop to get individual values
-   const { Heading, Name, Description, Stock, Price, Category, onSubmit } = AddProduct;
+   const { Heading, Name, Description, Stock, Price, Category, onSubmit } = data;
    const { TextArea } = Input;
    const {
       handleSubmit,
       control,
-      // reset,
       formState: { errors },
    } = useForm({ defaultValues: { price: 0 } });
 
@@ -34,12 +34,13 @@ const AddProductForm = ({ AddProduct }) => {
                         message: "Name must be at least 3 characters long",
                      },
                      maxLength: {
-                        value: 50,
-                        message: "Name cannot exceed 50 characters",
+                        value: 100,
+                        message: "Name cannot exceed 100 characters",
                      },
                      pattern: {
-                        value: /^[A-Za-z\s]+$/,
-                        message: "Name can only contain letters and spaces",
+                        value: /^[a-zA-Z0-9\s'-.()]{1,100}$/,
+                        message:
+                           "Allows alphabetic characters, spaces, apostrophes, and hyphens, with a length between 1 and 100",
                      },
                   }}
                   render={({ field }) => (
@@ -65,8 +66,13 @@ const AddProductForm = ({ AddProduct }) => {
                         message: "Description must be at least 10 characters long",
                      },
                      maxLength: {
-                        value: 200,
-                        message: "Description cannot exceed 100 characters",
+                        value: 300,
+                        message: "Description cannot exceed 300 characters",
+                     },
+                     pattern: {
+                        value: /^(?=.{10,300}$)[A-Za-z0-9\s.,;:?!'"()-]*$/,
+                        message:
+                           "Description must be between 10 and 300 characters and can include letters, numbers, spaces, and basic punctuation.",
                      },
                   }}
                   render={({ field }) => (
@@ -168,16 +174,24 @@ const AddProductForm = ({ AddProduct }) => {
                                  label: "Electronics",
                               },
                               {
-                                 value: "Men's clothing",
-                                 label: "Men's clothing",
-                              },
-                              {
-                                 value: "Women's clothing",
-                                 label: "Women's clothing",
+                                 value: "Furniture",
+                                 label: "Furniture",
                               },
                               {
                                  value: "Jewellery",
                                  label: "Jewellery",
+                              },
+                              {
+                                 value: "Man's clothing",
+                                 label: "Man's clothing",
+                              },
+                              {
+                                 value: "Mobiles",
+                                 label: "Mobiles",
+                              },
+                              {
+                                 value: "Women's clothing",
+                                 label: "Women's clothing",
                               },
                            ]}
                         />

@@ -3,7 +3,7 @@ import { createProductLoad } from "../../redux/action/product_action";
 import AddProductForm from "../../components/Form/AddProductForm";
 import { useNavigate } from "react-router-dom";
 
-const AddProduct = () => {
+const EditProduct = () => {
    const photo = useSelector((state) => state?.UploadFileReducer?.uploadFile);
    const dispatch = useDispatch();
    const navigate = useNavigate();
@@ -41,4 +41,4 @@ const AddProduct = () => {
    );
 };
 
-export default AddProduct;
+export default EditProduct;
