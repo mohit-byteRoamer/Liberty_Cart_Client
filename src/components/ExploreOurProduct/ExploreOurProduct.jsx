@@ -30,7 +30,7 @@ function ExploreOurProduct() {
          {/* 2nd section */}
          <div className="flex flex-col gap-y-10 w-full">
             <div>
-               <ProductSlider title="Explore Our Products" OurProducts={products?.data?.Products} />
+               <ProductSlider title="Explore Our Products" data={products?.data?.Products} />
             </div>
             <div className="flex justify-center">
                <ViewBtn text="View All Products" />

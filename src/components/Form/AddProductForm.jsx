@@ -1,43 +1,21 @@
 import { useForm, Controller } from "react-hook-form";
 import { Select, Input, Button } from "antd";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createProductLoad } from "../../redux/action/product_action";
 import Image from "../../page/Image";
 
-const AddProductForm = () => {
-   const photo = useSelector((state) => state?.UploadFileReducer?.uploadFile)
-   
+const AddProductForm = ({ AddProduct }) => {
+   // Destructure the AddProduct prop to get individual values
+   const { Heading, Name, Description, Stock, Price, Category, onSubmit } = AddProduct;
    const { TextArea } = Input;
-   const [clientReady, setClientReady] = useState(false);
-   const dispatch = useDispatch();
    const {
       handleSubmit,
       control,
-      reset,
+      // reset,
       formState: { errors },
    } = useForm({ defaultValues: { price: 0 } });
 
-   useEffect(() => {
-      setClientReady(true);
-   }, []);
-
-   const onSubmit = (data) => {
-      dispatch(
-         createProductLoad({
-            name: data.Name,
-            price: data.price,
-            stock: data.Stock,
-            category: data.Category,
-            photo: photo,
-         })
-      );
-      reset()
-   };
-
    return (
       <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-md my-5 dark:bg-gray-900 dark:text-white">
-         <h1 className="text-2xl font-bold mb-6">Product Information</h1>
+         <h1 className="text-2xl font-bold mb-6">{Heading}</h1>
 
          <form onSubmit={handleSubmit(onSubmit)}>
             {/* Image Upload */}
@@ -45,7 +23,7 @@ const AddProductForm = () => {
 
             {/* Name Field */}
             <div className="mb-6">
-               <label className="block text-lg font-medium mb-2">Name</label>
+               <label className="block text-lg font-medium mb-2">{Name}</label>
                <Controller
                   name="Name"
                   control={control}
@@ -75,7 +53,7 @@ const AddProductForm = () => {
 
             {/* Description Field */}
             <div className="mb-6">
-               <label className="block text-lg font-medium mb-2">Description</label>
+               <label className="block text-lg font-medium mb-2">{Description}</label>
                <Controller
                   name="Description"
                   type="text"
@@ -106,7 +84,7 @@ const AddProductForm = () => {
 
             {/* Stock */}
             <div className="mb-6">
-               <label className="block text-lg font-medium mb-2">Stock</label>
+               <label className="block text-lg font-medium mb-2">{Stock}</label>
                <Controller
                   name="Stock"
                   control={control}
@@ -137,7 +115,7 @@ const AddProductForm = () => {
 
             {/* Price */}
             <div className="mb-6">
-               <label className="block text-lg font-medium mb-2">Price</label>
+               <label className="block text-lg font-medium mb-2">{Price}</label>
                <Controller
                   name="price"
                   control={control}
@@ -167,7 +145,7 @@ const AddProductForm = () => {
 
             {/* Category */}
             <div className="mb-6">
-               <label className="block text-lg font-medium mb-2">Category</label>
+               <label className="block text-lg font-medium mb-2">{Category}</label>
                <Controller
                   name="Category"
                   control={control}
@@ -219,7 +197,8 @@ const AddProductForm = () => {
                   className="px-6 py-2 rounded-md"
                   type="primary"
                   htmlType="submit"
-                  disabled={!clientReady}>
+                  // disabled={!clientReady}
+               >
                   Continue
                </Button>
             </div>

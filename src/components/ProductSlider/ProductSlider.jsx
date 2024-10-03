@@ -2,13 +2,9 @@ import { useState } from "react";
 import { LeftArrowBtn, RightArrowBtn } from "../Buttons/ArrowBtn";
 import ProductCard from "../Cards/ProductCard";
 
-const ProductSlider = ({ flashSalesProduct, latestProduct, OurProducts, title }) => {
-   // Combine all products into a single array
-   const combinedProducts = [
-      ...(flashSalesProduct || []),
-      ...(latestProduct || []),
-      ...(OurProducts || []),
-   ];
+const ProductSlider = ({ data, title }) => {
+   // Combine all products ( flashSalesProduct, latestProduct, OurProducts ) into a single array
+   const combinedProducts = [...(data || [])];
 
    //  Initial Value of CurrentIndex
    const [startIndex, setStartIndex] = useState(0);

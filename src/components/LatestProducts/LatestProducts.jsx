@@ -34,7 +34,7 @@ function LatestProducts() {
          <div className="flex flex-col gap-y-10 w-full">
             {/* Title & Slider */}
             <div className="Slider">
-               <ProductSlider title={"Latest Products"} latestProduct={latestProduct} />
+               <ProductSlider title={"Latest Products"} data={latestProduct} />
             </div>
             {/* View Button */}
             <div className="flex justify-center">

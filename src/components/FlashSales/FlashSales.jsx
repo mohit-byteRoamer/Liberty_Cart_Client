@@ -27,7 +27,7 @@ function FlashSales() {
          </div>
          {/* 3rd section */}
          <div>
-            <ProductSlider flashSalesProduct={flashSalesProduct}  />
+            <ProductSlider data={flashSalesProduct}  />
          </div>
          <div className="flex justify-center">
             <ViewBtn text="View All Products" className="h-16 w-[18%]" />
