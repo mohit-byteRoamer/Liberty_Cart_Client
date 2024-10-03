@@ -2,8 +2,8 @@ import { useForm, Controller } from "react-hook-form";
 import { Select, Input, Button } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createProductLoad } from "../redux/action/product_action";
-import Image from "./Image";
+import { createProductLoad } from "../../redux/action/product_action";
+import Image from "../../page/Image";
 
 const AddProductForm = () => {
    const photo = useSelector((state) => state?.UploadFileReducer?.uploadFile)

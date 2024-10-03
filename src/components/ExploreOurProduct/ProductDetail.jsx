@@ -7,11 +7,8 @@ import { Button, Card, List, Rate } from "antd";
 const ProductDetail = () => {
    const productDetailData = useSelector((state) => state.ProductReducer);
    const { getProductDetailLoader, productsDetail } = productDetailData;
-   console.log("PRODUCT_DETAILS_DATA", productDetailData);
-   console.log("PRODUCT_DETAILS", productsDetail);
 
    const { id } = useParams();
-   console.log("ID", id);
 
    const dispatch = useDispatch();
 

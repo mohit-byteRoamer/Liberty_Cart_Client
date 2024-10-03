@@ -5,6 +5,7 @@ import {
    getProductApi,
    getProductCategoryApi,
    getProductDetailApi,
+   updateProductApi,
 } from "../axios/axios-api";
 import {
    createProductFail,
@@ -22,7 +23,7 @@ import {
 } from "../action/product_action";
 import toast from "react-hot-toast";
 
-// CALL CREATE PRODUCT SAGA FUNCTION BY ROOT_SAGA
+// CALL CREATE PRODUCTS SAGA FUNCTION BY ROOT_SAGA
 export function* createProductSaga(action) {
    try {
       const response = yield call(createProductApi, action.payload);
@@ -40,7 +41,7 @@ export function* createProductSaga(action) {
    }
 }
 
-// CALL GET PRODUCT SAGA FUNCTION BY ROOT_SAGA
+// CALL GET PRODUCTS SAGA FUNCTION BY ROOT_SAGA
 export function* getProductSaga() {
    try {
       const response = yield call(getProductApi);
@@ -57,7 +58,7 @@ export function* getProductSaga() {
    }
 }
 
-// CALL GET PRODUCT CATEGORY SAGA FUNCTION BY ROOT_SAGA
+// CALL GET PRODUCTS CATEGORY SAGA FUNCTION BY ROOT_SAGA
 export function* getProductCategorySaga() {
    try {
       const response = yield call(getProductCategoryApi);
@@ -74,7 +75,7 @@ export function* getProductCategorySaga() {
    }
 }
 
-// CALL GET LATEST PRODUCT SAGA FUNCTION BY ROOT_SAGA
+// CALL GET LATEST PRODUCTS SAGA FUNCTION BY ROOT_SAGA
 export function* getLatestProductSaga() {
    try {
       const response = yield call(getLatestProductApi);
@@ -91,7 +92,7 @@ export function* getLatestProductSaga() {
    }
 }
 
-// CALL GET PRODUCT DETAIL SAGA FUNCTION BY ROOT_SAGA
+// CALL GET PRODUCTS DETAIL SAGA FUNCTION BY ROOT_SAGA
 export function* getProductDetailSaga(action) {
    try {
       const response = yield call(getProductDetailApi, action.Id);
@@ -108,7 +109,7 @@ export function* getProductDetailSaga(action) {
    }
 }
 
-// CALL GET PRODUCT ADMIN SAGA FUNCTION BY ROOT_SAGA
+// CALL GET PRODUCTS ADMIN SAGA FUNCTION BY ROOT_SAGA
 export function* getProductAdminSaga() {
    try {
       const response = yield call(getProductApi);
@@ -121,6 +122,28 @@ export function* getProductAdminSaga() {
       }
    } catch (error) {
       yield put(getAdminProductFail(error));
+      toast.error("Internal Server Error");
+   }
+}
+
+// CALL UPDATE PRODUCTS  SAGA FUNCTION BY ROOT_SAGA
+export function* updateProductSaga(action) {
+   console.log("SAGA_ACTION", action);
+   try {
+      const response = yield call(updateProductApi, action.id);
+      console.log("UPDATE_RESPONSE", response);
+
+      const { result, status } = response;
+      if (status === 1) {
+         console.log("RESULT", result);
+         yield put(createProductSuccess(result));
+         toast.success(result.message);
+      } else {
+         yield put(createProductFail(result));
+         toast.error(result.message);
+      }
+   } catch (error) {
+      yield put(createProductFail(error));
       toast.error("Internal Server Error");
    }
 }

@@ -13,6 +13,8 @@ const initialState = {
    productsDetail: {},
    getProductAdminLoader: false,
    adminProducts: [],
+   updateProductLoader: false,
+   updatedProducts: {},
 };
 
 function ProductReducer(state = initialState, action) {
@@ -24,7 +26,7 @@ function ProductReducer(state = initialState, action) {
          return { ...state, createProductLoader: false, category: action.payload };
       case reduxConstants.CREATE_PRODUCT_FAIL:
          return { ...state, createProductLoader: false };
-
+      // ------------------------------------------------------ //
       // Get Products
       case reduxConstants.GET_PRODUCT_LOAD:
          return { ...state, getProductLoader: true };
@@ -32,6 +34,7 @@ function ProductReducer(state = initialState, action) {
          return { ...state, getProductLoader: false, products: action.payload };
       case reduxConstants.GET_PRODUCT_FAIL:
          return { ...state, getProductLoader: false };
+      // ------------------------------------------------------ //
 
       // Get Products Category
       case reduxConstants.GET_PRODUCT_CATEGORY_LOAD:
@@ -40,6 +43,7 @@ function ProductReducer(state = initialState, action) {
          return { ...state, getProductCategoryLoader: false, productCategory: action.payload };
       case reduxConstants.GET_PRODUCT_CATEGORY_FAIL:
          return { ...state, getProductCategoryLoader: false };
+      // ------------------------------------------------------ //
 
       // Get Products Category
       case reduxConstants.GET_LATEST_PRODUCT_LOAD:
@@ -48,6 +52,7 @@ function ProductReducer(state = initialState, action) {
          return { ...state, getLatestProductLoader: false, latestProduct: action.payload };
       case reduxConstants.GET_LATEST_PRODUCT_FAIL:
          return { ...state, getLatestProductLoader: false };
+      // ------------------------------------------------------ //
 
       // Get Product Id
       case reduxConstants.GET_PRODUCT_DETAIL_LOAD:
@@ -56,6 +61,7 @@ function ProductReducer(state = initialState, action) {
          return { ...state, getProductDetailLoader: false, productsDetail: action.payload };
       case reduxConstants.GET_PRODUCT_DETAIL_FAIL:
          return { ...state, getProductDetailLoader: false };
+      // ------------------------------------------------------ //
 
       // Get Admin Products
       case reduxConstants.GET_PRODUCT_ADMIN_LOAD:
@@ -64,6 +70,15 @@ function ProductReducer(state = initialState, action) {
          return { ...state, getProductAdminLoader: false, adminProducts: action.payload };
       case reduxConstants.GET_PRODUCT_ADMIN_FAIL:
          return { ...state, getProductAdminLoader: false };
+      // ------------------------------------------------------ //
+
+      case reduxConstants.UPDATE_PRODUCT_LOAD:
+         return { ...state, updateProductLoader: true };
+      case reduxConstants.UPDATE_PRODUCT_SUCCESS:
+         return { ...state, updateProductLoader: false, updatedProducts: action.payload };
+      case reduxConstants.UPDATE_PRODUCT_FAIL:
+         return { ...state, updateProductLoader: false };
+      // ------------------------------------------------------ //
 
       // Default Case
       default:

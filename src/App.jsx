@@ -8,13 +8,13 @@ import AppHeader from "./components/AppHeader/AppHeader";
 import AppFooter from "./components/AppFooter/AppFooter";
 import { useLocation } from "react-router-dom";
 import { Heading } from "./components/AppHeader/Heading";
-import AddProduct from "./page/AddProductForm";
 import About from "./page/About";
 import ProductDetail from "./components/ExploreOurProduct/ProductDetail";
 import Contact from "./page/Contact";
 import UnProtectedRoute from "./components/Routes/UnProtectedRoute";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
-import MyProduct from "./AdminPanel/MyProduct";
+import AddProductForm from "./components/Form/AddProductForm";
+import MyProduct from "./AdminPanel/MyProduct/MyProduct";
 
 function App() {
    const location = useLocation();
@@ -32,14 +32,15 @@ function App() {
                {/* Public Routes */}
                <Route path="/login" element={<UnProtectedRoute Component={Login} />} />
                <Route path="/signup" element={<UnProtectedRoute Component={Signup} />} />
-               <Route path="/about" element={<UnProtectedRoute Component={About} />} />
-               <Route path="/contact" element={<UnProtectedRoute Component={Contact} />} />
+               <Route path="/about" element={<About />} />
+               <Route path="/contact" element={<Contact />} />
 
                {/* Protected Routes */}
                <Route path="/" element={<ProtectedRoute Component={Home} />} />
-               <Route path="/addProduct" element={<ProtectedRoute Component={AddProduct} />} />
+               <Route path="/addProduct" element={<ProtectedRoute Component={AddProductForm} />} />
                <Route path="/product/:id" element={<ProtectedRoute Component={ProductDetail} />} />
                <Route path="/myProduct" element={<ProtectedRoute Component={MyProduct} />} />
+               <Route path="/myProduct/edit-product/:id" element={<ProtectedRoute Component={MyProduct} />} />
                {/* Error Route */}
                <Route path="*" element={<Error />} />
             </Routes>

@@ -12,6 +12,7 @@ export const createProductSuccess = (payload) => {
 export const createProductFail = () => {
    return { type: reduxConstants.CREATE_PRODUCT_FAIL };
 };
+// ------------------------------------------------------ //
 
 // Get Product
 export const getProductLoad = () => {
@@ -25,6 +26,7 @@ export const getProductSuccess = (payload) => {
 export const getProductFail = () => {
    return { type: reduxConstants.GET_PRODUCT_FAIL };
 };
+// ------------------------------------------------------ //
 
 // Get Product Category
 export const getProductCategoryLoad = () => {
@@ -38,6 +40,8 @@ export const getProductCategorySuccess = (payload) => {
 export const getProductCategoryFail = () => {
    return { type: reduxConstants.GET_PRODUCT_CATEGORY_FAIL };
 };
+// ------------------------------------------------------ //
+
 
 // Latest Product
 export const getLatestProductLoad = () => {
@@ -49,6 +53,8 @@ export const getLatestProductSuccess = (payload) => {
 export const getLatestProductFail = () => {
    return { type: reduxConstants.GET_LATEST_PRODUCT_FAIL };
 };
+// ------------------------------------------------------ //
+
 
 // Product Id
 export const getProductDetailLoad = (id) => {
@@ -61,6 +67,7 @@ export const getProductDetailSuccess = (payload) => {
 export const getProductDetailFail = () => {
    return { type: reduxConstants.GET_PRODUCT_DETAIL_FAIL };
 };
+// ------------------------------------------------------ //
 
 // Get Admin Products
 export const getAdminProductLoad = () => {
@@ -72,3 +79,15 @@ export const getAdminProductSuccess = (payload) => {
 export const getAdminProductFail = () => {
    return { type: reduxConstants.GET_PRODUCT_ADMIN_FAIL };
 };
+// ------------------------------------------------------ //
+
+export const updateProductLoad = (id) => {
+   return {type: reduxConstants.UPDATE_PRODUCT_LOAD, id}
+}
+export const updateProductSuccess = (payload) => {
+   return {type: reduxConstants.UPDATE_PRODUCT_SUCCESS, payload}
+}
+export const updateProductFail = () => {
+   return {type: reduxConstants.UPDATE_PRODUCT_FAIL}
+}
+// ------------------------------------------------------ //

@@ -8,6 +8,7 @@ import {
    getProductCategorySaga,
    getProductDetailSaga,
    getProductSaga,
+   updateProductSaga,
 } from "./product_saga";
 import { uploadFileSaga } from "./upload_file_saga";
 
@@ -21,4 +22,5 @@ export function* rootSaga() {
    yield takeLatest(reduxConstants.GET_PRODUCT_DETAIL_LOAD, getProductDetailSaga);
    yield takeLatest(reduxConstants.UPLOAD_FILE_ACTION_LOAD, uploadFileSaga);
    yield takeLatest(reduxConstants.GET_PRODUCT_ADMIN_LOAD, getProductAdminSaga);
+   yield takeLatest(reduxConstants.UPDATE_PRODUCT_LOAD, updateProductSaga);
 }
