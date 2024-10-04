@@ -9,8 +9,6 @@ const AddProduct = () => {
    const navigate = useNavigate();
 
    const onSubmit = (data) => {
-      console.log("DATA", data);
-
       dispatch(
          createProductLoad({
             apiPayload: {name: data.Name,

@@ -27,8 +27,6 @@ import toast from "react-hot-toast";
 export function* createProductSaga(action) {
    try {
       const { navigate } = action.payload;
-      console.log("NAVIGATE", navigate);
-      
       const response = yield call(createProductApi, action.payload.apiPayload);
       const { result, status } = response;
       if (status === 1) {
@@ -119,7 +117,7 @@ export function* getProductAdminSaga() {
       const response = yield call(getProductApi);
       const { result, status } = response || {};
       if (status === 1) {
-         yield put(getAdminProductSuccess(result));
+         yield put(getAdminProductSuccess(result.data));
       } else {
          yield put(getAdminProductFail(result));
          toast.error(result.message);

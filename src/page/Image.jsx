@@ -4,7 +4,7 @@ import { Upload, Button, message, Spin } from "antd"; // Importing List to displ
 import { UploadOutlined } from "@ant-design/icons"; // Icon for better UI
 import { useSelector } from "react-redux";
 
-function Image() {
+function Image({ photo }) {
    const dispatch = useDispatch();
    const imageSelector = useSelector((state) => state?.UploadFileReducer);
    console.log("imageSelector", imageSelector);
@@ -64,17 +64,11 @@ function Image() {
             </Upload>
             {/* Image Preview */}
             <div>
-               {uploadFile && (
-                  <div>
-                     {uploadFile && (
-                        <img
-                           src={uploadFile}
-                           alt="Uploaded"
-                           style={{ maxWidth: "100px", maxHeight: "100px" }}
-                        />
-                     )}
-                  </div>
-               )}
+               <img
+                  src={uploadFile ? uploadFile : photo}
+                  alt="Uploaded"
+                  style={{ maxWidth: "100px", maxHeight: "100px" }}
+               />
             </div>
          </div>
       </div>

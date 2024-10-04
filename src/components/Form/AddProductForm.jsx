@@ -88,6 +88,36 @@ const AddProductForm = ({ data }) => {
                {errors.Description && <p className="text-red-500">{errors.Description.message}</p>}
             </div>
 
+            {/* Price */}
+            <div className="mb-6">
+               <label className="block text-lg font-medium mb-2">{Price}</label>
+               <Controller
+                  name="price"
+                  control={control}
+                  type="number"
+                  rules={{
+                     required: "Price is required",
+                     min: {
+                        value: 1,
+                        message: "Price must be at least 1",
+                     },
+                     max: {
+                        value: 10000,
+                        message: "Price cannot exceed 10000",
+                     },
+                     pattern: {
+                        value: /^\d+(\.\d{1,2})?$/,
+                        message: "Price must be a valid number with up to 2 decimal places",
+                     },
+                  }}
+                  render={({ field }) => (
+                     <Input {...field} allowClear placeholder="Price" type="number" />
+                  )}
+               />
+
+               {errors.price && <p className="text-red-500">{errors.price.message}</p>}
+            </div>
+
             {/* Stock */}
             <div className="mb-6">
                <label className="block text-lg font-medium mb-2">{Stock}</label>
@@ -117,36 +147,6 @@ const AddProductForm = ({ data }) => {
                   )}
                />
                {errors.Stock && <p className="text-red-500">{errors.Stock.message}</p>}
-            </div>
-
-            {/* Price */}
-            <div className="mb-6">
-               <label className="block text-lg font-medium mb-2">{Price}</label>
-               <Controller
-                  name="price"
-                  control={control}
-                  type="number"
-                  rules={{
-                     required: "Price is required",
-                     min: {
-                        value: 1,
-                        message: "Price must be at least 1",
-                     },
-                     max: {
-                        value: 10000,
-                        message: "Price cannot exceed 10000",
-                     },
-                     pattern: {
-                        value: /^\d+(\.\d{1,2})?$/,
-                        message: "Price must be a valid number with up to 2 decimal places",
-                     },
-                  }}
-                  render={({ field }) => (
-                     <Input {...field} allowClear placeholder="Price" type="number" />
-                  )}
-               />
-
-               {errors.price && <p className="text-red-500">{errors.price.message}</p>}
             </div>
 
             {/* Category */}

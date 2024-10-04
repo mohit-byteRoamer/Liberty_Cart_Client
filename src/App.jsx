@@ -15,6 +15,7 @@ import UnProtectedRoute from "./components/Routes/UnProtectedRoute";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
 import MyProduct from "./AdminPanel/MyProduct/MyProduct";
 import AddProduct from "./AdminPanel/AddProduct/AddProduct";
+import EditProduct from "./AdminPanel/EditProduct/EditProduct";
 
 function App() {
    const location = useLocation();
@@ -40,7 +41,7 @@ function App() {
                <Route path="/addProduct" element={<ProtectedRoute Component={AddProduct} />} />
                <Route path="/product/:id" element={<ProtectedRoute Component={ProductDetail} />} />
                <Route path="/myProduct" element={<ProtectedRoute Component={MyProduct} />} />
-               <Route path="/myProduct/edit-product/:id" element={<ProtectedRoute Component={MyProduct} />} />
+               <Route path="/edit-product/:id" element={<ProtectedRoute Component={EditProduct} />} />
                {/* Error Route */}
                <Route path="*" element={<Error />} />
             </Routes>
