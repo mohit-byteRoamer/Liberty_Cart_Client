@@ -4,14 +4,13 @@ import ProductCard from "../Cards/ProductCard";
 
 const ProductSlider = ({ data, title }) => {
    // Combine all products ( flashSalesProduct, latestProduct, OurProducts ) into a single array
-   const combinedProducts = [...(data || [])];
-
+   
    //  Initial Value of CurrentIndex
    const [startIndex, setStartIndex] = useState(0);
    const itemsPerPage = 4;
    const endIndex = startIndex + itemsPerPage;
    const isPrevDisabled = startIndex === 0;
-   const isNextDisabled = endIndex >= combinedProducts.length;
+   const isNextDisabled = endIndex >= data?.length;
 
    //  PREVIOUS BUTTON
    const handlePrev = () => {
@@ -27,7 +26,7 @@ const ProductSlider = ({ data, title }) => {
       }
    };
 
-   // const currentProduct = combinedProducts.slice(startIndex, startIndex + itemsPerPage);
+   // const currentProduct = data.slice(startIndex, startIndex + itemsPerPage);
 
    return (
       <div className="flex flex-col gap-y-10">
@@ -46,7 +45,7 @@ const ProductSlider = ({ data, title }) => {
 
          {/* Slider */}
          <div className="flex justify-between">
-            {combinedProducts?.slice(startIndex, endIndex).map((product, index) => (
+            {data?.slice(startIndex, endIndex).map((product, index) => (
                <div key={index}>
                   <ProductCard product={product} />
                </div>

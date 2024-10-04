@@ -17,7 +17,7 @@ export const logInApi = (data) => Method.POST(`users/login`, data, header);
 
 // PRODUCT API'S
 export const createProductApi = (data) => Method.POST("product/new", data, header);
-export const getProductApi = () => Method.GET("product/all", header);
+export const getProductApi = (pageNumber) => Method.GET(`product/all?page=${pageNumber}`, header);
 export const getProductCategoryApi = () => Method.GET("product/category", header);
 export const getLatestProductApi = () => Method.GET("product/latest", header);
 export const getProductDetailApi = (id) => Method.GET(`product/${id}`, header);
@@ -26,7 +26,7 @@ export const getProductDetailApi = (id) => Method.GET(`product/${id}`, header);
 
 // ADMIN API'S
 export const getAdminProductApi = () => Method.GET("product/admin-products", header);
-export const updateProductApi = (id) => Method.PUT(`product/${id}`, header);
+export const updateProductApi = (data) => Method.PUT(`product/${data.id}`,data, header);
 export const deleteProductApi = (id) => Method.DELETE(`product/${id}`, header);
 
 // ---------------------------------------------------------------------------------- //

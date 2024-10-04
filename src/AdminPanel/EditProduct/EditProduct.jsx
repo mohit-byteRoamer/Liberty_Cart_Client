@@ -20,9 +20,7 @@ const EditProduct = () => {
       formState: { errors },
    } = useForm({ defaultValues: { price: 0 } });
 
-   const productDetailData = useSelector((state) => state.ProductReducer);
-   const { getProductDetailLoader, productsDetail } = productDetailData;
-   console.log("productsDetail", productsDetail);
+   const productsDetail = useSelector((state) => state?.ProductReducer?.productsDetail);
 
    useEffect(() => {
       // Fetch product details by ID
@@ -43,31 +41,25 @@ const EditProduct = () => {
    ) {
       return (
          <div className="container flex items-center justify-center mx-auto">
-            <img
-               src="https://thumbs.dreamstime.com/b/no-data-illustration-vector-concept-websites-landing-pages-mobile-applications-posters-banners-209459339.jpg"
-               alt="Product details are currently unavailable. Please try again later."
-               className="w-[45%] h-[45%]"
-            />
-            <p></p>;
+            <div className="h-screen w-full flex items-center justify-center">
+               <div className="spinner border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
+            </div>
          </div>
       );
    }
 
    const onUpdateSubmit = (data) => {
+      console.log("DATA", data);
+
       // Handle form submission
       const updateData = {
          ...data,
+         id: productsDetail._id,
       };
-      dispatch(updateProductLoad(updateData));
-      navigate("/myProduct");
-   };
+      console.log("ID", updateData);
 
-   if (getProductDetailLoader)
-      return (
-         <div className="h-screen w-full flex items-center justify-center">
-            <div className="spinner border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
-         </div>
-      );
+      dispatch(updateProductLoad(updateData));
+   };
 
    return (
       <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-md my-5 dark:bg-gray-900 dark:text-white">

@@ -10,6 +10,7 @@ const MyProduct = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const sagaProducts = useSelector((state) => state?.ProductReducer?.adminProducts?.Products);
+   const loader = useSelector((state) => state?.ProductReducer?.getProductAdminLoader);
 
    useEffect(() => {
       dispatch(getAdminProductLoad());
@@ -83,7 +84,7 @@ const MyProduct = () => {
 
    const handleEdit = (id) => {
       console.log("ID :", id);
-      
+
       navigate(`/edit-product/${id}`);
    };
 
@@ -96,6 +97,7 @@ const MyProduct = () => {
    return (
       <div className="container mx-auto shadow-lg">
          <Table
+            loading={loader} // Show loading indicator while data is being fetched
             dataSource={sagaProducts}
             columns={columns}
             rowKey="_id" // Unique key for each row

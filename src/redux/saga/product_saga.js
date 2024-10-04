@@ -30,7 +30,7 @@ export function* createProductSaga(action) {
       const response = yield call(createProductApi, action.payload.apiPayload);
       const { result, status } = response;
       if (status === 1) {
-         yield put(createProductSuccess(result));
+         yield put(createProductSuccess(result?.data));
          toast.success(result.message);
          navigate("/");
       } else {
@@ -44,12 +44,13 @@ export function* createProductSaga(action) {
 }
 
 // CALL GET PRODUCTS SAGA FUNCTION BY ROOT_SAGA
-export function* getProductSaga() {
+export function* getProductSaga(action) {
    try {
-      const response = yield call(getProductApi);
+      const response = yield call(getProductApi, action.payload);
       const { result, status } = response || {};
+      console.log("GET_PRODUCT_SAGA", result?.data);
       if (status === 1) {
-         yield put(getProductSuccess(result));
+         yield put(getProductSuccess(result?.data));
       } else {
          yield put(getProductFail(result));
          toast.error(result.message);
@@ -117,7 +118,7 @@ export function* getProductAdminSaga() {
       const response = yield call(getProductApi);
       const { result, status } = response || {};
       if (status === 1) {
-         yield put(getAdminProductSuccess(result.data));
+         yield put(getAdminProductSuccess(result?.data));
       } else {
          yield put(getAdminProductFail(result));
          toast.error(result.message);
@@ -132,13 +133,13 @@ export function* getProductAdminSaga() {
 export function* updateProductSaga(action) {
    console.log("SAGA_ACTION", action);
    try {
-      const response = yield call(updateProductApi, action.id);
+      const response = yield call(updateProductApi, action.payload);
       console.log("UPDATE_RESPONSE", response);
 
       const { result, status } = response;
       if (status === 1) {
          console.log("RESULT", result);
-         yield put(createProductSuccess(result));
+         yield put(createProductSuccess(result?.data));
          toast.success(result.message);
       } else {
          yield put(createProductFail(result));
