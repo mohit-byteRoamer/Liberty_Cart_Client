@@ -3,6 +3,7 @@ import reduxConstants from "../constants/reduxConstants";
 import { logInSaga, signUpSaga } from "./auth-sagas";
 import {
    createProductSaga,
+   deleteProductSaga,
    getLatestProductSaga,
    getProductAdminSaga,
    getProductCategorySaga,
@@ -23,4 +24,5 @@ export function* rootSaga() {
    yield takeLatest(reduxConstants.UPLOAD_FILE_ACTION_LOAD, uploadFileSaga);
    yield takeLatest(reduxConstants.GET_PRODUCT_ADMIN_LOAD, getProductAdminSaga);
    yield takeLatest(reduxConstants.UPDATE_PRODUCT_LOAD, updateProductSaga);
+   yield takeLatest(reduxConstants.DELETE_PRODUCT_LOAD, deleteProductSaga);
 }

@@ -42,7 +42,6 @@ export const getProductCategoryFail = () => {
 };
 // ------------------------------------------------------ //
 
-
 // Latest Product
 export const getLatestProductLoad = () => {
    return { type: reduxConstants.GET_LATEST_PRODUCT_LOAD };
@@ -54,7 +53,6 @@ export const getLatestProductFail = () => {
    return { type: reduxConstants.GET_LATEST_PRODUCT_FAIL };
 };
 // ------------------------------------------------------ //
-
 
 // Product Id
 export const getProductDetailLoad = (id) => {
@@ -82,12 +80,23 @@ export const getAdminProductFail = () => {
 // ------------------------------------------------------ //
 
 export const updateProductLoad = (payload) => {
-   return {type: reduxConstants.UPDATE_PRODUCT_LOAD,payload}
-}
+   return { type: reduxConstants.UPDATE_PRODUCT_LOAD, payload };
+};
 export const updateProductSuccess = (payload) => {
-   return {type: reduxConstants.UPDATE_PRODUCT_SUCCESS, payload}
-}
+   return { type: reduxConstants.UPDATE_PRODUCT_SUCCESS, payload };
+};
 export const updateProductFail = () => {
-   return {type: reduxConstants.UPDATE_PRODUCT_FAIL}
-}
+   return { type: reduxConstants.UPDATE_PRODUCT_FAIL };
+};
+// ------------------------------------------------------ //
+
+export const deleteProductLoad = (id) => {
+   return { type: reduxConstants.DELETE_PRODUCT_LOAD, id };
+};
+export const deleteProductSuccess = (payload) => {
+   return { type: reduxConstants.DELETE_PRODUCT_SUCCESS, payload };
+};
+export const deleteProductFail = () => {
+   return { type: reduxConstants.DELETE_PRODUCT_FAIL };
+};
 // ------------------------------------------------------ //

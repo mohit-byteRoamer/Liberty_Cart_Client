@@ -13,9 +13,10 @@ import ProductDetail from "./components/ExploreOurProduct/ProductDetail";
 import Contact from "./page/Contact";
 import UnProtectedRoute from "./components/Routes/UnProtectedRoute";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
-import MyProduct from "./AdminPanel/MyProduct/MyProduct";
 import AddProduct from "./AdminPanel/AddProduct/AddProduct";
-import EditProduct from "./AdminPanel/EditProduct/EditProduct";
+import MyProduct from "./AdminPanel/MyProduct";
+import EditProduct from "./AdminPanel/EditProduct";
+import BreadCrumb from "./BreadCrumb";
 
 function App() {
    const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
          {/* Conditionally render heading */}
          {token && !hideFooterPaths.includes(currentPath) ? <Heading /> : null}
          <AppHeader className="" />
+         <BreadCrumb/>
          <div className="container mx-auto">
             <Routes>
                {/* Public Routes */}

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Pagination } from "antd";
 
 const Page = ({ totalPage, currentPage, onChange }) => (
@@ -10,7 +11,7 @@ const Page = ({ totalPage, currentPage, onChange }) => (
       hideOnSinglePage
       pageSize={1}
       size="small"
-      showPrevNextJumpers={false} 
+      showPrevNextJumpers={false}
       showTotal={(total) => `Total ${total} items`}
    />
 );

@@ -1,6 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import {
    createProductApi,
+   deleteProductApi,
    getLatestProductApi,
    getProductApi,
    getProductCategoryApi,
@@ -10,6 +11,8 @@ import {
 import {
    createProductFail,
    createProductSuccess,
+   deleteProductFail,
+   deleteProductSuccess,
    getAdminProductFail,
    getAdminProductSuccess,
    getLatestProductFail,
@@ -147,6 +150,24 @@ export function* updateProductSaga(action) {
       }
    } catch (error) {
       yield put(createProductFail(error));
+      toast.error("Internal Server Error");
+   }
+}
+
+// CALL DELETE PRODUCTS  SAGA FUNCTION BY ROOT_SAGA
+export function* deleteProductSaga(action) {
+   try {
+      const response = yield call(deleteProductApi, action.payload);
+      const { result, status } = response;
+      if (status === 1) {
+         yield put(deleteProductSuccess(result?.data));
+         toast.success(result.message);
+      } else {
+         yield put(deleteProductFail(result));
+         toast.error(result.message);
+      }
+   } catch (error) {
+      yield put(deleteProductFail(error));
       toast.error("Internal Server Error");
    }
 }
