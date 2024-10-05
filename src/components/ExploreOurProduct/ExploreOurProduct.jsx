@@ -5,13 +5,12 @@ import ViewBtn from "../Buttons/ViewBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProductLoad } from "../../redux/action/product_action";
-import { Button } from "antd";
+import Page from "../Pagination";
 
 function ExploreOurProduct() {
    const productReducerState = useSelector((state) => state?.ProductReducer);
    const { products, getProductLoader } = productReducerState;
-   console.log("ExploreOurProduct", productReducerState);
-
+   const totalPage = products?.totalPage || 0;
    const [pageNumber, setPageNumber] = useState(1);
 
    const dispatch = useDispatch();
@@ -32,25 +31,19 @@ function ExploreOurProduct() {
          <SectionTopBar text="Our Products" />
          {/* 2nd section */}
          <div className="flex flex-col gap-y-10 w-full">
-            <div><ProductSlider title="Explore Our Products" data={products?.Products} /></div>
+            <div>
+               <ProductSlider title="Explore Our Products" data={products?.Products} />
+            </div>
             <div className="flex justify-center">
                <ViewBtn text="View All Products" />
             </div>
             {/* 3rd section */}
-            <div className="paginationButton">
-               <Button
-                  onClick={() => {
-                     setPageNumber(pageNumber - 1);
-                  }}
-                  disabled={pageNumber === 1}>
-                  Previous
-               </Button>
-               <Button
-                  onClick={() => {
-                     setPageNumber(pageNumber + 1);
-                  }}>
-                  Next
-               </Button>
+            <div className="paginationButton flex justify-center">
+               <Page
+                  totalPage={totalPage} // totalPage should be multiplied by items per page (assuming 10 items per page)
+                  currentPage={pageNumber}
+                  onChange={(page) => setPageNumber(page)}
+               />
             </div>
          </div>
       </section>
