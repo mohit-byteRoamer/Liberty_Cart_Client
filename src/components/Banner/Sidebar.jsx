@@ -74,7 +74,7 @@ const Sidebar = () => {
 
    return (
       <Layout className="flex bg-white dark:bg-gray-800 dark:text-white">
-         <Sider className="pt-5 !bg-white border-r-[1px]">
+         <Sider className=" !bg-white border-r-[1px]">
             <Menu
                theme="light"
                mode="vertical"
@@ -83,7 +83,7 @@ const Sidebar = () => {
                style={{ flex: 1 }}
             />
          </Sider>
-         <Content className="pt-5">
+         <Content className="pt-4">
             <div
                style={{
                   background: colorBgContainer,

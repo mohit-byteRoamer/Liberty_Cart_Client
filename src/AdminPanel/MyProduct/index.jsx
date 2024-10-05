@@ -1,20 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { getAdminProductLoad } from "../../redux/action/product_action";
+import { deleteProductLoad, getAdminProductLoad } from "../../redux/action/product_action";
 
 const MyProduct = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const sagaProducts = useSelector((state) => state?.ProductReducer?.adminProducts?.Products);
    const loader = useSelector((state) => state?.ProductReducer?.getProductAdminLoader);
+   const totalPage = useSelector((state) => state?.ProductReducer?.adminProducts?.totalPage);
+   const [pageNumber, setPageNumber] = useState(1);
 
    useEffect(() => {
-      dispatch(getAdminProductLoad());
-   }, []); // Added dispatch to dependencies for better practice
+      dispatch(getAdminProductLoad(pageNumber));
+   }, [pageNumber]);
+
 
    // Columns configuration for Ant Design Table
    const columns = [
@@ -82,25 +85,25 @@ const MyProduct = () => {
       },
    ];
 
+   // Edit Button
    const handleEdit = (id) => {
-      console.log("ID :", id);
-
       navigate(`/edit-product/${id}`);
    };
 
+   // Delete Button
    const handleDelete = (id) => {
-      // Implement delete action
-      console.log("Delete Product ID:", id);
-      // You can dispatch an action to delete the product here
+      dispatch(deleteProductLoad(id));
    };
 
    return (
       <div className="container mx-auto shadow-lg">
          <Table
+            onChange={(page) => setPageNumber(page.current)}
+            pagination={{ pageSize: 10 }} // Set page size to 5
             loading={loader} // Show loading indicator while data is being fetched
             dataSource={sagaProducts}
             columns={columns}
-            rowKey="_id" // Unique key for each row
+            rowKey={(record) => record._id || record.name} // Unique key for each row
          />
       </div>
    );

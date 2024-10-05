@@ -14,6 +14,7 @@ import {
    deleteProductFail,
    deleteProductSuccess,
    getAdminProductFail,
+   getAdminProductLoad,
    getAdminProductSuccess,
    getLatestProductFail,
    getLatestProductSuccess,
@@ -51,7 +52,6 @@ export function* getProductSaga(action) {
    try {
       const response = yield call(getProductApi, action.payload);
       const { result, status } = response || {};
-      console.log("GET_PRODUCT_SAGA", result?.data);
       if (status === 1) {
          yield put(getProductSuccess(result?.data));
       } else {
@@ -116,9 +116,9 @@ export function* getProductDetailSaga(action) {
 }
 
 // CALL GET PRODUCTS ADMIN SAGA FUNCTION BY ROOT_SAGA
-export function* getProductAdminSaga() {
+export function* getProductAdminSaga(action) {
    try {
-      const response = yield call(getProductApi);
+      const response = yield call(getProductApi, action.payload);
       const { result, status } = response || {};
       if (status === 1) {
          yield put(getAdminProductSuccess(result?.data));
@@ -134,14 +134,11 @@ export function* getProductAdminSaga() {
 
 // CALL UPDATE PRODUCTS  SAGA FUNCTION BY ROOT_SAGA
 export function* updateProductSaga(action) {
-   console.log("SAGA_ACTION", action);
    try {
       const response = yield call(updateProductApi, action.payload);
-      console.log("UPDATE_RESPONSE", response);
 
       const { result, status } = response;
       if (status === 1) {
-         console.log("RESULT", result);
          yield put(createProductSuccess(result?.data));
          toast.success(result.message);
       } else {
@@ -156,11 +153,14 @@ export function* updateProductSaga(action) {
 
 // CALL DELETE PRODUCTS  SAGA FUNCTION BY ROOT_SAGA
 export function* deleteProductSaga(action) {
+   console.log("DELETE SAGA", action);
+   
    try {
-      const response = yield call(deleteProductApi, action.payload);
+      const response = yield call(deleteProductApi, action.id);
       const { result, status } = response;
       if (status === 1) {
          yield put(deleteProductSuccess(result?.data));
+         yield put(getAdminProductLoad());
          toast.success(result.message);
       } else {
          yield put(deleteProductFail(result));

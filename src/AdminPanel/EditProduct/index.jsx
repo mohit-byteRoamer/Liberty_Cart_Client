@@ -20,7 +20,7 @@ const EditProduct = () => {
       formState: { errors },
    } = useForm({ defaultValues: { price: 0 } });
 
-   const productsDetail = useSelector((state) => state?.ProductReducer?.productsDetail);
+   const productsReducerStates = useSelector((state) => state?.ProductReducer);
 
    useEffect(() => {
       // Fetch product details by ID
@@ -28,17 +28,7 @@ const EditProduct = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [id]);
 
-   if (
-      !productsDetail ||
-      !productsDetail.category ||
-      !productsDetail.name ||
-      !productsDetail.price ||
-      !productsDetail.stock ||
-      !productsDetail._id ||
-      !productsDetail.createdAt ||
-      !productsDetail.photo ||
-      !productsDetail.updatedAt
-   ) {
+   if (productsReducerStates.getProductDetailLoader) {
       return (
          <div className="container flex items-center justify-center mx-auto">
             <div className="h-screen w-full flex items-center justify-center">
@@ -48,23 +38,23 @@ const EditProduct = () => {
       );
    }
 
+   // Handle Submit function
    const onUpdateSubmit = (data) => {
       console.log("DATA", data);
 
       // Handle form submission
       const updateData = {
          ...data,
-         id: productsDetail._id,
+         id: productsReducerStates.productsDetail._id,
       };
-      console.log("ID", updateData);
-
+      // Updated data dispatched
       dispatch(updateProductLoad(updateData));
    };
 
    return (
       <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-md my-5 dark:bg-gray-900 dark:text-white">
          <h1 className="text-2xl font-bold mb-6">Edit Product</h1>
-         {productsDetail && (
+         {productsReducerStates.productsDetail && (
             <form onSubmit={handleSubmit(onUpdateSubmit)}>
                {/* Name Field */}
                <div className="mb-4">
@@ -72,7 +62,7 @@ const EditProduct = () => {
                   <Controller
                      name="Name"
                      control={control}
-                     defaultValue={productsDetail.name}
+                     defaultValue={productsReducerStates.productsDetail.name}
                      rules={{ required: "Name is required" }}
                      render={({ field }) => <Input {...field} />}
                   />
@@ -85,7 +75,7 @@ const EditProduct = () => {
                   <Controller
                      name="category" // Corrected field name
                      control={control}
-                     defaultValue={productsDetail.category}
+                     defaultValue={productsReducerStates.productsDetail.category}
                      rules={{ required: "Category is required" }}
                      render={({ field }) => (
                         <Select
@@ -115,7 +105,7 @@ const EditProduct = () => {
                   <Controller
                      name="price"
                      control={control}
-                     defaultValue={productsDetail.price}
+                     defaultValue={productsReducerStates.productsDetail.price}
                      render={({ field }) => <Input {...field} />}
                   />
                </div>
@@ -126,13 +116,13 @@ const EditProduct = () => {
                   <Controller
                      name="stock"
                      control={control}
-                     defaultValue={productsDetail.stock}
+                     defaultValue={productsReducerStates.productsDetail.stock}
                      render={({ field }) => <Input {...field} />}
                   />
                </div>
 
                {/* Photo Field */}
-               <Image photo={productsDetail.photo} />
+               <Image photo={productsReducerStates.productsDetail.photo} />
 
                {/* Description Field */}
                <div className="mb-4">
@@ -140,10 +130,12 @@ const EditProduct = () => {
                   <Controller
                      name="description"
                      control={control}
-                     defaultValue={productsDetail.description}
+                     defaultValue={productsReducerStates.productsDetail.description}
                      render={({ field }) => <TextArea {...field} />}
                   />
                </div>
+
+               {/* Submit Button */}
                <div className="w-full flex justify-between">
                   <Button type="default" htmlType="button" onClick={() => navigate("/myProduct")}>
                      Cancel

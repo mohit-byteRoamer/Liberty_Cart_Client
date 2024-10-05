@@ -1,9 +1,9 @@
-import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { HeartOutlined, PlusSquareOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Input, Menu } from "antd";
 import Layout, { Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import { Link } from "react-router-dom";
-import { MdAddBox } from "react-icons/md";
+import BreadCrumb from "../../BreadCrumb";
 
 const AppHeader = () => {
    const isAuthenticated = !!localStorage.getItem("token");
@@ -33,9 +33,9 @@ const AppHeader = () => {
    ];
 
    return (
-      <Layout id="appHeight" className="border-b leading-none">
+      <Layout className="border-b leading-none">
          {/* Header Start */}
-         <Header className="header flex justify-between dark:bg-gray-800 dark:text-white items-center bg-white h-[70%] pt-6">
+         <Header className="header flex justify-between dark:bg-gray-800 dark:text-white items-center bg-white h-[70%] pt-3">
             <div className="logo w-2/12">
                <Title level={2}>
                   <Link to="/">
@@ -67,17 +67,19 @@ const AppHeader = () => {
             {isAuthenticated && (
                <div className="flex gap-5">
                   <Link to="/wishlist">
-                     <HeartOutlined style={{ fontSize: "25px" }} />
+                     <HeartOutlined className="text-xl" />
                   </Link>
                   <Link to="/shoppingCart">
-                     <ShoppingCartOutlined style={{ fontSize: "25px" }} />
+                     <ShoppingCartOutlined className="text-xl" />
                   </Link>
                   <Link to="/addProduct">
-                     <MdAddBox style={{ fontSize: "25px" }} />
+                     <PlusSquareOutlined className="text-xl" />
                   </Link>
                </div>
             )}
          </Header>
+         <BreadCrumb />
+
          {/* Header End */}
       </Layout>
    );

@@ -25,7 +25,7 @@ export const getProductDetailApi = (id) => Method.GET(`product/${id}`, header);
 // ---------------------------------------------------------------------------------- //
 
 // ADMIN API'S
-export const getAdminProductApi = () => Method.GET("product/admin-products", header);
+export const getAdminProductApi = (pageNumber) => Method.GET(`product/admin-products/all?page=${pageNumber}`, header);
 export const updateProductApi = (data) => Method.PUT(`product/${data.id}`,data, header);
 export const deleteProductApi = (id) => Method.DELETE(`product/${id}`, header);
 

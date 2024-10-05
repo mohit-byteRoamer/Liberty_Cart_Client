@@ -68,8 +68,8 @@ export const getProductDetailFail = () => {
 // ------------------------------------------------------ //
 
 // Get Admin Products
-export const getAdminProductLoad = () => {
-   return { type: reduxConstants.GET_PRODUCT_ADMIN_LOAD };
+export const getAdminProductLoad = (payload) => {
+   return { type: reduxConstants.GET_PRODUCT_ADMIN_LOAD, payload };
 };
 export const getAdminProductSuccess = (payload) => {
    return { type: reduxConstants.GET_PRODUCT_ADMIN_SUCCESS, payload };
@@ -79,6 +79,7 @@ export const getAdminProductFail = () => {
 };
 // ------------------------------------------------------ //
 
+// Update Products by Admin
 export const updateProductLoad = (payload) => {
    return { type: reduxConstants.UPDATE_PRODUCT_LOAD, payload };
 };
@@ -90,6 +91,7 @@ export const updateProductFail = () => {
 };
 // ------------------------------------------------------ //
 
+// Delete Products by Admin
 export const deleteProductLoad = (id) => {
    return { type: reduxConstants.DELETE_PRODUCT_LOAD, id };
 };
