@@ -18,6 +18,7 @@ const EditProduct = () => {
       handleSubmit,
       control,
       formState: { errors },
+      reset,
    } = useForm({ defaultValues: { price: 0 } });
 
    const productsReducerStates = useSelector((state) => state?.ProductReducer);
@@ -27,6 +28,18 @@ const EditProduct = () => {
       dispatch(getProductDetailLoad(id));
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [id]);
+
+   useEffect(() => {
+      if (productsReducerStates.productsDetail) {
+         reset({
+            name: productsReducerStates.productsDetail.name,
+            category: productsReducerStates.productsDetail.category,
+            price: productsReducerStates.productsDetail.price,
+            description: productsReducerStates.productsDetail.description,
+            stock: productsReducerStates.productsDetail.stock,
+         });
+      }
+   }, [productsReducerStates.productsDetail, reset]);
 
    if (productsReducerStates.getProductDetailLoader) {
       return (
@@ -48,7 +61,7 @@ const EditProduct = () => {
          id: productsReducerStates.productsDetail._id,
       };
       // Updated data dispatched
-      dispatch(updateProductLoad(updateData));
+      dispatch(updateProductLoad({updateData, navigate}));
    };
 
    return (
@@ -60,22 +73,20 @@ const EditProduct = () => {
                <div className="mb-4">
                   <label className="block text-gray-700 dark:text-gray-300">Name</label>
                   <Controller
-                     name="Name"
+                     name="name"
                      control={control}
-                     defaultValue={productsReducerStates.productsDetail.name}
                      rules={{ required: "Name is required" }}
                      render={({ field }) => <Input {...field} />}
                   />
-                  {errors.Name && <span className="text-red-500">{errors.Name.message}</span>}
+                  {errors.name && <span className="text-red-500">{errors.name.message}</span>}
                </div>
 
                {/* Category Field */}
                <div className="mb-4">
                   <label className="block text-gray-700 dark:text-gray-300">Category</label>
                   <Controller
-                     name="category" // Corrected field name
+                     name="category"
                      control={control}
-                     defaultValue={productsReducerStates.productsDetail.category}
                      rules={{ required: "Category is required" }}
                      render={({ field }) => (
                         <Select
@@ -90,6 +101,7 @@ const EditProduct = () => {
                               { value: "electronics", label: "Electronics" },
                               { value: "clothing", label: "Clothing" },
                               { value: "books", label: "Books" },
+                              { value: "jewellery", label: "Jewellery" },
                            ]}
                         />
                      )}
@@ -105,9 +117,10 @@ const EditProduct = () => {
                   <Controller
                      name="price"
                      control={control}
-                     defaultValue={productsReducerStates.productsDetail.price}
+                     rules={{ required: "Price is required" }}
                      render={({ field }) => <Input {...field} />}
                   />
+                  {errors.price && <span className="text-red-500">{errors.price.message}</span>}
                </div>
 
                {/* Stock Field */}
@@ -116,9 +129,10 @@ const EditProduct = () => {
                   <Controller
                      name="stock"
                      control={control}
-                     defaultValue={productsReducerStates.productsDetail.stock}
+                     rules={{ required: "Stock is required" }}
                      render={({ field }) => <Input {...field} />}
                   />
+                  {errors.stock && <span className="text-red-500">{errors.stock.message}</span>}
                </div>
 
                {/* Photo Field */}
@@ -130,9 +144,10 @@ const EditProduct = () => {
                   <Controller
                      name="description"
                      control={control}
-                     defaultValue={productsReducerStates.productsDetail.description}
+                     // rules={{ required: "Description is required" }}
                      render={({ field }) => <TextArea {...field} />}
                   />
+                  {errors.description && <span className="text-red-500">{errors.description.message}</span>}
                </div>
 
                {/* Submit Button */}

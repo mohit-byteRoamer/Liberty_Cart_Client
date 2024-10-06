@@ -99,9 +99,9 @@ const MyProduct = () => {
          <Table
             onChange={(page) => setPageNumber(page.current)}
             pagination={{
-               pageSize: 8,
+               pageSize: 10,
                showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
-               total: sagaProducts?.totalPage * 8,
+               total: sagaProducts?.totalPage * 10,
             }} // Set page size to 5
             loading={loader} // Show loading indicator while data is being fetched
             dataSource={sagaProducts?.Products}

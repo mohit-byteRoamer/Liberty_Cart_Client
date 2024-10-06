@@ -81,6 +81,8 @@ export const getAdminProductFail = () => {
 
 // Update Products by Admin
 export const updateProductLoad = (payload) => {
+   console.log("ACTION_UPDATE",payload );
+   
    return { type: reduxConstants.UPDATE_PRODUCT_LOAD, payload };
 };
 export const updateProductSuccess = (payload) => {

@@ -134,13 +134,15 @@ export function* getProductAdminSaga(action) {
 
 // CALL UPDATE PRODUCTS  SAGA FUNCTION BY ROOT_SAGA
 export function* updateProductSaga(action) {
+   console.log("UPDATE SAGA", action.payload.updateData);
    try {
-      const response = yield call(updateProductApi, action.payload);
-
+      const {navigate} = action.payload
+      const response = yield call(updateProductApi, action.payload.updateData);
       const { result, status } = response;
       if (status === 1) {
          yield put(createProductSuccess(result?.data));
          toast.success(result.message);
+         navigate("/");
       } else {
          yield put(createProductFail(result));
          toast.error(result.message);
