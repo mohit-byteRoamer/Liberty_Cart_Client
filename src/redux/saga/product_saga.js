@@ -153,14 +153,14 @@ export function* updateProductSaga(action) {
 
 // CALL DELETE PRODUCTS  SAGA FUNCTION BY ROOT_SAGA
 export function* deleteProductSaga(action) {
-   console.log("DELETE SAGA", action);
+   console.log("DELETE SAGA", action.pageNumber);
    
    try {
-      const response = yield call(deleteProductApi, action.id);
+      const response = yield call(deleteProductApi, action.payload.id);
       const { result, status } = response;
       if (status === 1) {
          yield put(deleteProductSuccess(result?.data));
-         yield put(getAdminProductLoad());
+         yield put(getAdminProductLoad(action.payload.pageNumber));
          toast.success(result.message);
       } else {
          yield put(deleteProductFail(result));

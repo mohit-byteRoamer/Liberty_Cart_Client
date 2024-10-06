@@ -92,8 +92,8 @@ export const updateProductFail = () => {
 // ------------------------------------------------------ //
 
 // Delete Products by Admin
-export const deleteProductLoad = (id) => {
-   return { type: reduxConstants.DELETE_PRODUCT_LOAD, id };
+export const deleteProductLoad = (payload) => {
+   return { type: reduxConstants.DELETE_PRODUCT_LOAD,payload };
 };
 export const deleteProductSuccess = (payload) => {
    return { type: reduxConstants.DELETE_PRODUCT_SUCCESS, payload };

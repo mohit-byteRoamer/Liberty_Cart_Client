@@ -9,15 +9,14 @@ import { deleteProductLoad, getAdminProductLoad } from "../../redux/action/produ
 const MyProduct = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
-   const sagaProducts = useSelector((state) => state?.ProductReducer?.adminProducts?.Products);
+   const sagaProducts = useSelector((state) => state?.ProductReducer?.adminProducts);
    const loader = useSelector((state) => state?.ProductReducer?.getProductAdminLoader);
-   const totalPage = useSelector((state) => state?.ProductReducer?.adminProducts?.totalPage);
+   
    const [pageNumber, setPageNumber] = useState(1);
 
    useEffect(() => {
       dispatch(getAdminProductLoad(pageNumber));
    }, [pageNumber]);
-
 
    // Columns configuration for Ant Design Table
    const columns = [
@@ -92,16 +91,20 @@ const MyProduct = () => {
 
    // Delete Button
    const handleDelete = (id) => {
-      dispatch(deleteProductLoad(id));
+      dispatch(deleteProductLoad({id, pageNumber}));
    };
 
    return (
       <div className="container mx-auto shadow-lg">
          <Table
             onChange={(page) => setPageNumber(page.current)}
-            pagination={{ pageSize: 10 }} // Set page size to 5
+            pagination={{
+               pageSize: 8,
+               showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+               total: sagaProducts?.totalPage * 8,
+            }} // Set page size to 5
             loading={loader} // Show loading indicator while data is being fetched
-            dataSource={sagaProducts}
+            dataSource={sagaProducts?.Products}
             columns={columns}
             rowKey={(record) => record._id || record.name} // Unique key for each row
          />
