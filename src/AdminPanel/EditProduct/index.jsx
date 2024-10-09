@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // src/ProductTable.jsx
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-// import toast from "react-hot-toast";
-import { getProductDetailLoad, updateProductLoad } from "../../redux/action/product_action";
-import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { getProductDetailLoad, updateProductLoad } from "../../redux/action/product_action";
 import { Button, Input, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import Image from "../../page/Image";
@@ -53,15 +52,13 @@ const EditProduct = () => {
 
    // Handle Submit function
    const onUpdateSubmit = (data) => {
-      console.log("DATA", data);
-
       // Handle form submission
       const updateData = {
          ...data,
          id: productsReducerStates.productsDetail._id,
       };
       // Updated data dispatched
-      dispatch(updateProductLoad({updateData, navigate}));
+      dispatch(updateProductLoad({ updateData, navigate }));
    };
 
    return (
@@ -98,10 +95,10 @@ const EditProduct = () => {
                               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
                            }
                            options={[
-                              { value: "electronics", label: "Electronics" },
-                              { value: "clothing", label: "Clothing" },
-                              { value: "books", label: "Books" },
-                              { value: "jewellery", label: "Jewellery" },
+                              { value: "Electronics", label: "Electronics" },
+                              { value: "Clothing", label: "Clothing" },
+                              { value: "Books", label: "Books" },
+                              { value: "Jewellery", label: "Jewellery" },
                            ]}
                         />
                      )}
@@ -147,7 +144,9 @@ const EditProduct = () => {
                      // rules={{ required: "Description is required" }}
                      render={({ field }) => <TextArea {...field} />}
                   />
-                  {errors.description && <span className="text-red-500">{errors.description.message}</span>}
+                  {errors.description && (
+                     <span className="text-red-500">{errors.description.message}</span>
+                  )}
                </div>
 
                {/* Submit Button */}

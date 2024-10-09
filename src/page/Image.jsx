@@ -7,10 +7,9 @@ import { useSelector } from "react-redux";
 function Image({ photo }) {
    const dispatch = useDispatch();
    const imageSelector = useSelector((state) => state?.UploadFileReducer);
-   console.log("imageSelector", imageSelector);
    const { uploadFile, uploadFileLoader } = imageSelector;
-   console.log("uploadFile", uploadFile);
-   console.log("uploadFileLoader", uploadFileLoader);
+   console.log("imageData",photo);
+   
 
    // IMAGE UPLOAD DISPATCHER
    const fileUploadHandler = (file) => {

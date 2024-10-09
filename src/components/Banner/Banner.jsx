@@ -18,6 +18,7 @@ function Banner() {
 
    return (
       <div className="slider-container px-5 min-h-[60vh] w-full relative">
+      
          <Slider {...settings}>
             <div className="relative w-full h-full">
                <img

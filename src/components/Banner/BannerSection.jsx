@@ -67,7 +67,7 @@ const items = [
    ]),
 ];
 
-const Sidebar = () => {
+const BannerSection = () => {
    const {
       token: { colorBgContainer, borderRadiusLG },
    } = theme.useToken();
@@ -97,4 +97,4 @@ const Sidebar = () => {
    );
 };
 
-export default Sidebar;
+export default BannerSection;

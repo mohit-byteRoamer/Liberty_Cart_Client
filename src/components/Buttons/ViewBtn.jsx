@@ -1,18 +1,20 @@
 /* eslint-disable react/prop-types */
 import { Button } from "antd/es/radio";
-import { Link } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function ViewBtn({ type, text, className, icon }) {
+function ViewBtn({ type, className }) {
+   // const dispatch = useDispatch()
+   const navigate = useNavigate();
+   const handleNavigate = () => {
+      navigate("/all-products");
+   };
    return (
       <Button
+         onClick={handleNavigate}
          type={type}
          className={`flex items-center justify-center bg-red-500 text-white hover:text-white font-bold h-16 w-[18%] ${className}`}>
-         <div className="flex gap-2">
-            <Link to={"/all-product"}>
-               {icon && <span>{icon}</span>}
-               {text}
-            </Link>
-         </div>
+         View All Products
       </Button>
    );
 }

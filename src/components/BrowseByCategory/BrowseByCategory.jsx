@@ -1,19 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import SectionTopBar from "../SectionTopBar";
 import CategoryCard from "../Cards/CategoryCard";
 import { LeftArrowBtn, RightArrowBtn } from "../Buttons/ArrowBtn";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getProductCategoryLoad } from "../../redux/action/product_action";
 import { AccountBookOutlined, AudioOutlined, HomeOutlined } from "@ant-design/icons";
 import { SiStmicroelectronics, SiFacebookgaming } from "react-icons/si";
-import { IoIosFitness } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { getProductCategoryLoad } from "../../redux/action/product_action";
-import { TbToolsKitchen3 } from "react-icons/tb";
 import { PiBuildingOfficeLight } from "react-icons/pi";
-import { GiClothes } from "react-icons/gi";
 import { MdCameraOutdoor } from "react-icons/md";
+import { TbToolsKitchen3 } from "react-icons/tb";
 import { HiHomeModern } from "react-icons/hi2";
 import { AiFillGolden } from "react-icons/ai";
+import { IoIosFitness } from "react-icons/io";
+import { GiClothes } from "react-icons/gi";
 import { IoIosMan } from "react-icons/io";
 import { IoWoman } from "react-icons/io5";
 

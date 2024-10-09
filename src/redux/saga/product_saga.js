@@ -142,7 +142,7 @@ export function* updateProductSaga(action) {
       if (status === 1) {
          yield put(createProductSuccess(result?.data));
          toast.success(result.message);
-         navigate("/");
+         navigate("/myProduct");
       } else {
          yield put(createProductFail(result));
          toast.error(result.message);

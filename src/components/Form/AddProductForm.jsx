@@ -11,7 +11,7 @@ const AddProductForm = ({ data }) => {
       handleSubmit,
       control,
       formState: { errors },
-   } = useForm({ defaultValues: { price: 0 } });
+   } = useForm();
 
    return (
       <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-md my-5 dark:bg-gray-900 dark:text-white">
@@ -203,7 +203,7 @@ const AddProductForm = ({ data }) => {
 
             {/* Form Actions */}
             <div className="flex justify-between items-center">
-               <Button type="button" className="text-gray-500 hover:underline">
+               <Button type="default" htmlType="button">
                   Cancel
                </Button>
 

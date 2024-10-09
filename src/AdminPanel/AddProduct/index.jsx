@@ -11,11 +11,13 @@ const AddProduct = () => {
    const onSubmit = (data) => {
       dispatch(
          createProductLoad({
-            apiPayload: {name: data.Name,
-            price: data.price,
-            stock: data.Stock,
-            category: data.Category,
-            photo: photo,},
+            apiPayload: {
+               name: data.Name,
+               price: data.price,
+               stock: data.Stock,
+               category: data.Category,
+               photo: photo,
+            },
             navigate,
          })
       );

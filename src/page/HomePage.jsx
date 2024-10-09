@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/Banner/Sidebar";
 import BrowseByCategory from "../components/BrowseByCategory/BrowseByCategory";
 import ExploreOurProduct from "../components/ExploreOurProduct/ExploreOurProduct";
 // import FlashSales from "../components/FlashSales/FlashSales";
 import LatestProducts from "../components/LatestProducts/LatestProducts";
 import NewArrival from "../components/NewArrival/NewArrival";
 import { useEffect } from "react";
+import BannerSection from "../components/Banner/BannerSection";
 
 function Home() {
    const navigate = useNavigate();
@@ -19,7 +19,7 @@ function Home() {
 
    return (
       <div className="home-page">
-         <Sidebar />
+         <BannerSection />
          {/* <FlashSales /> */}
          <BrowseByCategory />
          <LatestProducts />
