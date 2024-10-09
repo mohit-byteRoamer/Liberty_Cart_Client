@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { getProductLoad } from "../../redux/action/product_action";
 import Page from "../Pagination";
 import ProductCard from "../Cards/ProductCard";
-import SideMenu from "../SideMenu";
-import TabsMenu from "../Tabs";
+import CategoryTags from "../CategoryTags";
 
 function AllProducts() {
    const dispatch = useDispatch();
@@ -29,26 +28,19 @@ function AllProducts() {
    return (
       <section>
          <div className="container mx-auto ">
-            {/* Sidebar & ProductCard */}
-            <div className="flex">
-               {/* Sidebar */}
-               <div className="sidebar">
-                  <SideMenu />
+            {/* Tabs & Product Card */}
+            <div className="">
+               {/* Tabs */}
+               <div className="p-2 flex justify-center border-b-2">
+                  <CategoryTags />
                </div>
-               {/* Tabs & Product Card */}
-               <div>
-                  {/* Tabs */}
-                  <div>
-                     <TabsMenu />
-                  </div>
-                  {/* Product Card */}
-                  <div className="productCard grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 p-5">
-                     {products?.Products?.map((product, index) => (
-                        <div key={index}>
-                           <ProductCard product={product} />
-                        </div>
-                     ))}
-                  </div>
+               {/* Product Card */}
+               <div className="productCard grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 p-5">
+                  {products?.Products?.map((product, index) => (
+                     <div key={index}>
+                        <ProductCard product={product} />
+                     </div>
+                  ))}
                </div>
             </div>
             {/* Pagination */}

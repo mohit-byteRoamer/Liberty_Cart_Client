@@ -5,6 +5,7 @@ const Page = ({ totalPage, currentPage, onChange }) => (
    <Pagination
       current={currentPage}
       total={totalPage}
+      totalPage={totalPage}
       onChange={onChange}
       showSizeChanger={false}
       showQuickJumper
@@ -12,7 +13,7 @@ const Page = ({ totalPage, currentPage, onChange }) => (
       pageSize={1}
       size="small"
       showPrevNextJumpers={false}
-      showTotal={(total) => `Total ${total} items`}
+      showTotal={(totalPage) => `Total ${totalPage} Pages`}
    />
 );
 export default Page;

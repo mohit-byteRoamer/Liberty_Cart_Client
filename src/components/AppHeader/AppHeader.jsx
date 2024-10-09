@@ -3,7 +3,7 @@ import { Input, Menu } from "antd";
 import Layout, { Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import { Link } from "react-router-dom";
-import BreadCrumb from "../../BreadCrumb";
+import BreadCrumb from "../../breadCrumb";
 
 const AppHeader = () => {
    const isAuthenticated = !!localStorage.getItem("token");

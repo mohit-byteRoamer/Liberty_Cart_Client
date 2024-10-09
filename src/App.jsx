@@ -13,9 +13,9 @@ import ProductDetail from "./components/ExploreOurProduct/ProductDetail";
 import Contact from "./page/Contact";
 import UnProtectedRoute from "./components/Routes/UnProtectedRoute";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
-import AddProduct from "./AdminPanel/AddProduct/index";
-import MyProduct from "./AdminPanel/MyProduct/index";
-import EditProduct from "./AdminPanel/EditProduct/index";
+import AddProduct from "./adminPanel/AddProduct/index";
+import MyProduct from "./adminPanel/MyProduct/index";
+import EditProduct from "./adminPanel/EditProduct/index";
 import AllProducts from "./components/AllProducts";
 
 function App() {

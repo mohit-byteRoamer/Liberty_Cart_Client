@@ -182,16 +182,16 @@ const AddProductForm = ({ data }) => {
                                  label: "Jewellery",
                               },
                               {
-                                 value: "Man's clothing",
-                                 label: "Man's clothing",
+                                 value: "Man clothing",
+                                 label: "Man clothing",
                               },
                               {
                                  value: "Mobiles",
                                  label: "Mobiles",
                               },
                               {
-                                 value: "Women's clothing",
-                                 label: "Women's clothing",
+                                 value: "Women clothing",
+                                 label: "Women clothing",
                               },
                            ]}
                         />

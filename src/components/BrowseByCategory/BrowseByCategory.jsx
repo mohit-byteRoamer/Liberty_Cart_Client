@@ -53,9 +53,9 @@ function BrowseByCategory() {
             return <GiClothes />;
          case "jewellery":
             return <AiFillGolden />;
-         case "men's clothing":
+         case "men clothing":
             return <IoIosMan />;
-         case "women's clothing":
+         case "women clothing":
             return <IoWoman />;
          default:
             return; // Default icon if no match is found
