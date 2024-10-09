@@ -64,7 +64,7 @@ const items = [
    ]),
 ];
 
-const SideBar = () => {
+const SideMenu = () => {
    return (
       <Sider className=" !bg-white border-r-[1px]">
          <Menu
@@ -78,4 +78,4 @@ const SideBar = () => {
    );
 };
 
-export default SideBar;
+export default SideMenu;
