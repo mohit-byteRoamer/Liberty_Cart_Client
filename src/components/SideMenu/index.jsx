@@ -20,7 +20,7 @@ const items = [
    getItem("Men's Fashion", "Menu2", <FcManager />, [
       getItem("Men's Shirts", "Menu2-Sub1", null, null, "/mens-shirts"),
       getItem("Trousers & Pants", "Menu2-Sub2", null, null, "/trousers-pants"),
-      getItem("Men's T-shirts", "Menu2-Sub3", null, null, "/mens-tshirts"),
+      getItem("Men's T-shirts", "Menu2-Sub3", null, null, "/mens-tShirts"),
       getItem("Men's Footwear", "Menu2-Sub4", null, null, "/mens-footwear"),
    ]),
    getItem("Electronic", "Menu3", <FcElectroDevices />, [

@@ -4,32 +4,32 @@ import Slider from "react-slick";
 
 function Banner() {
    const settings = {
-      dots: false, // Dots ko hata diya to make it feel continuous
+      dots: false, 
       infinite: true,
       fade:true,
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      speed: 3000, // Transition speed faster rakha
-      autoplaySpeed: 2000, // Continuous slide movement ke liye
+      speed: 3000,
+      autoplaySpeed: 2000,
       cssEase: "linear",
-      pauseOnHover: false, // Pausing on hover disable kiya
+      pauseOnHover: false,
    };
 
    return (
       <div className="slider-container px-5 min-h-[60vh] w-full relative">
-      
+
          <Slider {...settings}>
             <div className="relative w-full h-full">
                <img
-                  className="object-cover w-full h-[62vh]"  // Dynamic height adjust karega
+                  className="object-cover w-full h-[62vh]"
                   src="https://i0.wp.com/www.appleshop.pk/wp-content/uploads/2020/03/iPhone-11-Pro-Inner-Banner-1920-X-710-Website.jpg?ssl=1"
                   alt=""
                />
             </div>
             <div className="relative w-full h-full">
                <img
-                  className="object-cover w-full h-[62vh]"  // Image height ko maintain karne ke liye object-cover
+                  className="object-cover w-full h-[62vh]"
                   src="https://www.iphone.com.pk/gallary/202307122837slider-1.jpg"
                   alt=""
                />
