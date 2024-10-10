@@ -1,19 +1,19 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Flex, Tag } from "antd";
 
-const CategoryTags = () => {
-   const tagsData = ["Movies", "Books", "Music", "Sports"];
-   const [selectedTags, setSelectedTags] = React.useState(["Movies"]);
+const CategoryTags = ({ category, onCategoryChange }) => {
+   const [selectedTags, setSelectedTags] = React.useState([]);
    const handleChange = (tag, checked) => {
       const nextSelectedTags = checked
          ? [...selectedTags, tag]
          : selectedTags.filter((t) => t !== tag);
-      console.log("You are interested in: ", nextSelectedTags);
       setSelectedTags(nextSelectedTags);
+      onCategoryChange(nextSelectedTags);
    };
    return (
       <Flex gap={4} wrap align="center">
-         {tagsData.map((tag) => (
+         {category?.map((tag) => (
             <Tag.CheckableTag
                key={tag}
                checked={selectedTags.includes(tag)}

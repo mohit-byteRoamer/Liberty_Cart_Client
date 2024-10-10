@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getProductLoad } from "../../redux/action/product_action";
+import { getProductCategoryLoad, getProductLoad } from "../../redux/action/product_action";
 import Page from "../Pagination";
 import ProductCard from "../Cards/ProductCard";
 import CategoryTags from "../CategoryTags";
@@ -9,14 +9,24 @@ import CategoryTags from "../CategoryTags";
 function AllProducts() {
    const dispatch = useDispatch();
    const productReducerState = useSelector((state) => state?.ProductReducer);
-   const { products, getProductLoader } = productReducerState;
-
+   const { products, getProductLoader, productCategory } = productReducerState;
    const [pageNumber, setPageNumber] = useState(1);
-   const totalPage = products?.totalPage || 0;
+   const totalPage = products?.totalPage || 0; // Get total page from API
+
+   const [selectedCategories, setSelectedCategories] = useState([]); // State to store selected categories
 
    useEffect(() => {
-      dispatch(getProductLoad(pageNumber));
-   }, [pageNumber]);
+      dispatch(getProductCategoryLoad());
+   }, []);
+
+   useEffect(() => {
+      dispatch(getProductLoad({ pageNumber, categories: selectedCategories }));
+   }, [pageNumber, selectedCategories]);
+
+   const handleCategoryChange = (categories) => {
+      setSelectedCategories(categories); // update state based on selected categories
+      setPageNumber(1); // reset page number to 1 when categories change
+   };
 
    if (getProductLoader)
       return (
@@ -32,12 +42,15 @@ function AllProducts() {
             <div className="">
                {/* Tabs */}
                <div className="p-2 flex justify-center border-b-2">
-                  <CategoryTags />
+                  <CategoryTags
+                     category={productCategory}
+                     onCategoryChange={handleCategoryChange}
+                  />
                </div>
                {/* Product Card */}
                <div className="productCard grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 p-5">
-                  {products?.Products?.map((product, index) => (
-                     <div key={index}>
+                  {products?.Products?.map((product) => (
+                     <div key={product.id}>
                         <ProductCard product={product} />
                      </div>
                   ))}

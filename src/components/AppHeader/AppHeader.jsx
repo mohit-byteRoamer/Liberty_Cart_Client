@@ -30,6 +30,10 @@ const AppHeader = () => {
          key: "5",
          label: <Link to="/myProduct">My Product</Link>,
       },
+      isAuthenticated && {
+         key: "6",
+         label: <Link to="/all-products">All Product</Link>,
+      },
    ];
 
    return (

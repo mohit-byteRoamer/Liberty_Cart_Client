@@ -49,6 +49,8 @@ export function* createProductSaga(action) {
 
 // CALL GET PRODUCTS SAGA FUNCTION BY ROOT_SAGA
 export function* getProductSaga(action) {
+   console.log("GET_PRODUCT_SAGA", action);
+   
    try {
       const response = yield call(getProductApi, action.payload);
       const { result, status } = response || {};
@@ -134,9 +136,8 @@ export function* getProductAdminSaga(action) {
 
 // CALL UPDATE PRODUCTS  SAGA FUNCTION BY ROOT_SAGA
 export function* updateProductSaga(action) {
-   console.log("UPDATE SAGA", action.payload.updateData);
    try {
-      const {navigate} = action.payload
+      const { navigate } = action.payload;
       const response = yield call(updateProductApi, action.payload.updateData);
       const { result, status } = response;
       if (status === 1) {
@@ -155,8 +156,6 @@ export function* updateProductSaga(action) {
 
 // CALL DELETE PRODUCTS  SAGA FUNCTION BY ROOT_SAGA
 export function* deleteProductSaga(action) {
-   console.log("DELETE SAGA", action.pageNumber);
-   
    try {
       const response = yield call(deleteProductApi, action.payload.id);
       const { result, status } = response;
