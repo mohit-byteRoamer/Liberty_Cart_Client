@@ -1,28 +1,17 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { Flex, Tag } from "antd";
-
-const CategoryTags = ({ category, onCategoryChange }) => {
-   const [selectedTags, setSelectedTags] = React.useState([]);
-   const handleChange = (tag, checked) => {
-      const nextSelectedTags = checked
-         ? [...selectedTags, tag]
-         : selectedTags.filter((t) => t !== tag);
-      setSelectedTags(nextSelectedTags);
-      onCategoryChange(nextSelectedTags);
-   };
+const CategoryTags = ({ category, onCategoryChange, selectedCategory }) => {
    return (
-      <Flex gap={4} wrap align="center">
+      <div className="flex flex-wrap gap-4 items-center justify-center">
          {category?.map((tag) => (
-            <Tag.CheckableTag
+            <div
                key={tag}
-               checked={selectedTags.includes(tag)}
-               onChange={(checked) => handleChange(tag, checked)}
-               className="text-lg shadow-md py-1 px-2">
+               onClick={() => onCategoryChange(tag)}
+               className={`cursor-pointer text-lg rounded-md shadow-md py-1 px-2 transition-transform transform duration-300 
+               ${selectedCategory === tag ? `bg-blue-400` : `bg-white`}`}>
                {tag}
-            </Tag.CheckableTag>
+            </div>
          ))}
-      </Flex>
+      </div>
    );
 };
 export default CategoryTags;

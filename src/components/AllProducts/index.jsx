@@ -8,24 +8,24 @@ import CategoryTags from "../CategoryTags";
 
 function AllProducts() {
    const dispatch = useDispatch();
-   const productReducerState = useSelector((state) => state?.ProductReducer);
-   const { products, getProductLoader, productCategory } = productReducerState;
-   const [pageNumber, setPageNumber] = useState(1);
-   const totalPage = products?.totalPage || 0; // Get total page from API
+   // Extract state using object destructuring for cleaner code
+   const { products, getProductLoader, productCategory } = useSelector(
+      (state) => state?.ProductReducer
+   );
 
-   const [selectedCategories, setSelectedCategories] = useState([]); // State to store selected categories
+   const [pageNumber, setPageNumber] = useState(1);
+   const [apiPayload, setApiPayload] = useState({ pageNumber: 1, category: "" });
 
    useEffect(() => {
       dispatch(getProductCategoryLoad());
    }, []);
 
    useEffect(() => {
-      dispatch(getProductLoad({ pageNumber, categories: selectedCategories }));
-   }, [pageNumber, selectedCategories]);
+      dispatch(getProductLoad(apiPayload));
+   }, [apiPayload]);
 
    const handleCategoryChange = (categories) => {
-      setSelectedCategories(categories); // update state based on selected categories
-      setPageNumber(1); // reset page number to 1 when categories change
+      setApiPayload({ category: categories, pageNumber: 1 });
    };
 
    if (getProductLoader)
@@ -45,6 +45,7 @@ function AllProducts() {
                   <CategoryTags
                      category={productCategory}
                      onCategoryChange={handleCategoryChange}
+                     selectedCategory={apiPayload.category}
                   />
                </div>
                {/* Product Card */}
@@ -59,7 +60,7 @@ function AllProducts() {
             {/* Pagination */}
             <div className="pagination mt-8 text-2xl flex justify-center items-center p-1">
                <Page
-                  totalPage={totalPage} // totalPage should be multiplied by items per page (assuming 10 items per page)
+                  totalPage={products?.totalPage || 0}
                   currentPage={pageNumber}
                   onChange={(page) => setPageNumber(page)}
                />
