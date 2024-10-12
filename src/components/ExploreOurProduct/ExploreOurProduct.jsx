@@ -37,14 +37,6 @@ function ExploreOurProduct() {
             <div className="flex justify-center">
                <ViewBtn text="View All Products" />
             </div>
-            {/* 3rd section */}
-            <div className="paginationButton flex justify-center">
-               <Page
-                  totalPage={totalPage} // totalPage should be multiplied by items per page (assuming 10 items per page)
-                  currentPage={pageNumber}
-                  onChange={(page) => setPageNumber(page)}
-               />
-            </div>
          </div>
       </section>
    );

@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { LeftArrowBtn, RightArrowBtn } from "../Buttons/ArrowBtn";
 import ProductCard from "../Cards/ProductCard";
 
-const ProductSlider = ({ data }) => {
-   
+const ProductSlider = ({ data, title }) => {
    //  Initial Value of CurrentIndex
    const [startIndex, setStartIndex] = useState(0);
    const itemsPerPage = 4;
@@ -25,12 +25,13 @@ const ProductSlider = ({ data }) => {
       }
    };
 
-   // const currentProduct = data.slice(startIndex, startIndex + itemsPerPage);
-
    return (
       <div className="flex flex-col gap-y-10">
          {/* title & Button */}
          <div className="flex justify-between mt-4">
+            <div>
+               <h1 className="text-3xl font-bold">{title}</h1>
+            </div>
             {/* Previous & Next Buttons */}
             <div className="buttons flex gap-5 view-btn w-[10%]">
                <LeftArrowBtn onClick={handlePrev} disabled={isPrevDisabled} />

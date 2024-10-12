@@ -92,7 +92,7 @@ function BrowseByCategory() {
          <div className="flex flex-col gap-y-10">
             <div className="flex items-center justify-between py-5">
                {/* Title and Timer */}
-               <div className="flex gap-x-14 items-end">
+               <div>
                   <h1 className="text-3xl font-bold">Browse By Category</h1>
                </div>
                {/* Arrow Button */}

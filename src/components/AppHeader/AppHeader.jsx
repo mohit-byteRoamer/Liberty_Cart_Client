@@ -1,5 +1,5 @@
 import { HeartOutlined, PlusSquareOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-import { Input, Menu } from "antd";
+import { Input, Menu, Tooltip } from "antd";
 import Layout, { Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import { Link } from "react-router-dom";
@@ -70,15 +70,23 @@ const AppHeader = () => {
             {/* Icons */}
             {isAuthenticated && (
                <div className="flex gap-5">
-                  <Link to="/wishlist">
-                     <HeartOutlined className="text-xl" />
-                  </Link>
-                  <Link to="/shoppingCart">
-                     <ShoppingCartOutlined className="text-xl" />
-                  </Link>
-                  <Link to="/addProduct">
-                     <PlusSquareOutlined className="text-xl" />
-                  </Link>
+                  <Tooltip title="Wishlist" placement="bottom">
+                     <Link to="/wishlist">
+                        <HeartOutlined className="text-xl" />
+                     </Link>
+                  </Tooltip>
+
+                  <Tooltip title="Shopping Cart" placement="bottom">
+                     <Link to="/shoppingCart">
+                        <ShoppingCartOutlined className="text-xl" />
+                     </Link>
+                  </Tooltip>
+
+                  <Tooltip title="Add Product" placement="bottom">
+                     <Link to="/addProduct">
+                        <PlusSquareOutlined className="text-xl" />
+                     </Link>
+                  </Tooltip>
                </div>
             )}
          </Header>
