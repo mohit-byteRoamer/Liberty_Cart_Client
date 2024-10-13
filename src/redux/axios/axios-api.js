@@ -38,6 +38,13 @@ export const uploadFileApi = (data) => Method.POST("common/uploadFile", data, he
 
 // ---------------------------------------------------------------------------------- //
 
+// CART API'S
+export const UpdateCartApi = (data) => Method.POST("cart/update-cart", data, header);
+export const getCartListApi = () => Method.GET("cart/list", header);
+export const DeleteCartApi = (id) => Method.DELETE(`cart/delete/${id}`, header);
+
+// ---------------------------------------------------------------------------------- //
+
 // Second Way for create a LogInAPI
 // export const logInApi = async (data) => {
 //    const response = await axios.post(`${url}api/v1/users/login`, data, header);

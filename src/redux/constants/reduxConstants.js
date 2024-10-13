@@ -4,13 +4,13 @@ const reduxConstants = {
    SIGNUP_SUCCESS: "SIGNUP_SUCCESS",
    SIGNUP_FAIL: "SIGNUP_FAIL",
    // ----------------------------------------------------------- //
-   
+
    // LOGIN
    LOGIN_LOAD: "LOGIN_LOAD",
    LOGIN_SUCCESS: "LOGIN_SUCCESS",
    LOGIN_FAIL: "LOGIN_FAIL",
    // ----------------------------------------------------------- //
-   
+
    // CREATE PRODUCT
    CREATE_PRODUCT_LOAD: "CREATE_PRODUCT_LOAD",
    CREATE_PRODUCT_SUCCESS: "CREATE_PRODUCT_SUCCESS",
@@ -53,7 +53,7 @@ const reduxConstants = {
    GET_PRODUCT_ADMIN_FAIL: "GET_PRODUCT_ADMIN_FAIL",
    // ----------------------------------------------------------- //
 
-    //PRODUCT_ADMIN_UPDATE
+   //PRODUCT_ADMIN_UPDATE
    UPDATE_PRODUCT_LOAD: "UPDATE_PRODUCT_LOAD",
    UPDATE_PRODUCT_SUCCESS: "UPDATE_PRODUCT_SUCCESS",
    UPDATE_PRODUCT_FAIL: "UPDATE_PRODUCT_FAIL",
@@ -63,6 +63,12 @@ const reduxConstants = {
    DELETE_PRODUCT_LOAD: "DELETE_PRODUCT_LOAD",
    DELETE_PRODUCT_SUCCESS: "DELETE_PRODUCT_SUCCESS",
    DELETE_PRODUCT_FAIL: "DELETE_PRODUCT_FAIL",
+   // ----------------------------------------------------------- //
+
+   //PRODUCT_ADMIN_DELETE
+   UPDATE_CART_LIST_LOAD: "UPDATE_CART_LIST_LOAD",
+   UPDATE_CART_LIST_SUCCESS: "UPDATE_CART_LIST_SUCCESS",
+   UPDATE_CART_LIST_FAIL: "UPDATE_CART_LIST_FAIL",
    // ----------------------------------------------------------- //
 };
 

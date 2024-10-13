@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
-import { Card, Badge, Typography, Rate, Button } from "antd";
+import { Card, Badge, Typography, Rate } from "antd";
 import { HeartOutlined, EyeOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import UpdateCart from "../UpdateCart";
 
 const { Text, Title } = Typography;
 
 const ProductCard = ({ product }) => {
    const navigate = useNavigate();
-   console.log(product, "product");
 
    function handleNavigate() {
       navigate(`/product/${product._id}`);
@@ -32,13 +31,7 @@ const ProductCard = ({ product }) => {
                   }
                />
                {/* Link - ShoppingCart */}
-               <Link to={"/shoppingCart"}>
-                  <Button
-                     type="primary"
-                     className="absolute bottom-0 left-0 right-0 m-auto w-[90%] bg-black bg-opacity-80 border-none opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100">
-                     Add To Cart
-                  </Button>
-               </Link>
+               <UpdateCart id={product._id}/>
                {/* Positioning icons */}
                <div className="absolute top-2 right-2 flex flex-col gap-2">
                   {/* Icon styling */}
