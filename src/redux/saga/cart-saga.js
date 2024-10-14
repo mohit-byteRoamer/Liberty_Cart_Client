@@ -53,14 +53,13 @@ export function* getCartListSaga(action) {
 
 // Delete_Cart_Item_Saga
 export function* deleteCartItemSaga(action) {
-   console.log("DELETE_CART_ITEM_SAGA", action.payload);
+   const { removeProductSuccessFunctionCall } = action.payload;
    try {
-      const response = yield call(DeleteCartApi, action.payload);
+      const response = yield call(DeleteCartApi, action.payload.id);
       const { result, status } = response;
-      console.log("Delete_Cart_Item_Saga_Result", result);
       if (status === 1) {
          yield put(deleteCartItemSuccess(result));
-         yield put(getCartListLoad(action.payload));
+         yield call(removeProductSuccessFunctionCall());
       } else {
          yield put(deleteCartItemFail(result));
          toast.error(result?.message);

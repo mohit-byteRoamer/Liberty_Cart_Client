@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // ProductList.jsx
 import { Table, InputNumber, Button } from "antd";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCartItemLoad, getCartListLoad } from "../../redux/action/cart_actions";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -10,6 +10,7 @@ const ProductList = () => {
    const dispatch = useDispatch();
    const cartData = useSelector((state) => state?.CartReducer); // cartData extract kiya state se
    console.log("Cart Data", cartData);
+   const [selectedItem, setSelectedItem] = useState();
 
    useEffect(() => {
       dispatch(getCartListLoad());
@@ -33,11 +34,15 @@ const ProductList = () => {
       };
    });
 
-   const handleDelete = (id) => {
-      console.log("Delete item with key:", id);
-      dispatch(deleteCartItemLoad(id));
+   const handleDelete = (id, removeProductSuccessFunctionCall) => {
+      setSelectedItem(id);
+      dispatch(deleteCartItemLoad({ id, removeProductSuccessFunctionCall }));
    };
 
+   const removeProductSuccessFunctionCall = () => {
+      dispatch(getCartListLoad());
+      setSelectedItem(null);
+   };
    const columns = [
       // Title : Product
       {
@@ -85,8 +90,8 @@ const ProductList = () => {
          key: "delete",
          render: (_, record) => (
             <Button
-               loading={cartData?.deleteCartItemLoader}
-               onClick={() => handleDelete(record.userId)}
+               loading={record.userId === selectedItem && cartData?.deleteCartItemLoader}
+               onClick={() => handleDelete(record.userId, removeProductSuccessFunctionCall)}
                type="primary"
                danger>
                <DeleteOutlined />
