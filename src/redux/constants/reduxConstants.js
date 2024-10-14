@@ -65,11 +65,23 @@ const reduxConstants = {
    DELETE_PRODUCT_FAIL: "DELETE_PRODUCT_FAIL",
    // ----------------------------------------------------------- //
 
-   //PRODUCT_ADMIN_DELETE
+   //UPDATE_CART_LIST_BY_USER
    UPDATE_CART_LIST_LOAD: "UPDATE_CART_LIST_LOAD",
    UPDATE_CART_LIST_SUCCESS: "UPDATE_CART_LIST_SUCCESS",
    UPDATE_CART_LIST_FAIL: "UPDATE_CART_LIST_FAIL",
    // ----------------------------------------------------------- //
+
+   //GET_CART_LIST_BY_USER
+   GET_CART_LIST_LOAD: "GET_CART_LIST_LOAD",
+   GET_CART_LIST_SUCCESS: "GET_CART_LIST_SUCCESS",
+   GET_CART_LIST_FAIL: "GET_CART_LIST_FAIL",
+   // ----------------------------------------------------------- //
+   //DELETE_CART_ITEM_BY_USER
+   DELETE_CART_ITEM_LOAD: "DELETE_CART_ITEM_LOAD",
+   DELETE_CART_ITEM_SUCCESS: "DELETE_CART_ITEM_SUCCESS",
+   DELETE_CART_ITEM_FAIL: "DELETE_CART_ITEM_FAIL",
+   // ----------------------------------------------------------- //
+
 };
 
 export default reduxConstants;

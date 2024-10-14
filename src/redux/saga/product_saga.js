@@ -2,6 +2,7 @@ import { call, put } from "redux-saga/effects";
 import {
    createProductApi,
    deleteProductApi,
+   getAdminProductApi,
    getLatestProductApi,
    getProductApi,
    getProductCategoryApi,
@@ -120,7 +121,7 @@ export function* getProductDetailSaga(action) {
 // CALL GET PRODUCTS ADMIN SAGA FUNCTION BY ROOT_SAGA
 export function* getProductAdminSaga(action) {
    try {
-      const response = yield call(getProductApi, action.payload);
+      const response = yield call(getAdminProductApi, action.payload);
       const { result, status } = response || {};
       if (status === 1) {
          yield put(getAdminProductSuccess(result?.data));

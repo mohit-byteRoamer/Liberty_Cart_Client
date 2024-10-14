@@ -1,5 +1,5 @@
-import { HeartOutlined, PlusSquareOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-import { Input, Menu, Tooltip } from "antd";
+import { PlusSquareOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Menu, Tooltip } from "antd";
 import Layout, { Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import { Link } from "react-router-dom";
@@ -7,6 +7,9 @@ import BreadCrumb from "../../breadCrumb";
 
 const AppHeader = () => {
    const isAuthenticated = !!localStorage.getItem("token");
+   const role = localStorage.getItem("role");
+   console.log("ROLE", role);
+   
 
    // Menu items based on authentication status
    const menuItems = [
@@ -26,11 +29,11 @@ const AppHeader = () => {
          key: "4",
          label: <Link to="/signup">Signup</Link>,
       },
-      isAuthenticated && {
+      isAuthenticated && role === "admin" && {
          key: "5",
          label: <Link to="/myProduct">My Product</Link>,
       },
-      isAuthenticated && {
+      isAuthenticated && role === "admin" && {
          key: "6",
          label: <Link to="/all-products">All Product</Link>,
       },
@@ -61,32 +64,20 @@ const AppHeader = () => {
                items={menuItems}
             />
 
-            {isAuthenticated && (
-               <div className="flex">
-                  <Input.Search placeholder="What are you looking for?" />
-               </div>
-            )}
-
             {/* Icons */}
             {isAuthenticated && (
-               <div className="flex gap-5">
-                  <Tooltip title="Wishlist" placement="bottom">
-                     <Link to="/wishlist">
-                        <HeartOutlined className="text-xl" />
-                     </Link>
-                  </Tooltip>
-
+               <div className="flex gap-5 hover:scale-125 transition-all duration-500 ease-in-out ">
                   <Tooltip title="Shopping Cart" placement="bottom">
                      <Link to="/shoppingCart">
                         <ShoppingCartOutlined className="text-xl" />
                      </Link>
                   </Tooltip>
 
-                  <Tooltip title="Add Product" placement="bottom">
+                  {role === "admin" && <Tooltip title="Add Product" placement="bottom">
                      <Link to="/addProduct">
                         <PlusSquareOutlined className="text-xl" />
                      </Link>
-                  </Tooltip>
+                  </Tooltip>}
                </div>
             )}
          </Header>

@@ -32,11 +32,12 @@ export function* logInSaga(action) {
       let response = yield call(logInApi, action.payload);
 
       let { result, status } = response;
-      console.log("LOGIN_RESULT", result.data.user); 
+      console.log("LOGIN_RESULT", result.data.user?.role); 
 
       if (status === 1) {
          localStorage.setItem("token", result?.data?.accessToken);
          localStorage.setItem("user", JSON.stringify(result?.data?.user)); 
+         localStorage.setItem("role", result?.data?.user?.role); 
          yield put(logInActionsSuccess(result));
          navigate("/"); // Redirect to home
          toast.success(result.message);

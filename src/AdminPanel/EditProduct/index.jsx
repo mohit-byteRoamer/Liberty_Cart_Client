@@ -95,6 +95,7 @@ const EditProduct = () => {
                               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
                            }
                            options={[
+                              { value: "Accessories", label: "Accessories" },
                               { value: "Electronics", label: "Electronics" },
                               { value: "Clothing", label: "Clothing" },
                               { value: "Books", label: "Books" },

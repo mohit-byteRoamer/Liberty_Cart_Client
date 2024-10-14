@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 
 export function LeftArrowBtn({onClick, disabled}) {
@@ -5,6 +6,7 @@ export function LeftArrowBtn({onClick, disabled}) {
       <button onClick={onClick} disabled={disabled} className="flex items-center justify-center w-12 h-12 bg-gray-200 text-black rounded-full transform transition-transform duration-300 ease-out hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:text-white animate-pulse">
          <ArrowLeftOutlined />
       </button>
+      
    );
 }
 

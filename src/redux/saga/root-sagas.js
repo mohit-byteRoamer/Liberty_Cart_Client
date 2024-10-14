@@ -12,7 +12,7 @@ import {
    updateProductSaga,
 } from "./product_saga";
 import { uploadFileSaga } from "./upload_file_saga";
-import { updateCartListSaga } from "./cart-saga";
+import { deleteCartItemSaga, getCartListSaga, updateCartListSaga } from "./cart-saga";
 
 export function* rootSaga() {
    yield takeLatest(reduxConstants.SIGNUP_LOAD, signUpSaga);
@@ -27,4 +27,6 @@ export function* rootSaga() {
    yield takeLatest(reduxConstants.UPDATE_PRODUCT_LOAD, updateProductSaga);
    yield takeLatest(reduxConstants.DELETE_PRODUCT_LOAD, deleteProductSaga);
    yield takeLatest(reduxConstants.UPDATE_CART_LIST_LOAD, updateCartListSaga);
+   yield takeLatest(reduxConstants.GET_CART_LIST_LOAD, getCartListSaga);
+   yield takeLatest(reduxConstants.DELETE_CART_ITEM_LOAD, deleteCartItemSaga);
 }

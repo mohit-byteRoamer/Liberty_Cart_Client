@@ -15,6 +15,7 @@ export const signUpActionsFail = (payload) => ({
   type: reduxConstants.SIGNUP_FAIL,
   payload,
 });
+// ------------------------------------------------------ //
 
 // Login Action
 export const logInActionsLoad = (payload) => ({
@@ -31,3 +32,4 @@ export const logInActionsFail = (payload) => ({
   type: reduxConstants.LOGIN_FAIL,
   payload,
 });
+// ------------------------------------------------------ //
