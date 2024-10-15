@@ -4,7 +4,6 @@ import {
    deleteCartItemFail,
    deleteCartItemSuccess,
    getCartListFail,
-   getCartListLoad,
    getCartListSuccess,
    updateCartListFail,
    updateCartListSuccess,
@@ -14,28 +13,33 @@ import toast from "react-hot-toast";
 //Update_Cart_List_Saga
 export function* updateCartListSaga(action) {
    console.log("UPDATE_CART_SAGA", action.payload);
+   const { removeProductSuccessFunctionCall } = action.payload;
    try {
-      const response = yield call(UpdateCartApi, action.payload);
+      const response = yield call(UpdateCartApi, action.payload.apiPayload);
       const { result, status } = response;
       console.log("Update_Cart_Saga_Result", result);
       if (status === 1) {
          yield put(updateCartListSuccess(result));
+         if (removeProductSuccessFunctionCall) {
+            yield call(removeProductSuccessFunctionCall);
+         }
       } else {
          yield put(updateCartListFail(result));
          toast.error(result?.message);
       }
    } catch (error) {
       yield put(updateCartListFail(error));
-      toast.error("Internal Server Error");
+      console.log("PRODUCT_Error", error);
+
+      toast.error("Update_Internal Server Error");
    }
 }
 // ------------------------------------------------------------------ //
 
 // Get_Cart_List_Saga
-export function* getCartListSaga(action) {
-   console.log("GET_CART_SAGA", action.payload);
+export function* getCartListSaga() {
    try {
-      const response = yield call(getCartListApi, action.payload);
+      const response = yield call(getCartListApi);
       const { result, status } = response;
       console.log("Get_Cart_Saga_Result", response?.result);
       if (status === 1) {
@@ -69,4 +73,24 @@ export function* deleteCartItemSaga(action) {
       toast.error("Internal Server Error");
    }
 }
+// ------------------------------------------------------------------ //
+
+// // Increase_Quantity_Saga
+// export function* increaseQuantitySaga(action) {
+//    console.log("Increase_Quantity_Saga", action.payload);
+//    try {
+//       const response = yield call(UpdateCartApi, action.payload);
+//       const { result, status } = response;
+//       console.log("Increase_Quantity_Saga_Result", result);
+//       if (status === 1) {
+//          yield put(increaseQuantitySuccess(result));
+//       } else {
+//          yield put(increaseQuantityFail(result));
+//          toast.error(result?.message);
+//       }
+//    } catch (error) {
+//       yield put(increaseQuantityFail(error));
+//       toast.error("Internal Server Error");
+//    }
+// }
 // ------------------------------------------------------------------ //

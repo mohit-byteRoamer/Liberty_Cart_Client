@@ -8,11 +8,11 @@ let header = {
 let header1 = {
    "Content-Type": "multipart/form-data",
 };
+// ---------------------------------------------------------------------------------- //
 
 // AUTH API'S
 export const signUpApi = (data) => Method.POST(`users/register`, data, header);
 export const logInApi = (data) => Method.POST(`users/login`, data, header);
-
 // ---------------------------------------------------------------------------------- //
 
 // PRODUCT API'S
@@ -21,27 +21,26 @@ export const getProductApi = ({ pageNumber, category }) => Method.GET(`product/a
 export const getProductCategoryApi = () => Method.GET("product/category", header);
 export const getLatestProductApi = () => Method.GET("product/latest", header);
 export const getProductDetailApi = (id) => Method.GET(`product/${id}`, header);
-
 // ---------------------------------------------------------------------------------- //
 
 // ADMIN API'S
 export const getAdminProductApi = (pageNumber) => Method.GET(`product/admin-products?page=${pageNumber}`, header);
 export const updateProductApi = (data) => Method.PUT(`product/${data.id}`, data, header);
 export const deleteProductApi = (id) => Method.DELETE(`product/${id}`, header);
-
 // ---------------------------------------------------------------------------------- //
 
 // UPLOAD FILE API
 export const uploadFileApi = (data) => Method.POST("common/uploadFile", data, header1);
-
 // ---------------------------------------------------------------------------------- //
 
 // CART API'S
-export const UpdateCartApi = (data) => Method.POST("cart/update-cart", data, header);
+export const UpdateCartApi = (apiPayload) => Method.POST("cart/update-cart", apiPayload, header);
 export const getCartListApi = () => Method.GET("cart/list", header);
 export const DeleteCartApi = (id) => Method.DELETE(`cart/delete/${id}`, header);
+// ---------------------------------------------------------------------------------- //
 
 // ---------------------------------------------------------------------------------- //
+
 
 // Second Way for create a LogInAPI
 // export const logInApi = async (data) => {

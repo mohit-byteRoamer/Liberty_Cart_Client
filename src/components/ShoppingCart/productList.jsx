@@ -3,13 +3,16 @@
 import { Table, InputNumber, Button } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCartItemLoad, getCartListLoad } from "../../redux/action/cart_actions";
+import {
+   deleteCartItemLoad,
+   getCartListLoad,
+   updateCartListLoad,
+} from "../../redux/action/cart_actions";
 import { DeleteOutlined } from "@ant-design/icons";
 
 const ProductList = () => {
    const dispatch = useDispatch();
-   const cartData = useSelector((state) => state?.CartReducer); // cartData extract kiya state se
-   console.log("Cart Data", cartData);
+   const cartData = useSelector((state) => state?.CartReducer);
    const [selectedItem, setSelectedItem] = useState();
 
    useEffect(() => {
@@ -17,10 +20,9 @@ const ProductList = () => {
    }, []);
 
    // Transform cartData to match the Table's dataSource structure
-   const transformedCartData = cartData?.cartData.map((item) => {
-      console.log("MAP_Item", item); // Log each item to see the original data
-
+   const transformedCartData = cartData?.cartData.map((item, key) => {
       return {
+         key: key,
          userId: item._id, // Unique key for each row
          productId: item.productId._id, // Product ID from productId
          name: item.productId.name, // Product name from productId
@@ -39,16 +41,40 @@ const ProductList = () => {
       dispatch(deleteCartItemLoad({ id, removeProductSuccessFunctionCall }));
    };
 
+   const handleQuantityChange = (newValue, record, removeProductSuccessFunctionCall) => {
+      if (newValue > record.quantity) {
+         dispatch(
+            updateCartListLoad({
+               apiPayload: { productId: record.productId, quantity: newValue, action: "increase" },
+               removeProductSuccessFunctionCall,
+            })
+         );
+      } else if (newValue < record.quantity) {
+         dispatch(
+            updateCartListLoad({
+               apiPayload: {
+                  productId: record.productId,
+                  quantity: newValue,
+                  action: "decrease",
+               },
+               removeProductSuccessFunctionCall,
+            })
+         );
+      }
+   };
+
    const removeProductSuccessFunctionCall = () => {
       dispatch(getCartListLoad());
       setSelectedItem(null);
    };
+
    const columns = [
       // Title : Product
       {
          title: "Product",
          dataIndex: "name",
          key: "name",
+         width: 200,
          render: (text, record) => (
             <div className="flex items-center">
                <img src={record.image} alt={record.name} className="w-16 h-16 object-cover mr-4" />
@@ -65,6 +91,7 @@ const ProductList = () => {
          title: "Price",
          dataIndex: "price",
          key: "price",
+         width: 100,
          render: (price) => <span>${price.toFixed(2)}</span>,
       },
       // Title : Quantity
@@ -72,12 +99,22 @@ const ProductList = () => {
          title: "Quantity",
          dataIndex: "quantity",
          key: "quantity",
-         render: (quantity) => <InputNumber min={1} defaultValue={quantity} className="mx-2" />,
+         width: 100,
+         render: (quantity, record) => (
+            <InputNumber
+               min={1}
+               defaultValue={quantity}
+               onChange={(newValue) =>
+                  handleQuantityChange(newValue, record, removeProductSuccessFunctionCall)
+               }
+            />
+         ),
       },
       // Title : TOtal Price
       {
          title: "Total Price",
          key: "total",
+         width: 100,
          render: (_, record) => (
             <span className="text-orange-500 font-semibold">
                ${(record.price * record.quantity).toFixed(2)}
@@ -88,6 +125,7 @@ const ProductList = () => {
       {
          title: "Action",
          key: "delete",
+         width: 50,
          render: (_, record) => (
             <Button
                loading={record.userId === selectedItem && cartData?.deleteCartItemLoader}
@@ -104,9 +142,11 @@ const ProductList = () => {
       <div className="bg-white p-4 shadow-md rounded-md w-full">
          <h2 className="text-xl font-semibold mb-4">Shopping Bag</h2>
          <Table
+            // className="border-2"
             loading={cartData?.getCartLoader} // Loading state
             columns={columns} // Table columns
             dataSource={transformedCartData} // Transformed cartData
+            scroll={{ x: 500 }}
             pagination={false}
          />
       </div>

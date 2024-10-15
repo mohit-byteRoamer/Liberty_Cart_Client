@@ -1,4 +1,4 @@
-import { takeLatest } from "redux-saga/effects";
+import { takeEvery, takeLatest } from "redux-saga/effects";
 import reduxConstants from "../constants/reduxConstants";
 import { logInSaga, signUpSaga } from "./auth-sagas";
 import {

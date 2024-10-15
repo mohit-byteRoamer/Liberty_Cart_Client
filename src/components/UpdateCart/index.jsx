@@ -10,7 +10,7 @@ function UpdateCart({ id }) {
       e.stopPropagation();
       e.preventDefault();
 
-      dispatch(updateCartListLoad({ productId: id, action: "add" }));
+      dispatch(updateCartListLoad({ apiPayload: { productId: id, action: "add" } }));
    };
 
    return (

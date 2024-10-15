@@ -6,6 +6,9 @@ const initialState = {
    cartData: [],
    deleteCartItemLoader: false,
    deleteCartItem: {},
+   quantity: 1,
+   increaseQuantity: false,
+   decreaseQuantity: false,
 };
 
 function CartReducer(state = initialState, action) {

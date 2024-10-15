@@ -238,7 +238,7 @@ const CartSummary = () => {
       "Uttarakhand",
       "West Bengal",
    ];
-
+   
    // On form submit
    const onSubmit = (data) => {
       console.log("Form Data: ", data);
@@ -350,7 +350,7 @@ const CartSummary = () => {
          </div>
 
          <Button type="primary" block className="mt-4">
-            Checkout
+            Place Order
          </Button>
       </Form>
    );
