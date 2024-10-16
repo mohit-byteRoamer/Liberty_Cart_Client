@@ -3,21 +3,18 @@ import SectionTopBar from "../SectionTopBar";
 import ProductSlider from "../ProductSlider/ProductSlider";
 import ViewBtn from "../Buttons/ViewBtn";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getProductLoad } from "../../redux/action/product_action";
-import Page from "../Pagination";
 
 function ExploreOurProduct() {
    const productReducerState = useSelector((state) => state?.ProductReducer);
    const { products, getProductLoader } = productReducerState;
-   const totalPage = products?.totalPage || 0;
-   const [pageNumber, setPageNumber] = useState(1);
 
    const dispatch = useDispatch();
 
    useEffect(() => {
-      dispatch(getProductLoad(pageNumber));
-   }, [pageNumber]);
+      dispatch(getProductLoad());
+   }, []);
 
    if (getProductLoader)
       return (

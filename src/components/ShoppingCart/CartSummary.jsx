@@ -1,5 +1,5 @@
 // CartSummary.jsx
-import { Input, Button, Select, Form } from "antd";
+import { Input, Button, Select, Form, Card, Descriptions, Statistic, Col, Row } from "antd";
 import { useForm, Controller } from "react-hook-form";
 
 const CartSummary = () => {
@@ -238,35 +238,107 @@ const CartSummary = () => {
       "Uttarakhand",
       "West Bengal",
    ];
-   
+
    // On form submit
    const onSubmit = (data) => {
       console.log("Form Data: ", data);
+      const orderPayload = {
+         shippingInfo: {
+            address: data.address,
+            city: data.city,
+            state: data.state,
+            country: data.country,
+            zip: parseInt(data.zip),
+            paymentMethod: data.paymentMethod,
+         },
+         subTotal: 0,
+         tax: 0,
+         shippingCharges: 0,
+         discount: 0,
+         total: 0,
+         orderItems: [
+            {
+               name: "",
+               photo: "",
+               price: "",
+               quantity: "",
+               productId: "",
+            },
+         ],
+      };
    };
 
    return (
       <Form onFinish={handleSubmit(onSubmit)} className="p-4 bg-white shadow-md rounded-md">
          <h3 className="font-semibold text-lg mb-4">Shipping Address</h3>
 
-         {/* Country */}
+         {/* Address */}
          <Controller
-            name="country"
+            name="address"
             control={control}
-            defaultValue={undefined}
-            rules={{ required: "Country is required" }}
+            defaultValue=""
+            rules={{
+               required: "Address is required",
+               minLength: {
+                  value: 10,
+                  message: "Address must be at least 10 characters long",
+               },
+               maxLength: {
+                  value: 100,
+                  message: "Address cannot exceed 100 characters",
+               },
+               pattern: {
+                  value: /^[a-zA-Z0-9\s,.'-]{10,100}$/,
+                  message: "Invalid address format",
+               },
+               validate: {
+                  startsWithNumber: (value) =>
+                     !/^\d/.test(value) || "Address cannot start with a number",
+                  startsWithSpace: (value) =>
+                     !/^\s/.test(value) || "Address cannot start with a space",
+                  endsWithSpace: (value) => !/\s$/.test(value) || "Address cannot end with a space",
+               },
+            }}
             render={({ field }) => (
-               <Select {...field} className="w-full mb-2" placeholder="Country">
-                  {countries.map((country, index) => (
-                     <Option key={index} value={country}>
-                        {country}
-                     </Option>
-                  ))}
-               </Select>
+               <Input {...field} placeholder="Address" allowClear className="mb-2" />
             )}
          />
-         {errors.country && <p className="text-red-500">{errors.country.message}</p>}
+         {errors.address && <p className="text-red-500">{errors.address.message}</p>}
 
-         {/* State / City */}
+         {/* City */}
+         <Controller
+            name="city"
+            control={control}
+            defaultValue={""}
+            rules={{
+               required: "City is required",
+               pattern: {
+                  value: /^[a-zA-Z\s]{2,30}$/,
+                  message: "Invalid city format",
+               },
+               minLength: {
+                  value: 2,
+                  message: "City must be at least 2 characters long",
+               },
+               maxLength: {
+                  value: 30,
+                  message: "City cannot exceed 30 characters",
+               },
+               validate: {
+                  startsWithNumber: (value) =>
+                     !/^\d/.test(value) || "Address cannot start with a number",
+                  startsWithSpace: (value) =>
+                     !/^\s/.test(value) || "Address cannot start with a space",
+                  endsWithSpace: (value) => !/\s$/.test(value) || "Address cannot end with a space",
+               },
+            }}
+            render={({ field }) => (
+               <Input {...field} placeholder="City" allowClear className="mb-2" />
+            )}
+         />
+         {errors.city && <p className="text-red-500">{errors.city.message}</p>}
+
+         {/* State */}
          <Controller
             name="state"
             control={control}
@@ -289,51 +361,74 @@ const CartSummary = () => {
          />
          {errors.state && <p className="text-red-500">{errors.state.message}</p>}
 
-         {/* Address */}
+         {/* Country */}
          <Controller
-            name="address"
+            name="country"
             control={control}
-            defaultValue=""
-            rules={{ required: "Address is required" }}
-            render={({ field }) => <Input {...field} placeholder="Address" className="mb-2" />}
+            defaultValue={undefined}
+            rules={{ required: "Country is required" }}
+            render={({ field }) => (
+               <Select {...field} className="w-full mb-2" placeholder="Country">
+                  {countries.map((country, index) => (
+                     <Option key={index} value={country}>
+                        {country}
+                     </Option>
+                  ))}
+               </Select>
+            )}
          />
-         {errors.address && <p className="text-red-500">{errors.address.message}</p>}
+         {errors.country && <p className="text-red-500">{errors.country.message}</p>}
 
          {/* ZIP Code */}
          <Controller
             name="pinCode"
             control={control}
             defaultValue=""
-            rules={{ required: "ZIP Code is required" }}
+            rules={{
+               required: "ZIP Code is required",
+               pattern: {
+                  value: /^\d{6}$/,
+                  message: "Invalid ZIP Code format",
+               },
+               minLength: {
+                  value: 6,
+                  message: "ZIP Code must be 6 digits long",
+               },
+               maxLength: {
+                  value: 6,
+                  message: "ZIP Code cannot exceed 6 digits",
+               },
+            }}
             render={({ field }) => <Input {...field} placeholder="ZIP Code" className="mb-2" />}
          />
          {errors.pinCode && <p className="text-red-500">{errors.pinCode.message}</p>}
 
-         <Button type="primary" htmlType="submit" block>
-            Update Address
-         </Button>
+         <div className="border-t-2 border-b-2 pb-2 shadow-md">
+            <h3 className="font-semibold text-lg mt-4 mb-4">Coupon Code</h3>
 
-         <h3 className="font-semibold text-lg mt-4 mb-4">Coupon Code</h3>
+            {/* Coupon Code */}
+            <Controller
+               name="coupon"
+               control={control}
+               defaultValue=""
+               render={({ field }) => (
+                  <Input {...field} placeholder="Enter Coupon Code" className="mb-2" />
+               )}
+            />
+            {errors.coupon && <p className="text-red-500">{errors.coupon.message}</p>}
+            <Button type="primary" htmlType="button" block>
+               Apply
+            </Button>
+         </div>
 
-         {/* Coupon Code */}
-         <Controller
-            name="coupon"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-               <Input {...field} placeholder="Enter Coupon Code" className="mb-2" />
-            )}
-         />
-         {errors.coupon && <p className="text-red-500">{errors.coupon.message}</p>}
-
-         <Button type="primary" htmlType="button" block>
-            Apply
-         </Button>
-
-         <div className="mt-4 p-4 bg-yellow-100 rounded-md">
+         {/* <div className="mt-4 p-4 bg-yellow-100 rounded-md">
             <div className="flex justify-between mb-2">
-               <span>Cart Subtotal</span>
+               <span>Cart SubTotal</span>
                <span>$71.50</span>
+            </div>
+            <div className="flex justify-between mb-2">
+               <span>Tax</span>
+               <span>4</span>
             </div>
             <div className="flex justify-between mb-2">
                <span>Shipping</span>
@@ -347,9 +442,37 @@ const CartSummary = () => {
                <span>Cart Total</span>
                <span>$67.50</span>
             </div>
-         </div>
+            <div className="flex justify-between font-bold text-lg">
+               <span>Status</span>
+               <span></span>
+            </div>
+         </div> */}
+         <Card title="Order Summary" bordered={false} className="bg-[#fffbea]">
+            <Descriptions size="small" column={1} bordered>
+               <Descriptions.Item label="Cart SubTotal">
+                  <Statistic style={{ fontSize: '12px' }} value={71.5} precision={2} prefix="" />
+               </Descriptions.Item>
+               <Descriptions.Item label="Tax">
+                  <Statistic value={4} precision={2} prefix="" />
+               </Descriptions.Item>
+               <Descriptions.Item label="Shipping">
+                  <span>Free</span>
+               </Descriptions.Item>
+               <Descriptions.Item label="Discount">
+                  <Statistic value={-4.0} precision={2} prefix="" />
+               </Descriptions.Item>
+            </Descriptions>
 
-         <Button type="primary" block className="mt-4">
+            <Row gutter={50} className="pt-5 px-2">
+               <Col span={12}>
+                  <Statistic title="Cart Total" value={67.5} precision={2} prefix="" />
+               </Col>
+               <Col span={12}>
+                  <Statistic title="Status"/>
+               </Col>
+            </Row>
+         </Card>
+         <Button type="primary" block htmlType="submit" className="mt-4">
             Place Order
          </Button>
       </Form>

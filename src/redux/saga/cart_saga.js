@@ -12,12 +12,11 @@ import toast from "react-hot-toast";
 
 //Update_Cart_List_Saga
 export function* updateCartListSaga(action) {
-   console.log("UPDATE_CART_SAGA", action.payload);
    const { removeProductSuccessFunctionCall } = action.payload;
    try {
       const response = yield call(UpdateCartApi, action.payload.apiPayload);
       const { result, status } = response;
-      console.log("Update_Cart_Saga_Result", result);
+
       if (status === 1) {
          yield put(updateCartListSuccess(result));
          if (removeProductSuccessFunctionCall) {
@@ -29,9 +28,7 @@ export function* updateCartListSaga(action) {
       }
    } catch (error) {
       yield put(updateCartListFail(error));
-      console.log("PRODUCT_Error", error);
-
-      toast.error("Update_Internal Server Error");
+      toast.error("Internal Server Error");
    }
 }
 // ------------------------------------------------------------------ //
@@ -63,7 +60,7 @@ export function* deleteCartItemSaga(action) {
       const { result, status } = response;
       if (status === 1) {
          yield put(deleteCartItemSuccess(result));
-         yield call(removeProductSuccessFunctionCall());
+         yield call(removeProductSuccessFunctionCall);
       } else {
          yield put(deleteCartItemFail(result));
          toast.error(result?.message);

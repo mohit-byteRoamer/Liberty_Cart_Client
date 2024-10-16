@@ -4,6 +4,7 @@ const initialState = {
    updateCartLoader: false,
    getCartLoader: false,
    cartData: [],
+   cartCount: 0,
    deleteCartItemLoader: false,
    deleteCartItem: {},
    quantity: 1,

@@ -8,8 +8,6 @@ import BreadCrumb from "../../breadCrumb";
 const AppHeader = () => {
    const isAuthenticated = !!localStorage.getItem("token");
    const role = localStorage.getItem("role");
-   console.log("ROLE", role);
-   
 
    // Menu items based on authentication status
    const menuItems = [

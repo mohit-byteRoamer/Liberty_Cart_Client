@@ -17,14 +17,16 @@ export const logInApi = (data) => Method.POST(`users/login`, data, header);
 
 // PRODUCT API'S
 export const createProductApi = (data) => Method.POST("product/new", data, header);
-export const getProductApi = ({ pageNumber, category }) => Method.GET(`product/all?page=${pageNumber}&category=${category || ""}`, header);
+export const getProductApi = ({ pageNumber, category }) =>
+   Method.GET(`product/all?page=${pageNumber || ""}&category=${category || ""}`, header);
 export const getProductCategoryApi = () => Method.GET("product/category", header);
 export const getLatestProductApi = () => Method.GET("product/latest", header);
 export const getProductDetailApi = (id) => Method.GET(`product/${id}`, header);
 // ---------------------------------------------------------------------------------- //
 
 // ADMIN API'S
-export const getAdminProductApi = (pageNumber) => Method.GET(`product/admin-products?page=${pageNumber}`, header);
+export const getAdminProductApi = (pageNumber) =>
+   Method.GET(`product/admin-products?page=${pageNumber}`, header);
 export const updateProductApi = (data) => Method.PUT(`product/${data.id}`, data, header);
 export const deleteProductApi = (id) => Method.DELETE(`product/${id}`, header);
 // ---------------------------------------------------------------------------------- //
@@ -38,9 +40,10 @@ export const UpdateCartApi = (apiPayload) => Method.POST("cart/update-cart", api
 export const getCartListApi = () => Method.GET("cart/list", header);
 export const DeleteCartApi = (id) => Method.DELETE(`cart/delete/${id}`, header);
 // ---------------------------------------------------------------------------------- //
+// Order API's
+export const createNewOrderApi = (data) => Method.POST("order/new", data, header);
 
 // ---------------------------------------------------------------------------------- //
-
 
 // Second Way for create a LogInAPI
 // export const logInApi = async (data) => {

@@ -50,10 +50,8 @@ export function* createProductSaga(action) {
 
 // CALL GET PRODUCTS SAGA FUNCTION BY ROOT_SAGA
 export function* getProductSaga(action) {
-   console.log("GET_PRODUCT_SAGA", action);
-   
    try {
-      const response = yield call(getProductApi, action.payload);
+      const response = yield call(getProductApi, action.payload ? action.payload : "");
       const { result, status } = response || {};
       if (status === 1) {
          yield put(getProductSuccess(result?.data));
@@ -138,7 +136,7 @@ export function* getProductAdminSaga(action) {
 // CALL UPDATE PRODUCTS  SAGA FUNCTION BY ROOT_SAGA
 export function* updateProductSaga(action) {
    console.log("Update_Product_Saga", action);
-   
+
    try {
       const { navigate } = action.payload;
       const response = yield call(updateProductApi, action.payload.updateData);

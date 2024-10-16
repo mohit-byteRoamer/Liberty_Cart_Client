@@ -5,14 +5,14 @@ import { Link, useLocation } from "react-router-dom";
 const BreadCrumb = () => {
    const location = useLocation();
    const pathNames = location.pathname.split("/").filter((i) => i);
-   
+
    // Helper function to capitalize each breadcrumb title
    const capatilize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
    // Check if a path segment is numeric (assumed to be an ID) and exclude it
-   const filteredPathNames = pathNames.filter(name => isNaN(name) && !/^[0-9a-fA-F]{24}$/.test(name));
-   console.log("filteredPathNames",filteredPathNames);
-   
+   const filteredPathNames = pathNames.filter(
+      (name) => isNaN(name) && !/^[0-9a-fA-F]{24}$/.test(name)
+   );
 
    return (
       <Breadcrumb
