@@ -1,8 +1,11 @@
 // CartSummary.jsx
 import { Input, Button, Select, Form, Card, Descriptions, Statistic, Col, Row } from "antd";
 import { useForm, Controller } from "react-hook-form";
+import { LuIndianRupee } from "react-icons/lu";
 
-const CartSummary = () => {
+const CartSummary = ({ cartData }) => {
+   console.log("cartData", cartData);
+   
    const { Option } = Select;
    const {
       control,
@@ -239,6 +242,15 @@ const CartSummary = () => {
       "West Bengal",
    ];
 
+   const orderItems = cartData.map((item) => {
+      return {
+         name: item.name,
+         photo: item.image,
+         price: item.price,
+         quantity: item.quantity,
+         productId: item.productId,
+      };
+   });
    // On form submit
    const onSubmit = (data) => {
       console.log("Form Data: ", data);
@@ -256,16 +268,9 @@ const CartSummary = () => {
          shippingCharges: 0,
          discount: 0,
          total: 0,
-         orderItems: [
-            {
-               name: "",
-               photo: "",
-               price: "",
-               quantity: "",
-               productId: "",
-            },
-         ],
+         orderItems: orderItems, // passing the orderitems array
       };
+      console.log("orderPayload", orderPayload);
    };
 
    return (
@@ -450,7 +455,7 @@ const CartSummary = () => {
          <Card title="Order Summary" bordered={false} className="bg-[#fffbea]">
             <Descriptions size="small" column={1} bordered>
                <Descriptions.Item label="Cart SubTotal">
-                  <Statistic style={{ fontSize: '12px' }} value={71.5} precision={2} prefix="" />
+                  <Statistic style={{ fontSize: "12px" }} value={71.5} precision={2} prefix="" />
                </Descriptions.Item>
                <Descriptions.Item label="Tax">
                   <Statistic value={4} precision={2} prefix="" />
@@ -468,7 +473,7 @@ const CartSummary = () => {
                   <Statistic title="Cart Total" value={67.5} precision={2} prefix="" />
                </Col>
                <Col span={12}>
-                  <Statistic title="Status"/>
+                  <Statistic title="Status" />
                </Col>
             </Row>
          </Card>

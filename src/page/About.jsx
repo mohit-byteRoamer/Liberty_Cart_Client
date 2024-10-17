@@ -1,27 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Row, Col, Card } from "antd";
+import { Row, Col } from "antd";
 import "antd/dist/reset.css"; // Import Ant Design styles
 import "tailwindcss/tailwind.css"; // Import Tailwind CSS
 import { CustomerServiceFilled, TruckOutlined } from "@ant-design/icons";
 import ServiceCard from "../components/Cards/ServiceCard";
-
-const team = [
-   {
-      name: "Tom Cruise",
-      role: "Founder & Chairman",
-      img: "https://purepng.com/public/uploads/large/purepng.com-tom-cruisetom-cruisetomcruisethomascruise-mapotheramerican-actorproducerimf-agentethan-huntmission-impossible-1701528084361vstnq.png",
-   },
-   {
-      name: "Emma Watson",
-      role: "Managing Director",
-      img: "https://i.pinimg.com/564x/1c/4d/c8/1c4dc8d4eb15e8461dd285aa9091fbdf.jpg",
-   },
-   {
-      name: "Will Smith",
-      role: "Product Designer",
-      img: "https://img.freepik.com/premium-photo/business-man-wearing-neat-suit-solid-white-background_791818-2246.jpg?w=740",
-   },
-];
 
 function About() {
    return (
@@ -47,29 +29,6 @@ function About() {
                      className="w-full h-auto object-contain rounded-md"
                   />
                </Col>
-            </Row>
-         </section>
-
-         {/* Team Section */}
-         <section className="py-12 bg-gray-50">
-            <Row className="container flex justify-between mx-auto px-2">
-               {team.map((member, index) => (
-                  <Col key={index} span={7}>
-                     <Card
-                        hoverable
-                        cover={
-                           <img
-                              className="object-contain h-96 pt-5"
-                              alt={member.name}
-                              src={member.img}
-                           />
-                        }
-                        className="text-center">
-                        <h3 className="text-lg font-semibold">{member.name}</h3>
-                        <p className="text-gray-500">{member.role}</p>
-                     </Card>
-                  </Col>
-               ))}
             </Row>
          </section>
 

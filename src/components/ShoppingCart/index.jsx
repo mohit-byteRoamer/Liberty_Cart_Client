@@ -11,11 +11,13 @@ import {
    updateCartListLoad,
 } from "../../redux/action/cart_actions";
 import { DeleteOutlined } from "@ant-design/icons";
+import { LuIndianRupee } from "react-icons/lu";
 
 function shoppingCart() {
    const dispatch = useDispatch();
    const cartData = useSelector((state) => state?.CartReducer);
    const [selectedItem, setSelectedItem] = useState();
+   
 
    useEffect(() => {
       dispatch(getCartListLoad());
@@ -90,11 +92,11 @@ function shoppingCart() {
       },
       // Title : Price
       {
-         title: "Price",
+         title: `Price`,
          dataIndex: "price",
          key: "price",
          width: 100,
-         render: (price) => <span>${price.toFixed(2)}</span>,
+         render: (price) => <span className="flex items-center"> <LuIndianRupee />{price.toFixed(2)} </span>, 
       },
       // Title : Quantity
       {
@@ -118,8 +120,8 @@ function shoppingCart() {
          key: "total",
          width: 100,
          render: (_, record) => (
-            <span className="text-orange-500 font-semibold">
-               ${(record.price * record.quantity).toFixed(2)}
+            <span className="text-orange-500 font-semibold flex items-center">
+               <LuIndianRupee />{(record.price * record.quantity).toFixed(2)}
             </span>
          ),
       },
@@ -146,7 +148,7 @@ function shoppingCart() {
             <ProductList columns={columns} transformedCartData={transformedCartData} loading={cartData?.getCartLoader} />
          </div>
          <div className="w-1/3 ml-4">
-            <CartSummary />
+            <CartSummary cartData={transformedCartData} />
          </div>
       </div>
    );

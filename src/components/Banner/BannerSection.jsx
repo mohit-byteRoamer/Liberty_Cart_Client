@@ -1,6 +1,5 @@
 import { Layout, theme } from "antd";
 import Banner from "./Banner";
-import SideMenu from "../SideMenu";
 
 const { Content } = Layout; // Missing 'Header' added
 
@@ -10,9 +9,8 @@ const BannerSection = () => {
    } = theme.useToken();
 
    return (
-      <Layout className="flex bg-white dark:bg-gray-800 dark:text-white">
-         <SideMenu />
-         <Content className="pt-4">
+      <Layout className="bg-white dark:bg-gray-800 dark:text-white">
+         <Content>
             <div
                style={{
                   background: colorBgContainer,
