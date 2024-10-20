@@ -3,7 +3,6 @@
 // ProductList.jsx
 import { Table } from "antd";
 
-
 const ProductList = ({ columns, transformedCartData, loading }) => {
    return (
       <div className="bg-white p-4 shadow-md rounded-md w-full">

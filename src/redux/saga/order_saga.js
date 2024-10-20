@@ -1,24 +1,25 @@
 import { call, put } from "redux-saga/effects";
-import { createNewOrderApi } from "../axios/axios-api";
-import { createNewOrderFail, createNewOrderSuccess } from "../action/order_actions";
+import { createOrderApi } from "../axios/axios-api";
 import toast from "react-hot-toast";
+import { createOrderFail, createOrderSuccess } from "../action/order_actions";
 
-export function* createNewOrderSaga(action) {
+export function* createOrderSaga(action) {
    console.log("createNewOrderSaga", action);
-
+   console.log("createNewOrderSaga (payload)", action.payload.apiPayload);
    try {
-      const response = yield call(createNewOrderApi, action.payload);
+      const response = yield call(createOrderApi, action.payload.apiPayload);
       console.log("createNewOrderSaga response:", response);
       const { result, status } = response;
       if (status === 1) {
-         yield put(createNewOrderSuccess(result));
+         yield put(createOrderSuccess(result));
          toast.success(result?.message);
       } else {
-         yield put(createNewOrderFail());
+         yield put(createOrderFail(result));
+         console.log("404 bad request");
          toast.error(result?.message);
       }
    } catch (error) {
-      yield put(createNewOrderFail(error));
+      yield put(createOrderFail(error));
       console.log("Internal Server Error");
    }
 }

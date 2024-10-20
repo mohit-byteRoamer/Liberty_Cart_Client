@@ -41,7 +41,7 @@ export const getCartListApi = () => Method.GET("cart/list", header);
 export const DeleteCartApi = (id) => Method.DELETE(`cart/delete/${id}`, header);
 // ---------------------------------------------------------------------------------- //
 // Order API's
-export const createNewOrderApi = (data) => Method.POST("order/new", data, header);
+export const createOrderApi = (data) => Method.POST("order/new", data, header);
 
 // ---------------------------------------------------------------------------------- //
 

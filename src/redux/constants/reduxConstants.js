@@ -84,9 +84,9 @@ const reduxConstants = {
    // ----------------------------------------------------------- //
 
    // CREATE_NEW_ORDER_BY_USER
-   CREATE_NEW_ORDER_LOAD: "CREATE_NEW_ORDER_LOAD",
-   CREATE_NEW_ORDER_SUCCESS: "CREATE_NEW_ORDER_SUCCESS",
-   CREATE_NEW_ORDER_FAIL: "CREATE_NEW_ORDER_FAIL",
+   CREATE_ORDER_LOAD: "CREATE_ORDER_LOAD",
+   CREATE_ORDER_SUCCESS: "CREATE_ORDER_SUCCESS",
+   CREATE_ORDER_FAIL: "CREATE_ORDER_FAIL",
    // ----------------------------------------------------------- //
 };
 

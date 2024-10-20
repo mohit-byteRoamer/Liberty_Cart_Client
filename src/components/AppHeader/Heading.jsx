@@ -11,7 +11,6 @@ import { TbShoppingCartHeart } from "react-icons/tb";
 export function Heading() {
    const [isDarkMode, setIsDarkMode] = useState(false);
    const user = JSON.parse(localStorage.getItem("user"))
-   console.log("GET_USER", user);
    
 
    // Add a check if logInUser is undefined or null

@@ -18,6 +18,7 @@ import MyProduct from "./adminPanel/MyProduct/index";
 import EditProduct from "./adminPanel/EditProduct/index";
 import AllProducts from "./components/AllProducts";
 import shoppingCart from "./components/ShoppingCart";
+import ReviewOrder from "./components/ReviewOrder";
 
 function App() {
    const location = useLocation();
@@ -46,6 +47,7 @@ function App() {
                <Route path="/edit-product/:id" element={<ProtectedRoute Component={EditProduct} />} />
                <Route path="/all-products" element={<ProtectedRoute Component={AllProducts} />} />
                <Route path="/shoppingCart" element={<ProtectedRoute Component={shoppingCart} />} />
+               <Route path="/reviewOrder" element={<ProtectedRoute Component={ReviewOrder} />} />
                {/* Error Route */}
                <Route path="*" element={<Error />} />
             </Routes>

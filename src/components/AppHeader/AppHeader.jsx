@@ -1,4 +1,4 @@
-import { PlusSquareOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { GiftOutlined, PlusSquareOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Menu, Tooltip } from "antd";
 import Layout, { Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
@@ -27,14 +27,16 @@ const AppHeader = () => {
          key: "4",
          label: <Link to="/signup">Signup</Link>,
       },
-      isAuthenticated && role === "admin" && {
-         key: "5",
-         label: <Link to="/myProduct">My Product</Link>,
-      },
-      isAuthenticated && role === "admin" && {
-         key: "6",
-         label: <Link to="/all-products">All Product</Link>,
-      },
+      isAuthenticated &&
+         role === "admin" && {
+            key: "5",
+            label: <Link to="/myProduct">My Product</Link>,
+         },
+      isAuthenticated &&
+         role === "admin" && {
+            key: "6",
+            label: <Link to="/all-products">All Product</Link>,
+         },
    ];
 
    return (
@@ -64,18 +66,26 @@ const AppHeader = () => {
 
             {/* Icons */}
             {isAuthenticated && (
-               <div className="flex gap-5 hover:scale-125 transition-all duration-500 ease-in-out ">
+               <div className="flex gap-5">
                   <Tooltip title="Shopping Cart" placement="bottom">
-                     <Link to="/shoppingCart">
-                        <ShoppingCartOutlined className="text-xl" />
+                     <Link to="/shoppingCart" className="">
+                        <ShoppingCartOutlined className="text-xl hover:scale-125 transition-all duration-500 ease-in-out" />
                      </Link>
                   </Tooltip>
 
-                  {role === "admin" && <Tooltip title="Add Product" placement="bottom">
-                     <Link to="/addProduct">
-                        <PlusSquareOutlined className="text-xl" />
+                  <Tooltip title="Review Order" placement="bottom">
+                     <Link to="/reviewOrder">
+                        <GiftOutlined className="text-xl hover:scale-125 transition-all duration-500 ease-in-out" />
                      </Link>
-                  </Tooltip>}
+                  </Tooltip>
+
+                  {role === "admin" && (
+                     <Tooltip title="Add Product" placement="bottom">
+                        <Link to="/addProduct">
+                           <PlusSquareOutlined className="text-xl hover:scale-125 transition-all duration-500 ease-in-out" />
+                        </Link>
+                     </Tooltip>
+                  )}
                </div>
             )}
          </Header>

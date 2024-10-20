@@ -1,17 +1,28 @@
+/* eslint-disable react/prop-types */
 // CartSummary.jsx
 import { Input, Button, Select, Form, Card, Descriptions, Statistic, Col, Row } from "antd";
 import { useForm, Controller } from "react-hook-form";
-import { LuIndianRupee } from "react-icons/lu";
+import { useDispatch } from "react-redux";
+import { createOrderLoad } from "../../redux/action/order_actions";
+import { useNavigate } from "react-router-dom";
 
 const CartSummary = ({ cartData }) => {
-   console.log("cartData", cartData);
-   
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
    const { Option } = Select;
    const {
       control,
       handleSubmit,
       formState: { errors },
    } = useForm();
+
+   // Calculate SubTotal, Tax, Shipping, Discount, and Total
+   const subTotal = cartData.reduce((prev, item) => prev + item.price * item.quantity, 0);
+   const tax = subTotal * 0.18; // 5% tax
+   const shippingCharges = 0; // Free shippingCharges
+   const discount = 100; // Flat ₹100 ka discount
+   const total = subTotal + tax + shippingCharges - discount; // Final Total
+   const status = "Pending";
 
    const countries = [
       "Afghanistan",
@@ -242,34 +253,34 @@ const CartSummary = ({ cartData }) => {
       "West Bengal",
    ];
 
-   const orderItems = cartData.map((item) => {
-      return {
-         name: item.name,
-         photo: item.image,
-         price: item.price,
-         quantity: item.quantity,
-         productId: item.productId,
-      };
-   });
    // On form submit
    const onSubmit = (data) => {
       console.log("Form Data: ", data);
+      console.log("CART_DATA", cartData);
+
       const orderPayload = {
          shippingInfo: {
             address: data.address,
             city: data.city,
             state: data.state,
             country: data.country,
-            zip: parseInt(data.zip),
-            paymentMethod: data.paymentMethod,
+            pinCode: data.pinCode,
          },
-         subTotal: 0,
-         tax: 0,
-         shippingCharges: 0,
-         discount: 0,
-         total: 0,
-         orderItems: orderItems, // passing the orderitems array
+         subTotal: subTotal,
+         tax: tax,
+         shippingCharges: shippingCharges,
+         discount: discount,
+         total: total,
+         status: status,
+         orderItems: cartData.map((item) => ({
+            name: item.name,
+            photo: item.image,
+            price: item.price,
+            quantity: item.quantity,
+            productId: item.productId,
+         })),
       };
+      dispatch(createOrderLoad({ apiPayload: orderPayload, navigate }));
       console.log("orderPayload", orderPayload);
    };
 
@@ -384,7 +395,7 @@ const CartSummary = ({ cartData }) => {
          />
          {errors.country && <p className="text-red-500">{errors.country.message}</p>}
 
-         {/* ZIP Code */}
+         {/* Pin Code */}
          <Controller
             name="pinCode"
             control={control}
@@ -404,7 +415,7 @@ const CartSummary = ({ cartData }) => {
                   message: "ZIP Code cannot exceed 6 digits",
                },
             }}
-            render={({ field }) => <Input {...field} placeholder="ZIP Code" className="mb-2" />}
+            render={({ field }) => <Input {...field} placeholder="Pin Code" className="mb-2" />}
          />
          {errors.pinCode && <p className="text-red-500">{errors.pinCode.message}</p>}
 
@@ -455,25 +466,30 @@ const CartSummary = ({ cartData }) => {
          <Card title="Order Summary" bordered={false} className="bg-[#fffbea]">
             <Descriptions size="small" column={1} bordered>
                <Descriptions.Item label="Cart SubTotal">
-                  <Statistic style={{ fontSize: "12px" }} value={71.5} precision={2} prefix="" />
+                  <Statistic
+                     style={{ fontSize: "12px" }}
+                     value={subTotal ?? 0}
+                     precision={2}
+                     prefix=""
+                  />
                </Descriptions.Item>
                <Descriptions.Item label="Tax">
-                  <Statistic value={4} precision={2} prefix="" />
+                  <Statistic value={tax ?? 0} precision={2} prefix="" />
                </Descriptions.Item>
-               <Descriptions.Item label="Shipping">
-                  <span>Free</span>
+               <Descriptions.Item label="Shipping Charges">
+                  <Statistic value={shippingCharges} precision={2} prefix="" />
                </Descriptions.Item>
                <Descriptions.Item label="Discount">
-                  <Statistic value={-4.0} precision={2} prefix="" />
+                  <Statistic value={discount} precision={2} prefix="" />
                </Descriptions.Item>
             </Descriptions>
 
             <Row gutter={50} className="pt-5 px-2">
                <Col span={12}>
-                  <Statistic title="Cart Total" value={67.5} precision={2} prefix="" />
+                  <Statistic title="Cart Total" value={total} precision={2} prefix="" />
                </Col>
                <Col span={12}>
-                  <Statistic title="Status" />
+                  <Statistic title="Status" value={status} />
                </Col>
             </Row>
          </Card>
@@ -485,3 +501,28 @@ const CartSummary = ({ cartData }) => {
 };
 
 export default CartSummary;
+
+// {
+//    "shippingInfo": {
+//        "address": "123 Main St",
+//        "city": "Los Angeles",
+//        "state": "CA",
+//        "country": "USA",
+//        "pinCode": "90001"
+//    },
+//    "subTotal": 150.50,
+//    "tax": 15.00,
+//    "shippingCharges": 5.00,
+//    "discount": 10.00,
+//    "total": 160.50,
+//    "status": "pending",
+//    "orderItems": [
+//        {
+//            "name": "GOOD QUALITY INDUCTION STOVE",
+//            "photo": "http://res.cloudinary.com/dskk1yghj/image/upload/v1728021688/exmrhnzqaadowce8j5xh.jpg",
+//            "price": 1417,
+//            "quantity": 1,
+//            "productId": "66ff8561a9cd55347dcf5fd7"
+//        }
+//    ]
+// }
