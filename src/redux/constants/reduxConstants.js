@@ -88,6 +88,12 @@ const reduxConstants = {
    CREATE_ORDER_SUCCESS: "CREATE_ORDER_SUCCESS",
    CREATE_ORDER_FAIL: "CREATE_ORDER_FAIL",
    // ----------------------------------------------------------- //
+
+   // GET_ALL_ORDER_BY_USER
+   GET_ALL_ORDER_LOAD: "GET_ALL_ORDER_LOAD",
+   GET_ALL_ORDER_SUCCESS: "GET_ALL_ORDER_SUCCESS",
+   GET_ALL_ORDER_FAIL: "GET_ALL_ORDER_FAIL",
+   // ----------------------------------------------------------- //
 };
 
 export default reduxConstants;
