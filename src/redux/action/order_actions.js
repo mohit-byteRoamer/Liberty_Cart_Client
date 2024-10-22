@@ -16,6 +16,22 @@ export const createOrderFail = () => ({
 });
 // ------------------------------------------------------ //
 
+// Delete_Order_Action
+export const deleteOrderLoad = (payload) => ({
+   type: reduxConstants.DELETE_ORDER_LOAD,
+   payload,
+});
+
+export const deleteOrderSuccess = (payload) => ({
+   type: reduxConstants.DELETE_ORDER_SUCCESS,
+   payload,
+});
+
+export const deleteOrderFail = () => ({
+   type: reduxConstants.DELETE_ORDER_FAIL,
+});
+// ------------------------------------------------------ //
+
 // Get_All_Order_Action
 export const getAllOrderLoad = () => ({
    type: reduxConstants.GET_ALL_ORDER_LOAD,

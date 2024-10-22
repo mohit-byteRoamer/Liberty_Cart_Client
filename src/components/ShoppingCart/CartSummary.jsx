@@ -20,7 +20,7 @@ const CartSummary = ({ cartData }) => {
    const subTotal = cartData.reduce((prev, item) => prev + item.price * item.quantity, 0);
    const tax = subTotal * 0.18; // 5% tax
    const shippingCharges = 0; // Free shippingCharges
-   const discount = 100; // Flat ₹100 ka discount
+   const discount = subTotal * 0.18; // 5% discount
    const total = subTotal + tax + shippingCharges - discount; // Final Total
    const status = "Pending";
 
@@ -255,9 +255,6 @@ const CartSummary = ({ cartData }) => {
 
    // On form submit
    const onSubmit = (data) => {
-      console.log("Form Data: ", data);
-      console.log("CART_DATA", cartData);
-
       const orderPayload = {
          shippingInfo: {
             address: data.address,
@@ -281,7 +278,6 @@ const CartSummary = ({ cartData }) => {
          })),
       };
       dispatch(createOrderLoad({ apiPayload: orderPayload, navigate }));
-      console.log("orderPayload", orderPayload);
    };
 
    return (

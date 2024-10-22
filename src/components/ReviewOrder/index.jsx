@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Card, List, Row, Col, Divider, Input, Form } from "antd";
+import { Button, Card, List, Row, Col, Divider } from "antd";
 import { useEffect } from "react";
 import { LuIndianRupee } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"; // For navigation
-import { getAllOrderLoad } from "../../redux/action/order_actions";
+import { deleteOrderLoad, getAllOrderLoad } from "../../redux/action/order_actions";
 
 const ReviewOrder = () => {
    const navigate = useNavigate(); // For redirecting to the payment page
    const dispatch = useDispatch();
    const orderData = useSelector((state) => state?.OrderReducer);
    console.log("GET_ALL_ORDER", orderData?.getAllOrderData);
+
 
    useEffect(() => {
       dispatch(getAllOrderLoad());
@@ -21,9 +22,19 @@ const ReviewOrder = () => {
       navigate("/payment"); // Navigate to the payment page after review
    };
 
+   // Handle delete order functionality
+   const handleDeleteOrder = (id, deleteOrderFunctionCall) => {
+      console.log("Delete_Order's_ID", id, deleteOrderFunctionCall);
+      dispatch(deleteOrderLoad({ id: id, deleteOrderFunctionCall }));
+   };
+
+   const deleteOrderFunctionCall = () => {
+      dispatch(getAllOrderLoad());
+   };
+
    return (
       <div className="min-h-screen bg-gray-50 p-8 flex flex-col items-center">
-         {orderData?.getAllOrderData.map((order, index) => (
+         {orderData?.getAllOrderData ? orderData?.getAllOrderData.map((order, index) => (
             <Card key={index} className="w-full max-w-4xl shadow-md p-6">
                <h2 className="text-2xl font-semibold mb-4">Review Your Order</h2>
                {/* Product List */}
@@ -66,8 +77,7 @@ const ReviewOrder = () => {
                </Card>
 
                <h3 className="text-lg font-semibold">Payment Method</h3>
-               <Card className="mb-4">
-               </Card>
+               <Card className="mb-4"></Card>
 
                <Divider />
 
@@ -83,18 +93,32 @@ const ReviewOrder = () => {
                   </Col>
                </Row>
 
-               {/* Proceed to Payment Button */}
-               <Row justify="center">
-                  <Button
-                    onClick={handleProceedToPayment}
-                     type="primary"
-                     size="large"
-                     className="w-full">
-                     Proceed to Payment
-                  </Button>
-               </Row>
+               <div className="flex justify-between">
+                  {/* Delete Order Button */}
+                  <Row justify="end">
+                     <Button
+                        onClick={() => handleDeleteOrder(order._id, deleteOrderFunctionCall)} // Trigger delete function
+                        type="primary"
+                        danger
+                        size="large"
+                        className="w-full">
+                        Delete Order
+                     </Button>
+                  </Row>
+
+                  {/* Proceed to Payment Button */}
+                  <Row justify="center">
+                     <Button
+                        onClick={handleProceedToPayment}
+                        type="primary"
+                        size="large"
+                        className="w-full">
+                        Proceed to Payment
+                     </Button>
+                  </Row>
+               </div>
             </Card>
-         ))}
+         )) : <div className="text-center"><img src="https://cdn.dribbble.com/users/9620200/screenshots/17987839/media/fd60cc8251e50a8c54d3dde620ff9460.jpg" alt="" /></div>}
       </div>
    );
 };

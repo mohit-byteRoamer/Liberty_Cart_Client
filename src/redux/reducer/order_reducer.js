@@ -5,6 +5,8 @@ const initialState = {
    createOrderData: [],
    getAllOrderLoader: false,
    getAllOrderData: [],
+   deleteOrderLoader: false,
+   deleteOrderData: {},
 };
 
 const OrderReducer = (state = initialState, action) => {
@@ -18,6 +20,17 @@ const OrderReducer = (state = initialState, action) => {
 
       case reduxConstants.CREATE_ORDER_FAIL:
          return { ...state, createOrderLoader: false };
+      // ------------------------------------------------------ //
+
+      // Delete_Order_Reducer
+      case reduxConstants.DELETE_ORDER_LOAD:
+         return { ...state, deleteOrderLoader: true };
+
+      case reduxConstants.DELETE_ORDER_SUCCESS:
+         return { ...state, deleteOrderLoader: false, deleteOrderData: action.payload };
+
+      case reduxConstants.DELETE_ORDER_FAIL:
+         return { ...state, deleteOrderLoader: false };
       // ------------------------------------------------------ //
 
       // Get_All_Order_Reducer

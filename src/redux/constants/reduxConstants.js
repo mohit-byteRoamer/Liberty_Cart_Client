@@ -89,6 +89,12 @@ const reduxConstants = {
    CREATE_ORDER_FAIL: "CREATE_ORDER_FAIL",
    // ----------------------------------------------------------- //
 
+   // DELETE_ORDER_BY_USER
+   DELETE_ORDER_LOAD: "DELETE_ORDER_LOAD",
+   DELETE_ORDER_SUCCESS: "DELETE_ORDER_SUCCESS",
+   DELETE_ORDER_FAIL: "DELETE_ORDER_FAIL",
+   // ----------------------------------------------------------- //
+
    // GET_ALL_ORDER_BY_USER
    GET_ALL_ORDER_LOAD: "GET_ALL_ORDER_LOAD",
    GET_ALL_ORDER_SUCCESS: "GET_ALL_ORDER_SUCCESS",
