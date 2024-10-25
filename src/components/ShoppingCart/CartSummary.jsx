@@ -2,13 +2,15 @@
 // CartSummary.jsx
 import { Input, Button, Select, Form, Card, Descriptions, Statistic, Col, Row } from "antd";
 import { useForm, Controller } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createOrderLoad } from "../../redux/action/order_actions";
 import { useNavigate } from "react-router-dom";
 
-const CartSummary = ({ cartData }) => {
+const CartSummary = ({ cartData, loading }) => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
+   const createOrderLoader = useSelector((state) => state?.OrderReducer?.createOrderLoader);
+
    const { Option } = Select;
    const {
       control,
@@ -281,7 +283,10 @@ const CartSummary = ({ cartData }) => {
    };
 
    return (
-      <Form onFinish={handleSubmit(onSubmit)} className="p-4 bg-white shadow-md rounded-md">
+      <Form
+         loading={loading}
+         onFinish={handleSubmit(onSubmit)}
+         className="p-4 bg-white shadow-md rounded-md">
          <h3 className="font-semibold text-lg mb-4">Shipping Address</h3>
 
          {/* Address */}
@@ -489,7 +494,7 @@ const CartSummary = ({ cartData }) => {
                </Col>
             </Row>
          </Card>
-         <Button type="primary" block htmlType="submit" className="mt-4">
+         <Button loading={createOrderLoader} type="primary" block htmlType="submit" className="mt-4">
             Place Order
          </Button>
       </Form>

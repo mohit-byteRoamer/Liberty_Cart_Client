@@ -1,13 +1,13 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Heading } from "./components/AppHeader/Heading";
 import Home from "./page/HomePage";
 import Error from "./page/ErrorPage";
 import Signup from "./page/SignupPage";
 import Login from "./page/LogInPage";
 import AppHeader from "./components/AppHeader/AppHeader";
 import AppFooter from "./components/AppFooter/AppFooter";
-import { useLocation } from "react-router-dom";
-import { Heading } from "./components/AppHeader/Heading";
 import About from "./page/About";
 import ProductDetail from "./components/ExploreOurProduct/ProductDetail";
 import Contact from "./page/Contact";
@@ -17,8 +17,10 @@ import AddProduct from "./adminPanel/AddProduct/index";
 import MyProduct from "./adminPanel/MyProduct/index";
 import EditProduct from "./adminPanel/EditProduct/index";
 import AllProducts from "./components/AllProducts";
-import shoppingCart from "./components/ShoppingCart";
-import ReviewOrder from "./components/ReviewOrder";
+import ReviewOrder from "./components/Order/ReviewOrder";
+import EditOrder from "./components/Order/EditOrder";
+import ShoppingCart from "./components/ShoppingCart";
+import Dashboard from "./admin/Dashboard";
 
 function App() {
    const location = useLocation();
@@ -46,8 +48,10 @@ function App() {
                <Route path="/myProduct" element={<ProtectedRoute Component={MyProduct} />} />
                <Route path="/edit-product/:id" element={<ProtectedRoute Component={EditProduct} />} />
                <Route path="/all-products" element={<ProtectedRoute Component={AllProducts} />} />
-               <Route path="/shoppingCart" element={<ProtectedRoute Component={shoppingCart} />} />
+               <Route path="/shoppingCart" element={<ProtectedRoute Component={ShoppingCart} />} />
                <Route path="/reviewOrder" element={<ProtectedRoute Component={ReviewOrder} />} />
+               <Route path="/editOrder/:id" element={<ProtectedRoute Component={EditOrder} />} />
+               <Route path="/adminDashboard" element={<ProtectedRoute Component={Dashboard} />} />
                {/* Error Route */}
                <Route path="*" element={<Error />} />
             </Routes>

@@ -1,5 +1,11 @@
 import { call, put } from "redux-saga/effects";
-import { createOrderApi, deleteOrderApi, getAllOrderApi } from "../axios/axios-api";
+import {
+   createOrderApi,
+   deleteOrderApi,
+   getAllOrderApi,
+   getOrderByIdApi,
+   updateOrderApi,
+} from "../axios/axios-api";
 import toast from "react-hot-toast";
 import {
    createOrderFail,
@@ -8,6 +14,10 @@ import {
    deleteOrderSuccess,
    getAllOrderFail,
    getAllOrderSuccess,
+   getOrderByIdFail,
+   getOrderByIdSuccess,
+   updateOrderFail,
+   updateOrderSuccess,
 } from "../action/order_actions";
 
 // Create Order Saga
@@ -34,6 +44,30 @@ export function* createOrderSaga(action) {
 }
 // ------------------------------------------------------------------ //
 
+// Update Order Saga
+export function* updateOrderSaga(action) {
+   console.log("updateOrderSaga action.payload:", action.payload);
+   // const { id, updateOrderFunctionCall } = action.payload;
+   try {
+      const response = yield call(updateOrderApi, action.payload.apiPayload);
+      console.log("updateOrderSaga response:", response);
+      const { result, status } = response;
+      if (status === 1) {
+         yield put(updateOrderSuccess(result));
+         toast.success(result?.message);
+         // yield call(updateOrderFunctionCall);
+      } else {
+         yield put(updateOrderFail(result));
+         toast.error(result?.message || "Failed to update order");
+      }
+   } catch (error) {
+      console.log("Error updating order:", error);
+      yield put(updateOrderFail(error));
+      toast.error("Internal Server Error. Please try again later.");
+   }
+}
+// ------------------------------------------------------------------ //
+
 // Delete Order Saga
 export function* deleteOrderSaga(action) {
    console.log("deleteOrderSaga action.payload:", action.payload);
@@ -43,7 +77,7 @@ export function* deleteOrderSaga(action) {
       console.log("deleteOrderSaga response:", response);
       const { result, status } = response;
       if (status === 1) {
-         yield put(deleteOrderSuccess(result));
+         yield put(deleteOrderSuccess(result?.data));
          toast.success(result?.message);
          yield call(deleteOrderFunctionCall);
       } else {
@@ -56,7 +90,27 @@ export function* deleteOrderSaga(action) {
       toast.error("Internal Server Error. Please try again later.");
    }
 }
+// ------------------------------------------------------------------ //
 
+// Get Order By Id Saga
+export function* getOrderByIdSaga(action) {
+   console.log("getOrderByIdSaga action.payload:", action.payload);
+   try {
+      const response = yield call(getOrderByIdApi, action.payload);
+      console.log("getOrderByIdSaga response:", response?.result?.data);
+      const { result, status } = response;
+      if (status === 1) {
+         yield put(getOrderByIdSuccess(result?.data));
+      } else {
+         yield put(getOrderByIdFail(result));
+         toast.error(result?.message || "Failed to Get Order By Id.");
+      }
+   } catch (error) {
+      console.log("Error Get Order By Id", error);
+      yield put(getOrderByIdFail(error));
+      toast.error("Internal Server Error. Please try again later.");
+   }
+}
 // ------------------------------------------------------------------ //
 
 // Get All Order Saga

@@ -89,10 +89,22 @@ const reduxConstants = {
    CREATE_ORDER_FAIL: "CREATE_ORDER_FAIL",
    // ----------------------------------------------------------- //
 
+   // CREATE_NEW_ORDER_BY_USER
+   UPDATE_ORDER_LOAD: "UPDATE_ORDER_LOAD",
+   UPDATE_ORDER_SUCCESS: "UPDATE_ORDER_SUCCESS",
+   UPDATE_ORDER_FAIL: "UPDATE_ORDER_FAIL",
+   // ----------------------------------------------------------- //
+
    // DELETE_ORDER_BY_USER
    DELETE_ORDER_LOAD: "DELETE_ORDER_LOAD",
    DELETE_ORDER_SUCCESS: "DELETE_ORDER_SUCCESS",
    DELETE_ORDER_FAIL: "DELETE_ORDER_FAIL",
+   // ----------------------------------------------------------- //
+
+   // GET_ORDER_BY_ID_USER
+   GET_ORDER_BY_ID_LOAD: "GET_ORDER_BY_ID_LOAD",
+   GET_ORDER_BY_ID_SUCCESS: "GET_ORDER_BY_ID_SUCCESS",
+   GET_ORDER_BY_ID_FAIL: "GET_ORDER_BY_ID_FAIL",
    // ----------------------------------------------------------- //
 
    // GET_ALL_ORDER_BY_USER

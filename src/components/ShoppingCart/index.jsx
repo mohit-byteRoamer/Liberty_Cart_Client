@@ -13,7 +13,7 @@ import {
 import { DeleteOutlined } from "@ant-design/icons";
 import { LuIndianRupee } from "react-icons/lu";
 
-function shoppingCart() {
+function ShoppingCart() {
    const dispatch = useDispatch();
    const cartData = useSelector((state) => state?.CartReducer);
    const [selectedItem, setSelectedItem] = useState();
@@ -148,10 +148,10 @@ function shoppingCart() {
             <ProductList columns={columns} transformedCartData={transformedCartData} loading={cartData?.getCartLoader} />
          </div>
          <div className="w-1/3 ml-4">
-            <CartSummary cartData={transformedCartData} />
+            <CartSummary cartData={transformedCartData} loading={cartData?.getCartLoader} />
          </div>
       </div>
    );
 }
 
-export default shoppingCart;
+export default ShoppingCart;

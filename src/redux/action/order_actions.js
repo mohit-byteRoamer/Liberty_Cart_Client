@@ -16,6 +16,22 @@ export const createOrderFail = () => ({
 });
 // ------------------------------------------------------ //
 
+// Update_Order_Action
+export const updateOrderLoad = (payload) => ({
+   type: reduxConstants.UPDATE_ORDER_LOAD,
+   payload,
+});
+
+export const updateOrderSuccess = (payload) => ({
+   type: reduxConstants.UPDATE_ORDER_SUCCESS,
+   payload,
+});
+
+export const updateOrderFail = () => ({
+   type: reduxConstants.UPDATE_ORDER_FAIL,
+});
+// ------------------------------------------------------ //
+
 // Delete_Order_Action
 export const deleteOrderLoad = (payload) => ({
    type: reduxConstants.DELETE_ORDER_LOAD,
@@ -29,6 +45,22 @@ export const deleteOrderSuccess = (payload) => ({
 
 export const deleteOrderFail = () => ({
    type: reduxConstants.DELETE_ORDER_FAIL,
+});
+// ------------------------------------------------------ //
+
+// Get_Order_by_Id_Action
+export const getOrderByIdLoad = (payload) => ({
+   type: reduxConstants.GET_ORDER_BY_ID_LOAD,
+   payload,
+});
+
+export const getOrderByIdSuccess = (payload) => ({
+   type: reduxConstants.GET_ORDER_BY_ID_SUCCESS,
+   payload,
+});
+
+export const getOrderByIdFail = () => ({
+   type: reduxConstants.GET_ORDER_BY_ID_FAIL,
 });
 // ------------------------------------------------------ //
 
