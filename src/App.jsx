@@ -18,7 +18,6 @@ import MyProduct from "./adminPanel/MyProduct/index";
 import EditProduct from "./adminPanel/EditProduct/index";
 import AllProducts from "./components/AllProducts";
 import ReviewOrder from "./components/Order/ReviewOrder";
-import EditOrder from "./components/Order/EditOrder";
 import ShoppingCart from "./components/ShoppingCart";
 import Dashboard from "./admin/Dashboard";
 
@@ -50,7 +49,6 @@ function App() {
                <Route path="/all-products" element={<ProtectedRoute Component={AllProducts} />} />
                <Route path="/shoppingCart" element={<ProtectedRoute Component={ShoppingCart} />} />
                <Route path="/reviewOrder" element={<ProtectedRoute Component={ReviewOrder} />} />
-               <Route path="/editOrder/:id" element={<ProtectedRoute Component={EditOrder} />} />
                <Route path="/adminDashboard" element={<ProtectedRoute Component={Dashboard} />} />
                {/* Error Route */}
                <Route path="*" element={<Error />} />

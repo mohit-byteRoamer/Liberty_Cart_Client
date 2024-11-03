@@ -13,7 +13,7 @@ const ReviewOrder = () => {
    const orderData = useSelector((state) => state?.OrderReducer);
    console.log("GET_ALL_ORDER", orderData);
 
-   const { control, handleSubmit, reset } = useForm();
+   const { control, handleSubmit } = useForm();
 
    useEffect(() => {
       dispatch(getAllOrderLoad());
