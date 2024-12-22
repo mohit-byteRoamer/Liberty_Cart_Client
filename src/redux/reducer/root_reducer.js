@@ -4,6 +4,7 @@ import ProductReducer from "./product_reducer";
 import UploadFileReducer from "./upload_file_reducer";
 import CartReducer from "./cart_reducer";
 import OrderReducer from "./order_reducer";
+import PaymentReducer from "./payment_reducer";
 
 const rootReducers = combineReducers({
    AuthReducer,
@@ -11,5 +12,6 @@ const rootReducers = combineReducers({
    OrderReducer,
    ProductReducer,
    UploadFileReducer,
+   PaymentReducer,
 });
 export default rootReducers;

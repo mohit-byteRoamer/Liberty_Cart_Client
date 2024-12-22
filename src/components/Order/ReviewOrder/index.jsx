@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"; // For navigation
 import { deleteOrderLoad, getAllOrderLoad } from "../../../redux/action/order_actions";
 import { useForm, Controller } from "react-hook-form";
+import { createPaymentLoadAction } from "../../../redux/action/payment_actions";
 
 const ReviewOrder = () => {
    const navigate = useNavigate(); // For redirecting to the payment page
    const dispatch = useDispatch();
    const orderData = useSelector((state) => state?.OrderReducer);
-   console.log("GET_ALL_ORDER", orderData);
+   const paymentData = useSelector((state) => state?.PaymentReducer);
+   console.log("paymentData", paymentData);
 
    const { control, handleSubmit } = useForm();
 
@@ -20,8 +22,9 @@ const ReviewOrder = () => {
    }, []);
 
    // Handle form submission to go to the payment page
-   const handleProceedToPayment = () => {
-      navigate("/payment"); // Navigate to the payment page after review
+   const handleProceedToPayment = (data) => {
+      const amount = { amount: Number(5000), navigate };
+      dispatch(createPaymentLoadAction(amount));
    };
 
    // Handle delete order functionality
@@ -125,7 +128,7 @@ const ReviewOrder = () => {
                      {/* Proceed to Payment Button */}
                      <Row justify="center">
                         <Button
-                           onClick={handleProceedToPayment}
+                           onClick={() => handleProceedToPayment(order?.total)}
                            type="primary"
                            size="large"
                            className="w-full">

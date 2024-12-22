@@ -112,6 +112,12 @@ const reduxConstants = {
    GET_ALL_ORDER_SUCCESS: "GET_ALL_ORDER_SUCCESS",
    GET_ALL_ORDER_FAIL: "GET_ALL_ORDER_FAIL",
    // ----------------------------------------------------------- //
+
+   // CREATE_PAYMENT_BY_USER
+   CREATE_PAYMENT_LOAD: "CREATE_PAYMENT_LOAD",
+   CREATE_PAYMENT_SUCCESS: "CREATE_PAYMENT_SUCCESS",
+   CREATE_PAYMENT_FAIL: "CREATE_PAYMENT_FAIL",
+   // ----------------------------------------------------------- //
 };
 
 export default reduxConstants;

@@ -20,6 +20,7 @@ import AllProducts from "./components/AllProducts";
 import ReviewOrder from "./components/Order/ReviewOrder";
 import ShoppingCart from "./components/ShoppingCart";
 import Dashboard from "./admin/Dashboard";
+import PaymentInfo from "./page/PaymentInfo";
 
 function App() {
    const location = useLocation();
@@ -45,11 +46,16 @@ function App() {
                <Route path="/addProduct" element={<ProtectedRoute Component={AddProduct} />} />
                <Route path="/product/:id" element={<ProtectedRoute Component={ProductDetail} />} />
                <Route path="/myProduct" element={<ProtectedRoute Component={MyProduct} />} />
-               <Route path="/edit-product/:id" element={<ProtectedRoute Component={EditProduct} />} />
+               <Route
+                  path="/edit-product/:id"
+                  element={<ProtectedRoute Component={EditProduct} />}
+               />
                <Route path="/all-products" element={<ProtectedRoute Component={AllProducts} />} />
                <Route path="/shoppingCart" element={<ProtectedRoute Component={ShoppingCart} />} />
                <Route path="/reviewOrder" element={<ProtectedRoute Component={ReviewOrder} />} />
                <Route path="/adminDashboard" element={<ProtectedRoute Component={Dashboard} />} />
+               <Route path="/paymentInfo" element={<ProtectedRoute Component={PaymentInfo} />} />
+
                {/* Error Route */}
                <Route path="*" element={<Error />} />
             </Routes>

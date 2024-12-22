@@ -20,6 +20,7 @@ import {
    getOrderByIdSaga,
    updateOrderSaga,
 } from "./order_saga";
+import { CreatePaymentSaga } from "./payment_sagas";
 
 export function* rootSaga() {
    yield takeLatest(reduxConstants.SIGNUP_LOAD, signUpSaga);
@@ -41,4 +42,5 @@ export function* rootSaga() {
    yield takeLatest(reduxConstants.DELETE_ORDER_LOAD, deleteOrderSaga);
    yield takeLatest(reduxConstants.UPDATE_ORDER_LOAD, updateOrderSaga);
    yield takeLatest(reduxConstants.GET_ORDER_BY_ID_LOAD, getOrderByIdSaga);
+   yield takeLatest(reduxConstants.CREATE_PAYMENT_LOAD, CreatePaymentSaga);
 }

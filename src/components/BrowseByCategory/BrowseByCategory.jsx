@@ -31,6 +31,8 @@ function BrowseByCategory() {
       switch (category.toLowerCase()) {
          case "accessories":
             return <AccountBookOutlined />;
+         case "clothing":
+            return <GiClothes />;
          case "electronics":
             return <SiStmicroelectronics />;
          case "audio":
