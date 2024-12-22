@@ -13,7 +13,6 @@ import ProductDetail from "./components/ExploreOurProduct/ProductDetail";
 import Contact from "./page/Contact";
 import UnProtectedRoute from "./components/Routes/UnProtectedRoute";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
-import AddProduct from "./adminPanel/addProduct";
 import MyProduct from "./adminPanel/myProduct";
 import EditProduct from "./adminPanel/editProduct";
 import AllProducts from "./components/AllProducts";
@@ -43,7 +42,6 @@ function App() {
 
                {/* Protected Routes */}
                <Route path="/" element={<ProtectedRoute Component={Home} />} />
-               <Route path="/addProduct" element={<ProtectedRoute Component={AddProduct} />} />
                <Route path="/product/:id" element={<ProtectedRoute Component={ProductDetail} />} />
                <Route path="/myProduct" element={<ProtectedRoute Component={MyProduct} />} />
                <Route
