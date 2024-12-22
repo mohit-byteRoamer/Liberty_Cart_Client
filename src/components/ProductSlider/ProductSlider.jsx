@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { LeftArrowBtn, RightArrowBtn } from "../Buttons/ArrowBtn";
-import ProductCard from "../Cards/ProductCard";
+import { LeftArrowBtn, RightArrowBtn } from "../buttons/ArrowBtn";
+import ProductCard from "../cards/ProductCard";
 
 const ProductSlider = ({ data, title }) => {
    //  Initial Value of CurrentIndex

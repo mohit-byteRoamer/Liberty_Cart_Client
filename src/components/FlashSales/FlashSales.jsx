@@ -1,8 +1,8 @@
 import SectionTopBar from "../SectionTopBar";
 import Timer from "../Timer";
 import { LeftArrowBtn, RightArrowBtn } from "../Buttons/ArrowBtn";
-import ProductSlider from "../ProductSlider/ProductSlider";
-import ViewBtn from "../Buttons/ViewBtn";
+import ProductSlider from "../productSlider/ProductSlider";
+import ViewBtn from "../buttons/ViewBtn";
 import flashSalesProduct from "./flashSalesProduct";
 
 function FlashSales() {

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import SectionTopBar from "../SectionTopBar";
-import ProductSlider from "../ProductSlider/ProductSlider";
-import ViewBtn from "../Buttons/ViewBtn";
+import ProductSlider from "../productSlider/ProductSlider";
+import ViewBtn from "../buttons/ViewBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProductLoad } from "../../redux/action/product_action";

@@ -1,6 +1,6 @@
 import SectionTopBar from "../SectionTopBar";
-import ProductSlider from "../ProductSlider/ProductSlider";
-import ViewBtn from "../Buttons/ViewBtn";
+import ProductSlider from "../productSlider/ProductSlider";
+import ViewBtn from "../buttons/ViewBtn";
 import JBL from "../../assets/JBL.png";
 import { getLatestProductLoad } from "../../redux/action/product_action";
 import { useEffect } from "react";

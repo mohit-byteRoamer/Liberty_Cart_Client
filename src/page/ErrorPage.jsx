@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ViewBtn from "../components/Buttons/ViewBtn";
+import ViewBtn from "../components/buttons/ViewBtn";
 
 function Error() {
    return (

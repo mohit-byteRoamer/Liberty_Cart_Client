@@ -3,7 +3,7 @@ import { Row, Col } from "antd";
 import "antd/dist/reset.css"; // Import Ant Design styles
 import "tailwindcss/tailwind.css"; // Import Tailwind CSS
 import { CustomerServiceFilled, TruckOutlined } from "@ant-design/icons";
-import ServiceCard from "../components/Cards/ServiceCard";
+import ServiceCard from "../components/cards/ServiceCard";
 
 function About() {
    return (

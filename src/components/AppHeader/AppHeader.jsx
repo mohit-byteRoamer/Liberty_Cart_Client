@@ -1,7 +1,6 @@
 import { GiftOutlined, PlusSquareOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Menu, Tooltip } from "antd";
 import Layout, { Header } from "antd/es/layout/layout";
-import Title from "antd/es/typography/Title";
 import { Link } from "react-router-dom";
 import BreadCrumb from "../../breadCrumb";
 import logo from "../../assets/liberty_cart_logo.jpg";

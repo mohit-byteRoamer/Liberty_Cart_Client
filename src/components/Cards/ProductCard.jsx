@@ -2,7 +2,7 @@
 import { Card, Badge, Typography, Rate } from "antd";
 import { HeartOutlined, EyeOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import UpdateCart from "../UpdateCart";
+import UpdateCart from "../updateCart";
 
 const { Text, Title } = Typography;
 

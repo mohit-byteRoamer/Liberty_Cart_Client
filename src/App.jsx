@@ -1,24 +1,23 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { Heading } from "./components/AppHeader/Heading";
+import { Heading } from "./components/appHeader/Heading";
 import Home from "./page/HomePage";
 import Error from "./page/ErrorPage";
 import Signup from "./page/SignupPage";
 import Login from "./page/LogInPage";
-import AppHeader from "./components/AppHeader/AppHeader";
-import AppFooter from "./components/AppFooter/AppFooter";
+import AppHeader from "./components/appHeader/AppHeader"
+import AppFooter from "./components/appFooter/AppFooter";
 import About from "./page/About";
-import ProductDetail from "./components/ExploreOurProduct/ProductDetail";
+import ProductDetail from "./components/exploreOurProduct/ProductDetail";
 import Contact from "./page/Contact";
-import UnProtectedRoute from "./components/Routes/UnProtectedRoute";
-import ProtectedRoute from "./components/Routes/ProtectedRoute";
+import UnProtectedRoute from "./components/routes/UnProtectedRoute";
+import ProtectedRoute from "./components/routes/ProtectedRoute";
 import MyProduct from "./adminPanel/myProduct";
 import EditProduct from "./adminPanel/editProduct";
-import AllProducts from "./components/AllProducts";
-import ReviewOrder from "./components/Order/ReviewOrder";
-import ShoppingCart from "./components/ShoppingCart";
-import Dashboard from "./admin/Dashboard";
+import AllProducts from "./components/allProducts";
+import ReviewOrder from "./components/order/reviewOrder";
+import ShoppingCart from "./components/shoppingCart";
 import PaymentInfo from "./page/PaymentInfo";
 
 function App() {
@@ -51,7 +50,6 @@ function App() {
                <Route path="/all-products" element={<ProtectedRoute Component={AllProducts} />} />
                <Route path="/shoppingCart" element={<ProtectedRoute Component={ShoppingCart} />} />
                <Route path="/reviewOrder" element={<ProtectedRoute Component={ReviewOrder} />} />
-               <Route path="/adminDashboard" element={<ProtectedRoute Component={Dashboard} />} />
                <Route path="/paymentInfo" element={<ProtectedRoute Component={PaymentInfo} />} />
 
                {/* Error Route */}

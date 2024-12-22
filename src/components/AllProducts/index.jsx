@@ -2,9 +2,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProductCategoryLoad, getProductLoad } from "../../redux/action/product_action";
-import Page from "../Pagination";
-import ProductCard from "../Cards/ProductCard";
-import CategoryTags from "../CategoryTags";
+import Page from "../pagination";
+import ProductCard from "../cards/ProductCard";
+import CategoryTags from "../categoryTags";
 
 function AllProducts() {
    const dispatch = useDispatch();

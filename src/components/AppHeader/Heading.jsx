@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LogOutBtn from "../Buttons/LogOutBtn";
+import LogOutBtn from "../buttons/LogOutBtn";
 import { Popover } from "antd";
 import { FaAngleDown } from "react-icons/fa";
 import { IoIosHelpCircleOutline } from "react-icons/io";

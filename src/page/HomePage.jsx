@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import BrowseByCategory from "../components/BrowseByCategory/BrowseByCategory";
-import ExploreOurProduct from "../components/ExploreOurProduct/ExploreOurProduct";
+import BrowseByCategory from "../components/browseByCategory/BrowseByCategory";
+import ExploreOurProduct from "../components/exploreOurProduct/ExploreOurProduct";
 // import FlashSales from "../components/FlashSales/FlashSales";
-import LatestProducts from "../components/LatestProducts/LatestProducts";
-import NewArrival from "../components/NewArrival/NewArrival";
+import LatestProducts from "../components/latestProducts/LatestProducts";
+import NewArrival from "../components/newArrival/NewArrival";
 import { useEffect } from "react";
-import BannerSection from "../components/Banner/BannerSection";
+import BannerSection from "../components/banner/BannerSection";
 
 function Home() {
    const navigate = useNavigate();
