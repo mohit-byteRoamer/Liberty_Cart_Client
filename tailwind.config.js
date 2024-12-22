@@ -1,13 +1,11 @@
-/** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class',
-  content: [
-      './src/**/*.{js,jsx,ts,tsx}', // Adjust the paths as necessary
-      './public/index.html',
-    ],
-    plugins: [
-      require('@tailwindcss/line-clamp'),
+   darkMode: "class",
+   content: [
+      "./src/**/*.{js,jsx,ts,tsx}", // Adjust the paths as necessary
+      "./public/index.html",
+   ],
+   plugins: [
       // other plugins
-    ],
-    // other configurations
+   ],
+   // other configurations
 };
