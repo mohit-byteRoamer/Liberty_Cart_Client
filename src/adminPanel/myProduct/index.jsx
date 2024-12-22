@@ -11,10 +11,8 @@ const MyProduct = () => {
    const navigate = useNavigate();
    const sagaProducts = useSelector((state) => state?.ProductReducer?.adminProducts);
    const loader = useSelector((state) => state?.ProductReducer?.getProductAdminLoader);
-   console.log("PRODUCT", sagaProducts);
    
    const [pageNumber, setPageNumber] = useState(1);
-   console.log("PAGE_NUMBER", pageNumber);
    
 
    useEffect(() => {

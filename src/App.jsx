@@ -13,12 +13,12 @@ import ProductDetail from "./components/exploreOurProduct/ProductDetail";
 import Contact from "./page/Contact";
 import UnProtectedRoute from "./components/routes/UnProtectedRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
-import MyProduct from "./adminPanel/myProduct";
 import EditProduct from "./adminPanel/editProduct";
 import AllProducts from "./components/allProducts";
 import ReviewOrder from "./components/order/reviewOrder";
 import ShoppingCart from "./components/shoppingCart";
 import PaymentInfo from "./page/PaymentInfo";
+import MyProduct from "./adminPanel/myProduct";
 
 function App() {
    const location = useLocation();
